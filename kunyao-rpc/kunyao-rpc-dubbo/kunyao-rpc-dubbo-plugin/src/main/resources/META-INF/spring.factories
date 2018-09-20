@@ -1,0 +1,4 @@
+#org.springframework.context.ApplicationContextInitializer=\
+#com.epik.dubbo.boot.DubboConfigurationApplicationContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.epik.dubbo.boot.config.DubboAutoConfiguration

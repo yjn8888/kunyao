@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.epik.springmvc.boot.config.SpringMvcConfig

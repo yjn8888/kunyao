@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version>
+	</parent>
+	<groupId>com.kunyao</groupId>
+	<artifactId>kunyao</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Epic libraries</name>
+	<description>The Epic library for Microservice structure</description>
+	<modules>
+		<module>kunyao-core</module>
+		<module>kunyao-file</module>
+		<module>kunyao-data</module>
+		<module>kunyao-rpc</module>
+		<module>kunyao-common</module>
+		<module>kunyao-mvc</module>
+		<module>kunyao-message</module>
+		<module>kunyao-schedule</module>
+		<module>kunyao-security</module>
+		<module>kunyao-restful</module>
+		<module>kunyao-cache</module>
+		<module>kunyao-test</module>
+		<module>kunyao-swagger</module>
+		<module>kunyao-log</module>
+		<module>kunyao-search</module>
+		<module>kunyao-monitor</module>
+		<module>kunyao-workflow</module>
+		<module>kunyao-db</module>
+	</modules>
+	<properties>
+		<!-- for maven compiler plugin -->
+		<java_source_version>1.8</java_source_version>
+		<java_target_version>1.8</java_target_version>
+		<file_encoding>UTF-8</file_encoding>
+		<mybatis_spring_boot_starter_version>1.3.1</mybatis_spring_boot_starter_version>
+		<!-- all dependencies -->
+		<!-- Log libs -->
+		<slf4j_version>1.7.21</slf4j_version>
+		<jcl_version>1.1.1</jcl_version>
+		<logback_version>1.1.7</logback_version>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java_source_version}</source>
+					<target>${java_target_version}</target>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
