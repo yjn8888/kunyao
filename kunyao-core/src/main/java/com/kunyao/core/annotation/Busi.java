@@ -12,7 +12,7 @@ public @interface Busi {
     /**
      * 模块名
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * @return
      */
@@ -21,7 +21,7 @@ public @interface Busi {
     /**
      * 操作内容
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * @return
      */

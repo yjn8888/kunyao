@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 通用异常处理类
- * @author: zhangrongbinbj@hanhua.com
+ * @author: 
  * @since : 2015年7月21日
  */
 @SuppressWarnings("deprecation")
@@ -18,7 +18,7 @@ public class ExceptionHandler {
     
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category logger 日志输出变量
      * @since: 2015年7月21日
      */
@@ -28,7 +28,7 @@ public class ExceptionHandler {
     /**
      * 异常处理方法
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @since: 2015年7月21日
      * @param e
      */
@@ -41,7 +41,7 @@ public class ExceptionHandler {
     /**
      * 异常处理方法
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @since: 2015年7月21日
      * @param e
      */
@@ -53,7 +53,7 @@ public class ExceptionHandler {
     /**
      * 异常处理方法
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @since: 2015年7月22日
      * @param e
      */
@@ -65,7 +65,7 @@ public class ExceptionHandler {
     /**
      * TODO:handle(Exception e, Logger logger)
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @since: 2015年8月6日
      * @param e
      * @param logger

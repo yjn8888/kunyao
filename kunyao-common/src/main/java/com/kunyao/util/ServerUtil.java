@@ -9,7 +9,7 @@
  * Last modified: $Date$
  * Last modified by: $Author$
  */
-package com.epik.util;
+package com.kunyao.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -17,8 +17,8 @@ import java.net.UnknownHostException;
 /**
  * 此类描述的是：TODO:判断当前使用的server容器
  * 
- * @author: liuwenlong
- * @since : 2013-5-28
+ * @author:
+ * @since : 2018-10-17
  */
 public class ServerUtil {
 	

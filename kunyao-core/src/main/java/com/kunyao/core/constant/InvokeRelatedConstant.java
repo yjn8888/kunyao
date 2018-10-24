@@ -1,6 +1,6 @@
 package com.kunyao.core.constant;
 
-public class InvokeRelatedConstant {
+public interface InvokeRelatedConstant {
     
     public static final String SUCCESS_CODE = "0000";
     public static final String SUCCESS_MESSAGE = "操作成功";

@@ -9,7 +9,10 @@
  *
  */
 
-package com.epik.util;
+package com.kunyao.util;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,17 +24,14 @@ import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.apache.log4j.Logger;
-
 /**
  * 此类描述的是：遍历包下的所有类
- * @author: liuwenlong@hanhua.com
- * @version: 2013-3-30 下午4:18:03 
+ * @version: 2013-3-30 下午4:18:03
  */
 
 public class PackageUtil {
 
-    private static final Logger logger = Logger.getLogger(PackageUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(PackageUtil.class);
 
     /**
      * 获取某包下（包括该包的所有子包）所有类

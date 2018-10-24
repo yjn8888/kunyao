@@ -1,30 +1,18 @@
-/**
- * Copyright 2012-2013 hanhua.com
- * 
- * ID: $Id$
- * Revision: $Rev$
- * Created: 2013-3-13
- * Last modified: $Date 2013-3-13$
- * Last modified by: $Author:Liuwenlong$
- * 
- */
-package com.epik.util;
+
+package com.kunyao.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * 
- * @author Liuwenlong
- * @category 日期处理工具类
- */
+
 public class DateTimeUtil {
 
-	private final static Logger log = Logger.getLogger(DateTimeUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(DateTimeUtil.class);
 	
 	public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
@@ -67,7 +55,7 @@ public class DateTimeUtil {
 		try {
 			return DATE_TIME_FORMATTER.parse(dateTime);
 		} catch (ParseException e) {
-			log.debug("日期转换错误"+e.getMessage(), e);
+			logger.error("日期转换错误"+e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -95,7 +83,7 @@ public class DateTimeUtil {
 			calendar.set(Calendar.SECOND, 0);
 			return calendar.getTime();
 		} catch (ParseException e) {
-			log.debug("日期转换错误"+e.getMessage(), e);
+			logger.error("日期转换错误"+e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -121,7 +109,7 @@ public class DateTimeUtil {
 			calendar.set(Calendar.SECOND, -1);
 			return calendar.getTime();
 		} catch (ParseException e) {
-			log.debug("日期转换错误"+e.getMessage(), e);
+			logger.error("日期转换错误"+e.getMessage(), e);
 			throw e;
 		}
 	}

@@ -1,4 +1,4 @@
-package com.epik.util;
+package com.kunyao.util;
 
 
 import java.lang.reflect.Field;
@@ -8,7 +8,7 @@ import java.lang.reflect.Modifier;
 
 /**
  * 反射工具类
- * @author yuanjianing@hanhua.com
+ * @author
  */
 public class ReflectUtil {
 	

@@ -1,4 +1,4 @@
-package com.epik.util;
+package com.kunyao.util;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * 此类描述的是：springContext工具类
- * @author: yuanjaining@hanhua.com
- * @since : 2015年6月24日
+ * @author:
+ * @since : 2018年10月17日
  */
 @Service
 public class SpringContextUtil implements ApplicationContextAware{

@@ -1,15 +1,4 @@
-package com.epik.util;
-
-/**
- * Copyright 2012-2013 hanhua.com
- * 
- * ID: $Id: GeneralUtil.java 2013-3-14 11:36 Liuwenlong $
- * Revision: $Rev: 21 $
- * Created: 2013-3-14
- * Last modified: $Date: 2013-3-14 11:36 +0800 $
- * Last modified by: $Author: Liuwenlong $
- * 
- */
+package com.kunyao.util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -36,17 +25,16 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
- * 
- * @author Liuwenlong
  * @category 操作集合框架的工具集
  */
 public class GeneralUtil {
 
-	private final static Logger logger = Logger.getLogger(GeneralUtil.class);
+	private final static Logger logger = LoggerFactory.getLogger(GeneralUtil.class);
 	
 	/**
 	 * <p>把传入类型转换为对应的对象<p>

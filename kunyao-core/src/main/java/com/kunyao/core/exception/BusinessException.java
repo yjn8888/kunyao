@@ -2,14 +2,14 @@ package com.kunyao.core.exception;
 
 /**
  * 此类描述的是：业务异常类
- * @author: zhangrongbinbj@hanhua.com
+ * @author: 
  * @since : 2015年7月21日
  */
 public class BusinessException extends BaseException {
     private static final long serialVersionUID = 2416035725705871216L;
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category moduleNameChs 中文模块名
      * @since: 2015年7月21日
      */
@@ -17,7 +17,7 @@ public class BusinessException extends BaseException {
     
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category moduleNameEng 英文模块名
      * @since: 2015年7月21日
      */
@@ -25,28 +25,28 @@ public class BusinessException extends BaseException {
     
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category methodNameChs 中文方法名
      * @since: 2015年7月21日
      */
     private String methodNameChs;
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category methodNameEng 英文方法名
      * @since: 2015年7月21日
      */
     private String methodNameEng;
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category businessErrorCode 业务错误代码
      * @since: 2015年7月21日
      */
     private String businessErrorCode;
     
     /**
-     * @author: zhangrongbinbj@hanhua.com
+     * @author: 
      * @category businessErrorMessage 业务错误信息
      * @since: 2015年7月21日
      */
@@ -54,7 +54,7 @@ public class BusinessException extends BaseException {
 
     
     /**
-     * @author:zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * 
      * @category:
@@ -78,7 +78,7 @@ public class BusinessException extends BaseException {
 
     
     /**
-     * @author:zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * 
      * @category:
@@ -104,7 +104,7 @@ public class BusinessException extends BaseException {
 
     
     /**
-     * @author:zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * 
      * @category:

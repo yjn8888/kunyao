@@ -12,11 +12,4 @@
   	<module>kunyao-data-redis</module>
   	<module>kunyao-data-orm</module>
   </modules>
-  <dependencies>
-  	<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>druid</artifactId>
-    <version>1.0.28</version>
-</dependency>
-  </dependencies>
 </project>

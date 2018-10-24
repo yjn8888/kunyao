@@ -4,11 +4,11 @@ package com.kunyao.core.exception;
 /**
  * Copyright 2012-2013 hanhua.com
  * 
- * ID: $Id: VapBaseException.java 2013-3-14 11:36 Liuwenlong $
+ * ID: $Id: VapBaseException.java 2013-3-14 11:36  $
  * Revision: $Rev: 21 $
  * Created: 2013-3-14
  * Last modified: $Date: 2013-3-14 11:36 +0800 $
- * Last modified by: $Author: Liuwenlong $
+ * Last modified by: $Author:  $
  * 
  */
 
@@ -48,10 +48,10 @@ package com.kunyao.core.exception;
  * }
  * </pre>
  * 
- * @author Liuwenlong
- * @version 1.0 {@code RuntimeException}
+ * @author 
+ * @version 1.0
  */
-public class BaseException extends RuntimeException {
+public class BaseException extends Exception {
 
 	
 	/**

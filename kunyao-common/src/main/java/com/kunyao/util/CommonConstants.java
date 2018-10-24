@@ -1,4 +1,4 @@
-package com.epik.util;
+package com.kunyao.util;
 
 /**
  * Copyright 2012-2013 hanhua.com
@@ -12,10 +12,8 @@ package com.epik.util;
  */
 
 /**
- * 
- * @author liuwenlong
  * <p>公共常量类</p>
- */
+ * */
 public interface CommonConstants {
 
 	/**

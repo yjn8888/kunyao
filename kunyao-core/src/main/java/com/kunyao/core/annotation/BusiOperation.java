@@ -12,7 +12,7 @@ public @interface BusiOperation {
     /**
      * 操作名
      * @category
-     * @author: zhangrongbinbj@hanhua.com
+     * @author:
      * @since: 2015年7月21日
      * @return
      */

@@ -22,7 +22,7 @@ public abstract class BaseEntity implements Serializable,Cloneable{
 	
 	
 	/**
-	 * @author: zhangrongbinbj@hanhua.com
+	 * @author: 
 	 * @category accessInfo 框架会反射得到相应访问信息放到这个变量当中
 	 * @since: 2015年7月24日
 	 */

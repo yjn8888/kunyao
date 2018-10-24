@@ -1,4 +1,4 @@
-package com.epik.util.rest;
+package com.kunyao.util.rest;
 
 public interface ContentType {
 	
