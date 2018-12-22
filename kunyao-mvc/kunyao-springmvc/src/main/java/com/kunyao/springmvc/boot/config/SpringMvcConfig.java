@@ -7,13 +7,13 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.epik"})
+@ComponentScan({"com.kunyao"})
 @Import({ViewResolverConfig.class})
-public class SpringMvcConfig extends WebMvcConfigurerAdapter{
+public class SpringMvcConfig extends WebMvcConfigurationSupport{
 	
 	public void addResourceHandlers(ResourceHandlerRegistry registry){
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");

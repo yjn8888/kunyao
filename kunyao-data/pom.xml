@@ -11,5 +11,6 @@
   	<module>kunyao-data-mongodb</module>
   	<module>kunyao-data-redis</module>
   	<module>kunyao-data-orm</module>
+      <module>kunyao-data-elasticsearch</module>
   </modules>
 </project>
