@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>com.kunyao</groupId>
 			<artifactId>kunyao-data-orm-datasource</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

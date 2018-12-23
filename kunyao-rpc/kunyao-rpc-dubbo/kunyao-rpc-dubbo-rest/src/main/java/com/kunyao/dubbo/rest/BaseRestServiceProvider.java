@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.kunyao.dubbo.config.annotation.ServiceExtension;
+import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * @author: yuanjaining@hanhua.com
  * @since : 2015年6月24日
  */
-@ServiceExtension(protocol={"rest"})
+@Service(protocol={"rest"})
 @SuppressWarnings("deprecation")
 public abstract class BaseRestServiceProvider {
 	

@@ -1,1 +1,0 @@
-rpcTraceFilter=com.kunyao.log.trace.intercepter.DubboRpcTraceFilter

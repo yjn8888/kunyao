@@ -1,0 +1,1 @@
+dubboRpcTraceFilter=com.kunyao.dubbo.config.base.filter.DubboRpcTraceFilter

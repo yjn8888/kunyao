@@ -1,7 +1,7 @@
 package com.kunyao.dubbo.boot.config;
 
-import com.alibaba.dubbo.config.ProtocolConfig;
 import com.kunyao.dubbo.boot.contant.DubboContant;
+import org.apache.dubbo.config.ProtocolConfig;
 
 public class ProtocolProperties {
 	

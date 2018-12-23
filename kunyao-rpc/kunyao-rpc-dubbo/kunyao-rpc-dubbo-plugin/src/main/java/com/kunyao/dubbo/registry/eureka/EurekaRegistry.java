@@ -1,8 +1,9 @@
 package com.kunyao.dubbo.registry.eureka;
 
-import com.alibaba.dubbo.common.URL;
-import com.alibaba.dubbo.registry.NotifyListener;
-import com.alibaba.dubbo.registry.support.FailbackRegistry;
+
+import org.apache.dubbo.common.URL;
+import org.apache.dubbo.registry.NotifyListener;
+import org.apache.dubbo.registry.support.FailbackRegistry;
 
 public class EurekaRegistry extends FailbackRegistry {
 
@@ -18,25 +19,25 @@ public class EurekaRegistry extends FailbackRegistry {
 	}
 
 	@Override
-	protected void doRegister(URL url) {
+	public void doRegister(URL url) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void doUnregister(URL url) {
+	public void doUnregister(URL url) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void doSubscribe(URL url, NotifyListener listener) {
+	public void doSubscribe(URL url, NotifyListener listener) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void doUnsubscribe(URL url, NotifyListener listener) {
+	public void doUnsubscribe(URL url, NotifyListener listener) {
 		// TODO Auto-generated method stub
 		
 	}

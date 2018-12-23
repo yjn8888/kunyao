@@ -1,26 +1,16 @@
 package com.kunyao.dubbo.boot.config;
 
+import com.kunyao.dubbo.boot.contant.DubboContant;
+import org.apache.dubbo.config.*;
+import org.apache.dubbo.config.spring.AnnotationBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
-
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ModuleConfig;
-import com.alibaba.dubbo.config.MonitorConfig;
-import com.alibaba.dubbo.config.ProviderConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
-import com.alibaba.dubbo.config.spring.AnnotationBean;
-import com.kunyao.dubbo.boot.contant.DubboContant;
 
 public abstract class AbstractDubboProperties {
 	
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
-	/**
-	 * dubbo注解需要扫描的包
-	 */
-	private AnnotationBean annotation;
-
     @NestedConfigurationProperty
     private ApplicationConfig application;
 
@@ -98,14 +88,6 @@ public abstract class AbstractDubboProperties {
     public void setApplication(ApplicationConfig application) {
         this.application = application;
     }
-
-	public AnnotationBean getAnnotation() {
-		return annotation;
-	}
-
-	public void setAnnotation(AnnotationBean annotation) {
-		this.annotation = annotation;
-	}
 
 	public RegistryConfig getRegistry() {
 		return registry;
