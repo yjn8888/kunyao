@@ -1,4 +1,4 @@
-package com.kunyao.message.rabbitmq.autoconfigure;
+package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 
 import org.springframework.context.annotation.Import;
 
@@ -9,4 +9,6 @@ import java.lang.annotation.*;
 @Documented
 @Import(RabbitConfigBindingsRegistrar.class)
 public @interface EnableRabbitConfigBindings {
+
+    EnableRabbitConfigBinding[] value();
 }

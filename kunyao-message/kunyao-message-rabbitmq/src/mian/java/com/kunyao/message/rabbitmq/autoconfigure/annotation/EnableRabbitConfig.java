@@ -1,4 +1,4 @@
-package com.kunyao.message.rabbitmq.autoconfigure;
+package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 
 
 import org.springframework.context.annotation.Import;
@@ -16,4 +16,5 @@ import java.lang.annotation.Target;
 @Documented
 @Import(RabbitConfigConfigurationSelector.class)
 public @interface EnableRabbitConfig {
+    boolean multiple() default true;
 }

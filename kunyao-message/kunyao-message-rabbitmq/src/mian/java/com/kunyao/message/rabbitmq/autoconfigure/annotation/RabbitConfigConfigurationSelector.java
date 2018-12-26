@@ -1,4 +1,4 @@
-package com.kunyao.message.rabbitmq.autoconfigure;
+package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.Ordered;

@@ -1,6 +1,6 @@
 package com.kunyao.dubbo.boot.contant;
 
-import com.alibaba.dubbo.common.Constants;
+import org.apache.dubbo.common.Constants;
 
 public abstract class DubboContant extends Constants {
 	/**

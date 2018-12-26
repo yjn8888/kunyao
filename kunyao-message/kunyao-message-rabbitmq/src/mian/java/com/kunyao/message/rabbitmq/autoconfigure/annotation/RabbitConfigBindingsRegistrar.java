@@ -1,4 +1,4 @@
-package com.kunyao.message.rabbitmq.autoconfigure;
+package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
@@ -23,11 +23,11 @@ public class RabbitConfigBindingsRegistrar implements ImportBeanDefinitionRegist
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(
-                annotationMetadata.getAnnotationAttributes(EnableDubboConfigBindings.class.getName()));
+                annotationMetadata.getAnnotationAttributes(EnableRabbitConfigBindings.class.getName()));
 
         AnnotationAttributes[] annotationAttributes = attributes.getAnnotationArray("value");
 
-        DubboConfigBindingRegistrar registrar = new DubboConfigBindingRegistrar();
+        RabbitConfigBindingRegistrar registrar = new RabbitConfigBindingRegistrar();
         registrar.setEnvironment(environment);
 
         for (AnnotationAttributes element : annotationAttributes) {

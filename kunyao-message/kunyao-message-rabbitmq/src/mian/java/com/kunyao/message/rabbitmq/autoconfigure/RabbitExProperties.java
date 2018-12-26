@@ -13,18 +13,17 @@ import java.util.Map;
 )
 public class RabbitExProperties extends RabbitProperties {
 
-    private Map<String,ExchangeAndQueue> exchangeQueueMap;
+    private Map<String,ExchangeQueueBinding> exchangeQueueBindings;
 
-    public Map<String, ExchangeAndQueue> getExchangeQueueMap() {
-        return exchangeQueueMap;
+    public Map<String, ExchangeQueueBinding> getExchangeQueueBindings() {
+        return exchangeQueueBindings;
     }
 
-    public void setExchangeQueueMap(Map<String, ExchangeAndQueue> exchangeQueueMap) {
-        this.exchangeQueueMap = exchangeQueueMap;
+    public void setExchangeQueueBindings(Map<String, ExchangeQueueBinding> exchangeQueueBindings) {
+        this.exchangeQueueBindings = exchangeQueueBindings;
     }
 
-
-    private static class ExchangeAndQueue {
+    private static class ExchangeQueueBinding {
 
         private CustomExchange exchange;
 
