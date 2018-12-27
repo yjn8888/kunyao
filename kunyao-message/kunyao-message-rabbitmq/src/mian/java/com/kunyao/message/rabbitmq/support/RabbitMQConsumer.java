@@ -5,10 +5,10 @@ import com.kunyao.meaage.entity.MessageEntity;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.messaging.handler.annotation.Payload;
 
-public abstract class RabbitMQConsumer implements Consumer<MessageEntity> {
+public class RabbitMQConsumer{
 
     @RabbitHandler
-    public MessageEntity receive(@Payload Object merchant) {
+    public MessageEntity receive(String message) {
         return null;
     }
 }

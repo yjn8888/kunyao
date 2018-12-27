@@ -116,6 +116,8 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
         beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 
+        beanDefinition.setInitMethodName("");
+
         registerWithGeneratedName(beanDefinition, registry);
 
         if (logger.isInfoEnabled()) {

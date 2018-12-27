@@ -6,7 +6,7 @@ import org.springframework.lang.Nullable;
 
 import java.util.Map;
 
-public class CustomQueue extends AbstractDeclarable {
+public class QueueWrapper extends AbstractDeclarable {
 
     private Queue queue;
     private String name;
@@ -15,7 +15,7 @@ public class CustomQueue extends AbstractDeclarable {
     private boolean autoDelete;
     private Map<String, Object> arguments;
 
-    private CustomQueue() {
+    private QueueWrapper() {
     }
 
     public boolean isDurable() {

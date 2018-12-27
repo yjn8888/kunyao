@@ -1,7 +1,21 @@
 spring:
     rabbitmq:
         queues:
-            testqueue:
-                name : testqueue
-            testqueue1:
-                name : testqueue1
+            queue1:
+                name : queue1
+            queue2:
+                name : queue2
+        exchanges:
+            exchange1:
+                name : exchange1
+                type : direct
+            exchange2:
+                name : exchange2
+                type : topic
+        bindings:
+             binding1:
+                exchange   : exchange1
+                routingKey : aaa
+             binding2:
+                exchange   : exchange2
+                routingKey : "*.bbb"
