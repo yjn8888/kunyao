@@ -1,0 +1,7 @@
+spring:
+    rabbitmq:
+        queues:
+            testqueue:
+                name : testqueue
+            testqueue1:
+                name : testqueue1

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.kunyao.springmvc.boot.config.SpringMvcConfig
+com.kunyao.message.rabbitmq.autoconfigure.RabbitAutoConfiguration

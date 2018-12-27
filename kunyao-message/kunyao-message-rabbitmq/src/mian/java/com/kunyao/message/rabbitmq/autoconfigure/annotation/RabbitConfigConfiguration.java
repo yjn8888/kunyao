@@ -11,7 +11,7 @@ public class RabbitConfigConfiguration {
      * Multiple Rabbit {@link AbstractDeclarable Config} Bean Binding
      */
     @EnableRabbitConfigBindings({
-            @EnableRabbitConfigBinding(prefix = "spring.rabbitmq.queues", type = Queue.class, multiple = true),
+            @EnableRabbitConfigBinding(prefix = "spring.rabbitmq.queues", type = CustomQueue.class, multiple = true),
             @EnableRabbitConfigBinding(prefix = "spring.rabbitmq.exchanges", type = CustomExchange.class, multiple = true),
             @EnableRabbitConfigBinding(prefix = "spring.rabbitmq.bindings", type = Binding.class, multiple = true)
     })
@@ -21,7 +21,7 @@ public class RabbitConfigConfiguration {
 
     @EnableRabbitConfigBindings({@EnableRabbitConfigBinding(
             prefix = "spring.rabbitmq.queue",
-            type = Queue.class
+            type = CustomQueue.class
     ), @EnableRabbitConfigBinding(
             prefix = "spring.rabbitmq.exchange",
             type = CustomExchange.class
