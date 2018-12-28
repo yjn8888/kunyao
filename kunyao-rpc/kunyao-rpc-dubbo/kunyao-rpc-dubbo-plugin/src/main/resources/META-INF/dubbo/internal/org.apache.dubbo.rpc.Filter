@@ -1,1 +1,2 @@
-dubboRpcTraceFilter=com.kunyao.dubbo.config.base.filter.DubboRpcTraceFilter
+consumerRpcTraceFilter=com.kunyao.dubbo.filter.trace.ConsumerRpcTraceFilter
+providerRpcTraceFilter=com.kunyao.dubbo.filter.trace.ProviderRpcTraceFilter

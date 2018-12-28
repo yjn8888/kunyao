@@ -1,8 +1,6 @@
 package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 
 import org.springframework.amqp.core.AbstractDeclarable;
-import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.CustomExchange;
 
 public class RabbitConfigConfiguration {
 

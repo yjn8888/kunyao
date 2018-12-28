@@ -5,14 +5,14 @@ import org.springframework.amqp.core.Binding;
 
 import java.util.Map;
 
-public class BindingWrapper extends AbstractDeclarable {
+public class BindingWrapper extends Binding {
 
     private Binding binding;
     private String destination;
-    private String exchange;
-    private String routingKey;
+    private String exchange = "";
+    private String routingKey = "";
     private Map<String, Object> arguments;
-    private Binding.DestinationType destinationType;
+    private final Binding.DestinationType destinationType = DestinationType.QUEUE;
 
 
     public void setDestination(String destination) {
@@ -31,16 +31,13 @@ public class BindingWrapper extends AbstractDeclarable {
         this.arguments = arguments;
     }
 
-    public void setDestinationType(Binding.DestinationType destinationType) {
-        this.destinationType = destinationType;
+    public BindingWrapper(){
+        super(null, null, null, null, null);
     }
 
-
-    public BindingWrapper(){}
-
-    public BindingWrapper(String destination, Binding.DestinationType destinationType, String exchange, String routingKey, Map<String, Object> arguments) {
+    public BindingWrapper(String destination, String exchange, String routingKey, Map<String, Object> arguments) {
+        super(destination, DestinationType.QUEUE, exchange, routingKey, arguments);
         this.destination = destination;
-        this.destinationType = destinationType;
         this.exchange = exchange;
         this.routingKey = routingKey;
         this.arguments = arguments;

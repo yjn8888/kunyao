@@ -14,8 +14,10 @@ spring:
                 type : topic
         bindings:
              binding1:
+                destination: queue1
                 exchange   : exchange1
                 routingKey : aaa
              binding2:
+                destination: queue2
                 exchange   : exchange2
                 routingKey : "*.bbb"

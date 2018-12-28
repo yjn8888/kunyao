@@ -3,7 +3,6 @@ package com.kunyao.message.rabbitmq.autoconfigure.annotation;
 import org.springframework.amqp.core.AbstractDeclarable;
 import org.springframework.amqp.core.CustomExchange;
 import org.springframework.amqp.core.Exchange;
-import org.springframework.amqp.core.Queue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +10,30 @@ import java.util.Map;
 public class ExchangeWrapper extends AbstractDeclarable  implements Exchange {
 
     private Exchange exchange;
-    private String name;
-    private boolean durable;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDurable(boolean durable) {
+        this.durable = durable;
+    }
+
+    public void setAutoDelete(boolean autoDelete) {
+        this.autoDelete = autoDelete;
+    }
+
+    public void setArguments(Map<String, Object> arguments) {
+        this.arguments = arguments;
+    }
+
+    private String name = "";
+    private boolean durable = true;
     private boolean autoDelete;
     private Map<String, Object> arguments;
     private volatile boolean delayed;
     private boolean internal;
-    private String type;
+    private String type = "direct";
 
     public ExchangeWrapper(){
 

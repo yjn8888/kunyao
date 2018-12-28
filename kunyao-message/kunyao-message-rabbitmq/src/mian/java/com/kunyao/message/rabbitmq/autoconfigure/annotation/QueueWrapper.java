@@ -6,7 +6,7 @@ import org.springframework.lang.Nullable;
 
 import java.util.Map;
 
-public class QueueWrapper extends AbstractDeclarable {
+public class QueueWrapper extends Queue {
 
     private Queue queue;
     private String name;
@@ -16,6 +16,7 @@ public class QueueWrapper extends AbstractDeclarable {
     private Map<String, Object> arguments;
 
     private QueueWrapper() {
+        super("");
     }
 
     public boolean isDurable() {
@@ -40,15 +41,6 @@ public class QueueWrapper extends AbstractDeclarable {
 
     public String getActualName() {
         return this.initQueue().getActualName();
-    }
-
-    public final void setMasterLocator(@Nullable String locator) {
-        if (locator == null) {
-            this.initQueue().getArguments().remove("x-queue-master-locator");
-        } else {
-            this.initQueue().getArguments().put("x-queue-master-locator", locator);
-        }
-
     }
 
     public String toString() {
