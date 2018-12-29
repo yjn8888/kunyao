@@ -1,7 +1,7 @@
 package com.kunyao.dubbo.filter.trace;
 
-import com.kunyao.log.trace.LogConstant;
-import com.kunyao.log.trace.LogTraceSerialContext;
+import com.kunyao.logging.trace.LogConstant;
+import com.kunyao.logging.trace.LogTraceSerialContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.rpc.*;
 

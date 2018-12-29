@@ -1,6 +1,6 @@
-package com.kunyao.log.trace.annotation;
+package com.kunyao.logging.trace.annotation;
 
-import com.kunyao.log.trace.LogConstant;
+import com.kunyao.logging.trace.LogConstant;
 
 import java.lang.annotation.*;
 

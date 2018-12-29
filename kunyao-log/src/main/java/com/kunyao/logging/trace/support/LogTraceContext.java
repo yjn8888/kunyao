@@ -1,4 +1,4 @@
-package com.kunyao.log.trace.support;
+package com.kunyao.logging.trace.support;
 
 public interface LogTraceContext {
 

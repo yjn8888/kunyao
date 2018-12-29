@@ -1,4 +1,4 @@
-package com.kunyao.log.trace;
+package com.kunyao.logging.trace;
 
 public interface LogConstant {
 

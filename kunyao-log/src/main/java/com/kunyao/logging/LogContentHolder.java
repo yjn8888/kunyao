@@ -1,4 +1,4 @@
-package com.kunyao.log;
+package com.kunyao.logging;
 
 import java.util.List;
 

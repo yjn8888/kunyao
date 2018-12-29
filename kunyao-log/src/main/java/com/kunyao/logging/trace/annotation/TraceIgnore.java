@@ -1,4 +1,4 @@
-package com.kunyao.log.trace.annotation;
+package com.kunyao.logging.trace.annotation;
 
 import java.lang.annotation.*;
 

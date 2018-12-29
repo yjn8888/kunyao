@@ -1,6 +1,6 @@
-package com.kunyao.log.trace.intercepter;
+package com.kunyao.logging.trace.intercepter;
 
-import com.kunyao.log.trace.LogTraceSerialContext;
+import com.kunyao.logging.trace.LogTraceSerialContext;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ServiceLogTraceIntecepter {
 
-    @Pointcut("@annotation(com.kunyao.log.trace.annotation.LogTrace)")
+    @Pointcut("@annotation(com.kunyao.logging.trace.annotation.LogTrace)")
     private void excuteService(){}
 
     @Before("excuteService()")

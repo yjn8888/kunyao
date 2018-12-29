@@ -1,6 +1,6 @@
-package com.kunyao.log.trace;
+package com.kunyao.logging.trace;
 
-import com.kunyao.log.trace.support.LogTraceContext;
+import com.kunyao.logging.trace.support.LogTraceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 

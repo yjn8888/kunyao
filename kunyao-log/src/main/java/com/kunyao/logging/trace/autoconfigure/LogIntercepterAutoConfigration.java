@@ -1,6 +1,6 @@
-package com.kunyao.log.trace.autoconfigure;
+package com.kunyao.logging.trace.autoconfigure;
 
-import com.kunyao.log.trace.intercepter.SpringMVCLogTraceInterceptor;
+import com.kunyao.logging.trace.intercepter.SpringMVCLogTraceInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

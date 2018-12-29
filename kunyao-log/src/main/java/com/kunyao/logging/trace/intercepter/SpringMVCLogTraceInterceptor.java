@@ -1,12 +1,10 @@
-package com.kunyao.log.trace.intercepter;
+package com.kunyao.logging.trace.intercepter;
 
-import com.kunyao.log.trace.LogConstant;
-import com.kunyao.log.trace.LogTraceSerialContext;
-import com.kunyao.log.trace.annotation.TraceIgnore;
+import com.kunyao.logging.trace.LogConstant;
+import com.kunyao.logging.trace.LogTraceSerialContext;
+import com.kunyao.logging.trace.annotation.TraceIgnore;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

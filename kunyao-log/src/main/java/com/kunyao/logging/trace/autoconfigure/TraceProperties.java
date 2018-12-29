@@ -1,4 +1,4 @@
-package com.kunyao.log.trace.autoconfigure;
+package com.kunyao.logging.trace.autoconfigure;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
