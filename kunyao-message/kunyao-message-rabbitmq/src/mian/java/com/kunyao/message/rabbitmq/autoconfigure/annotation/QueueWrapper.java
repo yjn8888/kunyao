@@ -15,8 +15,13 @@ public class QueueWrapper extends Queue {
     private boolean autoDelete;
     private Map<String, Object> arguments;
 
-    private QueueWrapper() {
+    public QueueWrapper() {
         super("");
+    }
+
+    public QueueWrapper(String name) {
+        super(name);
+        this.name = name;
     }
 
     public boolean isDurable() {

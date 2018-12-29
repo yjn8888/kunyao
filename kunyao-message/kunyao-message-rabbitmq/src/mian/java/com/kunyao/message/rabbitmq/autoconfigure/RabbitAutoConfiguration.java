@@ -1,10 +1,11 @@
 package com.kunyao.message.rabbitmq.autoconfigure;
 
 import com.kunyao.message.rabbitmq.autoconfigure.annotation.EnableRabbitConfig;
+import com.kunyao.message.rabbitmq.autoconfigure.annotation.ExchangeWrapper;
+import com.kunyao.message.rabbitmq.autoconfigure.annotation.QueueWrapper;
 import com.kunyao.message.rabbitmq.autoconfigure.properties.RelaxedRabbitConfigBinder;
 import com.rabbitmq.client.Channel;
-import org.springframework.amqp.core.AcknowledgeMode;
-import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -24,15 +25,35 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 //@EnableConfigurationProperties({RabbitExProperties.class})
 public class RabbitAutoConfiguration {
 
-    @EnableRabbitConfig(multiple = true)
-    protected static class MultipleDubboConfigConfiguration {
+    @EnableRabbitConfig
+    protected static class MultipleRabbitConfigConfiguration {
     }
 
-    @ConditionalOnClass(Binder.class)
+    @EnableRabbitConfig(multiple = false)
+    protected static class SingleRabbitConfigConfiguration{
+    }
+
+
     @Bean
+    @ConditionalOnClass(Binder.class)
     @Scope(scopeName = SCOPE_PROTOTYPE)
     public RelaxedRabbitConfigBinder relaxedDubboConfigBinder() {
         return new RelaxedRabbitConfigBinder();
+    }
+
+    @Bean
+    public Queue defaultQueue(){
+        return new QueueWrapper("defaultQueue");
+    }
+
+    @Bean
+    public Exchange defaultExchange(){
+        return new ExchangeWrapper("defaultExchange");
+    }
+
+    @Bean
+    public Binding defaultBinding(@Qualifier("defaultQueue") Queue queue, @Qualifier("defaultExchange") Exchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("defaultRoutingKey").noargs();
     }
 
     @Bean
