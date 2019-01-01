@@ -1,8 +1,6 @@
-package com.kunyao.message.rabbitmq.autoconfigure.annotation;
+package com.kunyao.message.rabbitmq.autoconfigure;
 
-import org.springframework.amqp.core.AbstractDeclarable;
 import org.springframework.amqp.core.Queue;
-import org.springframework.lang.Nullable;
 
 import java.util.Map;
 

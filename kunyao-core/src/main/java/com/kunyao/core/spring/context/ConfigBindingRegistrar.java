@@ -1,8 +1,7 @@
-package com.kunyao.message.rabbitmq.autoconfigure.annotation;
+package com.kunyao.core.spring.context;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
-import org.springframework.amqp.core.AbstractDeclarable;
+import com.kunyao.core.spring.annotation.EnableConfigBinding;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -28,18 +27,16 @@ import static com.kunyao.util.spring.PropertySourcesUtils.normalizePrefix;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.beans.factory.support.BeanDefinitionReaderUtils.registerWithGeneratedName;
 
-public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+@Slf4j
+public class ConfigBindingRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
     private ConfigurableEnvironment environment;
-
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(
-                importingClassMetadata.getAnnotationAttributes(EnableRabbitConfigBinding.class.getName()));
+                importingClassMetadata.getAnnotationAttributes(EnableConfigBinding.class.getName()));
 
         registerBeanDefinitions(attributes, registry);
 
@@ -49,7 +46,7 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
         String prefix = environment.resolvePlaceholders(attributes.getString("prefix"));
 
-        Class<? extends AbstractDeclarable> configClass = attributes.getClass("type");
+        Class<?> configClass = attributes.getClass("type");
 
         boolean multiple = attributes.getBoolean("multiple");
 
@@ -58,15 +55,15 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
     }
 
     private void registerRabbitConfigBeans(String prefix,
-                                          Class<? extends AbstractDeclarable> configClass,
+                                          Class<?> configClass,
                                           boolean multiple,
                                           BeanDefinitionRegistry registry) {
 
         Map<String, String> properties = getSubProperties(environment.getPropertySources(), prefix);
 
         if (CollectionUtils.isEmpty(properties)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("There is no property for binding to rabbit config class [" + configClass.getName()
+            if (log.isDebugEnabled()) {
+                log.debug("There is no property for binding to config class [" + configClass.getName()
                         + "] within prefix [" + prefix + "]");
             }
             return;
@@ -85,7 +82,7 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
     }
 
-    private void registerRabbitConfigBean(String beanName, Class<? extends AbstractDeclarable> configClass,
+    private void registerRabbitConfigBean(String beanName, Class<?> configClass,
                                          BeanDefinitionRegistry registry) {
 
         BeanDefinitionBuilder builder = rootBeanDefinition(configClass);
@@ -94,8 +91,8 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
         registry.registerBeanDefinition(beanName, beanDefinition);
 
-        if (logger.isInfoEnabled()) {
-            logger.info("The Rabbit config bean definition [name : " + beanName + ", class : " + configClass.getName() +
+        if (log.isInfoEnabled()) {
+            log.info("The config bean definition [name : " + beanName + ", class : " + configClass.getName() +
                     "] has been registered.");
         }
 
@@ -104,7 +101,7 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
     private void registerRabbitConfigBindingBeanPostProcessor(String prefix, String beanName, boolean multiple,
                                                              BeanDefinitionRegistry registry) {
 
-        Class<?> processorClass = RabbitConfigBindingBeanPostProcessor.class;
+        Class<?> processorClass = ConfigBindingBeanPostProcessor.class;
 
         BeanDefinitionBuilder builder = rootBeanDefinition(processorClass);
 
@@ -120,9 +117,9 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
         registerWithGeneratedName(beanDefinition, registry);
 
-        if (logger.isInfoEnabled()) {
-            logger.info("The BeanPostProcessor bean definition [" + processorClass.getName()
-                    + "] for Rabbit config bean [name : " + beanName + "] has been registered.");
+        if (log.isInfoEnabled()) {
+            log.info("The BeanPostProcessor bean definition [" + processorClass.getName()
+                    + "] for config bean [name : " + beanName + "] has been registered.");
         }
 
     }
@@ -157,7 +154,7 @@ public class RabbitConfigBindingRegistrar implements ImportBeanDefinitionRegistr
 
     }
 
-    private String resolveSingleBeanName(Map<String, String> properties, Class<? extends AbstractDeclarable> configClass,
+    private String resolveSingleBeanName(Map<String, String> properties, Class<?> configClass,
                                          BeanDefinitionRegistry registry) {
 
         String beanName = properties.get("id");

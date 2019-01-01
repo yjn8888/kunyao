@@ -14,9 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.message.rabbitmq.autoconfigure.properties;
+package com.kunyao.core.spring.properties;
 
-import org.springframework.amqp.core.AbstractDeclarable;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.validation.DataBinder;
 
@@ -25,12 +24,12 @@ import java.util.Map;
 import static com.kunyao.util.spring.PropertySourcesUtils.getSubProperties;
 
 /**
- * Default {@link RabbitConfigBinder} implementation based on Spring {@link DataBinder}
+ * Default {@link ConfigBinder} implementation based on Spring {@link DataBinder}
  */
-public class DefaultRabbitConfigBinder extends AbstractRabbitConfigBinder {
+public class DefaultConfigBinder extends AbstractConfigBinder {
 
     @Override
-    public <C extends AbstractDeclarable> void bind(String prefix, C rabbitConfig) {
+    public <C> void bind(String prefix, C rabbitConfig) {
         DataBinder dataBinder = new DataBinder(rabbitConfig);
         // Set ignored*
         dataBinder.setIgnoreInvalidFields(isIgnoreInvalidFields());

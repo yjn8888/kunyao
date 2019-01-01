@@ -16,8 +16,8 @@
  */
 package com.kunyao.core.event;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.context.ApplicationListener;
@@ -35,6 +35,7 @@ import static com.kunyao.core.constant.logo.kunyao;
  * @see
  * @since 1.0.0
  */
+@Slf4j
 @Order(LoggingApplicationListener.DEFAULT_ORDER + 1)
 public class WelcomeLogoApplicationListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
@@ -42,16 +43,10 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
 
-        /**
-         * Gets Logger After LoggingSystem configuration ready
-         * @see LoggingApplicationListener
-         */
-        final Logger logger = LoggerFactory.getLogger(getClass());
-
         String bannerText = buildBannerText();
 
-        if (logger.isInfoEnabled()) {
-            logger.info(bannerText);
+        if (log.isInfoEnabled()) {
+            log.info(bannerText);
         } else {
             System.out.print(bannerText);
         }

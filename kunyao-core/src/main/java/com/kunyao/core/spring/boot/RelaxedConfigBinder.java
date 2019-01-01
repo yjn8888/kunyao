@@ -14,9 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.message.rabbitmq.autoconfigure.properties;
+package com.kunyao.core.spring.boot;
 
-import org.springframework.amqp.core.AbstractDeclarable;
+import com.kunyao.core.spring.properties.AbstractConfigBinder;
+import com.kunyao.core.spring.properties.ConfigBinder;
 import org.springframework.boot.context.properties.bind.BindHandler;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
@@ -28,22 +29,19 @@ import org.springframework.boot.context.properties.source.UnboundElementsSourceF
 import static org.springframework.boot.context.properties.source.ConfigurationPropertySources.from;
 
 /**
- * Spring Boot Relaxed {@link RabbitConfigBinder} implementation
+ * Spring Boot Relaxed {@link ConfigBinder} implementation
  * see org.springframework.boot.context.properties.ConfigurationPropertiesBinder
  *
- * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
- * @since 0.1.1
  */
-public class RelaxedRabbitConfigBinder extends AbstractRabbitConfigBinder {
+public class RelaxedConfigBinder extends AbstractConfigBinder {
 
-    @Override
-    public <C extends AbstractDeclarable> void bind(String prefix, C rabbitConfig) {
+    public <C> void bind(String prefix, C config) {
 
         // Converts ConfigurationPropertySources
         Iterable<ConfigurationPropertySource> propertySources = from(getPropertySources());
 
-        // Wrap Bindable from DubboConfig instance
-        Bindable<C> bindable = Bindable.ofInstance(rabbitConfig);
+        // Wrap Bindable from Config instance
+        Bindable<C> bindable = Bindable.ofInstance(config);
 
         Binder binder = new Binder(propertySources);
 

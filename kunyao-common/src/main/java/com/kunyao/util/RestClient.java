@@ -42,7 +42,6 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-import com.kunyao.core.entity.invoke.InvokeResult;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -328,30 +327,30 @@ public class RestClient {
 		return mapper.readValue(json, responseType);
 	}
 
-	/**
-	 * 向kunyao系统请求
-	 * @return
-	 * @throws Exception
-	 */
-	public InvokeResult sendRequestTokunyao() throws Exception {
-		requestPrepare();
-		String json = response(null);
-		InvokeResult invokeResult = mapper.readValue(json, InvokeResult.class);
-		if(responseType==null){
-			return invokeResult;
-		}
-		List<Object> list = new ArrayList<Object>();
-		JsonNode root = mapper.readTree(json);
-		JsonNode dataList = root.get("dataList");
-		Iterator<JsonNode> iterator = dataList.elements();
-		while(iterator.hasNext()){
-			JsonNode node = iterator.next();
-			Object obj = mapper.readValue(node.toString(), responseType);
-			list.add(obj);
-		}
-		invokeResult.setData(list);
-		return invokeResult;
-	}
+//	/**
+//	 * 向kunyao系统请求
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	public InvokeResult sendRequestTokunyao() throws Exception {
+//		requestPrepare();
+//		String json = response(null);
+//		InvokeResult invokeResult = mapper.readValue(json, InvokeResult.class);
+//		if(responseType==null){
+//			return invokeResult;
+//		}
+//		List<Object> list = new ArrayList<Object>();
+//		JsonNode root = mapper.readTree(json);
+//		JsonNode dataList = root.get("dataList");
+//		Iterator<JsonNode> iterator = dataList.elements();
+//		while(iterator.hasNext()){
+//			JsonNode node = iterator.next();
+//			Object obj = mapper.readValue(node.toString(), responseType);
+//			list.add(obj);
+//		}
+//		invokeResult.setData(list);
+//		return invokeResult;
+//	}
 	
 	/**
 	 * 发送请求前准备工作，比如设置消息头

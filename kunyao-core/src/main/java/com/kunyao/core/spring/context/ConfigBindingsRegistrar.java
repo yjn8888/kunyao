@@ -1,5 +1,6 @@
-package com.kunyao.message.rabbitmq.autoconfigure.annotation;
+package com.kunyao.core.spring.context;
 
+import com.kunyao.core.spring.annotation.EnableConfigBindings;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
@@ -9,7 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.Assert;
 
-public class RabbitConfigBindingsRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
+public class ConfigBindingsRegistrar implements ImportBeanDefinitionRegistrar, EnvironmentAware {
 
     private ConfigurableEnvironment environment;
 
@@ -23,11 +24,11 @@ public class RabbitConfigBindingsRegistrar implements ImportBeanDefinitionRegist
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(
-                annotationMetadata.getAnnotationAttributes(EnableRabbitConfigBindings.class.getName()));
+                annotationMetadata.getAnnotationAttributes(EnableConfigBindings.class.getName()));
 
         AnnotationAttributes[] annotationAttributes = attributes.getAnnotationArray("value");
 
-        RabbitConfigBindingRegistrar registrar = new RabbitConfigBindingRegistrar();
+        ConfigBindingRegistrar registrar = new ConfigBindingRegistrar();
         registrar.setEnvironment(environment);
 
         for (AnnotationAttributes element : annotationAttributes) {

@@ -1,10 +1,9 @@
-package com.kunyao.message.rabbitmq.autoconfigure.annotation;
+package com.kunyao.core.spring.context;
 
-import com.kunyao.message.rabbitmq.autoconfigure.properties.DefaultRabbitConfigBinder;
-import com.kunyao.message.rabbitmq.autoconfigure.properties.RabbitConfigBinder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.amqp.core.AbstractDeclarable;
+import com.kunyao.core.spring.annotation.EnableConfigBinding;
+import com.kunyao.core.spring.properties.ConfigBinder;
+import com.kunyao.core.spring.properties.DefaultConfigBinder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -14,15 +13,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;
 
 /**
- * Rabbit Config Binding {@link BeanPostProcessor}
+ * Config Binding {@link BeanPostProcessor}
  *
- * @see EnableRabbitConfigBinding
- * @see RabbitConfigBindingRegistrar
+ * @see EnableConfigBinding
+ * @see ConfigBindingRegistrar
+ * @since 1.0.0
  */
 
-public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware, InitializingBean {
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+@Slf4j
+public class ConfigBindingBeanPostProcessor implements BeanPostProcessor, ApplicationContextAware, InitializingBean {
 
     /**
      * The prefix of Configuration Properties
@@ -34,7 +33,7 @@ public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, 
      */
     private final String beanName;
 
-    private RabbitConfigBinder rabbitConfigBinder;
+    private ConfigBinder configBinder;
 
     private ApplicationContext applicationContext;
 
@@ -46,7 +45,7 @@ public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, 
      * @param prefix   the prefix of Configuration Properties
      * @param beanName the binding Bean Name
      */
-    public RabbitConfigBindingBeanPostProcessor(String prefix, String beanName) {
+    public ConfigBindingBeanPostProcessor(String prefix, String beanName) {
         Assert.notNull(prefix, "The prefix of Configuration Properties must not be null");
         Assert.notNull(beanName, "The name of bean must not be null");
         this.prefix = prefix;
@@ -56,14 +55,12 @@ public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
-        if (beanName != null && beanName.equals(this.beanName) && bean instanceof AbstractDeclarable) {
+        if (beanName != null && beanName.equals(this.beanName)) {
 
-            AbstractDeclarable RabbitConfig = (AbstractDeclarable) bean;
+            configBinder.bind(prefix, bean);
 
-            rabbitConfigBinder.bind(prefix, RabbitConfig);
-
-            if (logger.isInfoEnabled()) {
-                logger.info("The properties of bean [name : " + beanName + "] have been binding by prefix of " +
+            if (log.isInfoEnabled()) {
+                log.info("The properties of bean [name : " + beanName + "] have been binding by prefix of " +
                         "configuration properties : " + prefix);
             }
         }
@@ -88,12 +85,12 @@ public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, 
         this.ignoreInvalidFields = ignoreInvalidFields;
     }
 
-    public RabbitConfigBinder getRabbitConfigBinder() {
-        return rabbitConfigBinder;
+    public ConfigBinder getConfigBinder() {
+        return configBinder;
     }
 
-    public void setRabbitConfigBinder(RabbitConfigBinder rabbitConfigBinder) {
-        this.rabbitConfigBinder = rabbitConfigBinder;
+    public void setConfigBinder(ConfigBinder configBinder) {
+        this.configBinder = configBinder;
     }
 
     @Override
@@ -109,33 +106,33 @@ public class RabbitConfigBindingBeanPostProcessor implements BeanPostProcessor, 
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        if (rabbitConfigBinder == null) {
+        if (configBinder == null) {
             try {
-                rabbitConfigBinder = applicationContext.getBean(RabbitConfigBinder.class);
+                configBinder = applicationContext.getBean(ConfigBinder.class);
             } catch (BeansException ignored) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("RabbitConfigBinder Bean can't be found in ApplicationContext.");
+                if (log.isDebugEnabled()) {
+                    log.debug("ConfigBinder Bean can't be found in ApplicationContext.");
                 }
                 // Use Default implementation
-                rabbitConfigBinder = createRabbitConfigBinder(applicationContext.getEnvironment());
+                configBinder = createConfigBinder(applicationContext.getEnvironment());
             }
         }
 
-        rabbitConfigBinder.setIgnoreUnknownFields(ignoreUnknownFields);
-        rabbitConfigBinder.setIgnoreInvalidFields(ignoreInvalidFields);
+        configBinder.setIgnoreUnknownFields(ignoreUnknownFields);
+        configBinder.setIgnoreInvalidFields(ignoreInvalidFields);
 
     }
 
     /**
-     * Create {@link RabbitConfigBinder} instance.
+     * Create {@link ConfigBinder} instance.
      *
      * @param environment
-     * @return {@link DefaultRabbitConfigBinder}
+     * @return {@link DefaultConfigBinder}
      */
-    protected RabbitConfigBinder createRabbitConfigBinder(Environment environment) {
-        DefaultRabbitConfigBinder defaultRabbitConfigBinder = new DefaultRabbitConfigBinder();
-        defaultRabbitConfigBinder.setEnvironment(environment);
-        return defaultRabbitConfigBinder;
+    protected ConfigBinder createConfigBinder(Environment environment) {
+        DefaultConfigBinder defaultConfigBinder = new DefaultConfigBinder();
+        defaultConfigBinder.setEnvironment(environment);
+        return defaultConfigBinder;
     }
 
 }

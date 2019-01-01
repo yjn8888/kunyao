@@ -22,6 +22,8 @@
 #                exchange   : exchange2
 #                routingKey : "*.bbb"
 
+
+
 #spring:
 #    rabbitmq:
 #        queue:

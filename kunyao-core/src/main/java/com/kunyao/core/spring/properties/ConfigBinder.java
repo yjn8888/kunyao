@@ -14,19 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.message.rabbitmq.autoconfigure.properties;
+package com.kunyao.core.spring.properties;
 
-import org.springframework.amqp.core.AbstractDeclarable;
 import org.springframework.context.EnvironmentAware;
 
 /**
- * {@link AbstractConfig DubboConfig} Binder
+ * {@link Object Config} Binder
  *
- * @see AbstractConfig
  * @see EnvironmentAware
- * @since 2.5.11
+ * @since 1.0.0
  */
-public interface RabbitConfigBinder extends EnvironmentAware {
+public interface ConfigBinder extends EnvironmentAware {
 
     /**
      * Set whether to ignore unknown fields, that is, whether to ignore bind
@@ -52,7 +50,7 @@ public interface RabbitConfigBinder extends EnvironmentAware {
      * Bind the properties to Dubbo Config Object under specified prefix.
      *
      * @param prefix
-     * @param dubboConfig
+     * @param config
      */
-    <C extends AbstractDeclarable> void bind(String prefix, C dubboConfig);
+    <C> void bind(String prefix, C config);
 }

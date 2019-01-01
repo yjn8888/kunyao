@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.message.rabbitmq.autoconfigure.properties;
+package com.kunyao.core.spring.properties;
 
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 
 /**
- * Abstract {@link RabbitConfigBinder} implementation
+ * Abstract {@link ConfigBinder} implementation
  */
-public abstract class AbstractRabbitConfigBinder implements RabbitConfigBinder {
+public abstract class AbstractConfigBinder implements ConfigBinder {
 
     private Iterable<PropertySource<?>> propertySources;
 
