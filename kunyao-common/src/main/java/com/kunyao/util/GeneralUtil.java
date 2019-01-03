@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,10 +33,9 @@ import org.slf4j.LoggerFactory;
 /**
  * @category 操作集合框架的工具集
  */
+@Slf4j
 public class GeneralUtil {
 
-	private final static Logger logger = LoggerFactory.getLogger(GeneralUtil.class);
-	
 	/**
 	 * <p>把传入类型转换为对应的对象<p>
 	 * @param fvo 传入类型
@@ -48,7 +48,7 @@ public class GeneralUtil {
     	try {
 			obj=(T) fvo.newInstance();
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);
 			throw new Exception("ERR:Can not cast object!");
 		}
     	return obj;
@@ -507,7 +507,7 @@ public class GeneralUtil {
 			if(prop.containsKey(key)) {
 			    value=new String(prop.getProperty(key).getBytes(CommonConstants.ISO_CHARSET),CommonConstants.UTF8_CHARSET);
 			}
-			if(logger.isDebugEnabled()){
+			if(log.isDebugEnabled()){
 				printDebugLog(key,value);
 			}
 			return value;
@@ -526,7 +526,7 @@ public class GeneralUtil {
 				if(is!=null)
 					is.close();
 			}
-			if(logger.isDebugEnabled()){
+			if(log.isDebugEnabled()){
 				printDebugLog(ls.toString());
 			}
 			return ls;
@@ -545,7 +545,7 @@ public class GeneralUtil {
 				if(is!=null)
 					is.close();
 			}
-			if(logger.isDebugEnabled()){
+			if(log.isDebugEnabled()){
 				printDebugLog(fileToString);
 			}
 			return fileToString;
@@ -555,7 +555,7 @@ public class GeneralUtil {
 			try {
 				IOUtils.write(content, output, CommonConstants.UTF8_CHARSET);
 			} catch (IOException e) {
-				logger.error(e.getMessage(), e);
+				log.error(e.getMessage(), e);
 			}finally{
 				if(output!=null)
 					output.close();
@@ -566,7 +566,7 @@ public class GeneralUtil {
 			try {
 				IOUtils.write(content, write);
 			} catch (IOException e) {
-				logger.error(e.getMessage(), e);
+				log.error(e.getMessage(), e);
 			}finally{
 				if(write!=null)
 					write.close();
@@ -580,9 +580,9 @@ public class GeneralUtil {
 	 * @param strs
 	 */
 	protected static void printDebugLog(String... strs) {
-		if (logger.isDebugEnabled()) {
+		if (log.isDebugEnabled()) {
 			for (String str : strs) {
-				logger.debug("Class:" + GeneralUtil.class + " parameter:" + str);
+				log.debug("Class:" + GeneralUtil.class + " parameter:" + str);
 			}
 		}
 	}
@@ -616,7 +616,7 @@ public class GeneralUtil {
     	}
     	for (Map.Entry<String, T> m : map.entrySet()) {
     		System.out.println("key:"+m.getKey() + "  value: "+m.getValue());
-    		logger.info("key:"+m.getKey() + "  value: "+m.getValue());
+    		log.info("key:"+m.getKey() + "  value: "+m.getValue());
     	}
     }
     
@@ -625,7 +625,7 @@ public class GeneralUtil {
     		return;
     	}
     	for(Object o:ls){
-    		logger.info("key:"+o);
+    		log.info("key:"+o);
     	}
     }
 	

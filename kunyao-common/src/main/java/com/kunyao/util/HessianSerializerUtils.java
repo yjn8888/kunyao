@@ -6,22 +6,20 @@ package com.kunyao.util;
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
 import com.caucho.hessian.io.SerializerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
-/**  
-* 创建时间：2014年7月16日 下午4:27:33  
-* 项目名称：redis  
+/**
 * @author
 * @version 1.0   
 * 文件名称：HessianSerializerUtils.java  <br/>
 * 类说明：  hessian序列化工具，比jdk自带的序列化速度快
 */
+@Slf4j
 public class HessianSerializerUtils {
-
-    private static final Logger logger = LoggerFactory.getLogger(HessianSerializerUtils.class);
 
     private static final SerializerFactory DEFAULT_SERIALIZER_FACTORY = new SerializerFactory();
     
@@ -39,7 +37,7 @@ public class HessianSerializerUtils {
             Object target = hi.readObject();
             serializable = (Serializable) target;
         } catch(Exception e){
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         } finally{
             closeIn(is);
             closeIn(hi);
@@ -59,7 +57,7 @@ public class HessianSerializerUtils {
             ho.flush();
             arrayOfByte = os.toByteArray();
         } catch (IOException e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         } finally {
             closeOut(os);
             closeOut(ho);
@@ -73,7 +71,7 @@ public class HessianSerializerUtils {
                 in.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 
@@ -83,7 +81,7 @@ public class HessianSerializerUtils {
                 out.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 
@@ -93,7 +91,7 @@ public class HessianSerializerUtils {
                 out.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 
@@ -103,7 +101,7 @@ public class HessianSerializerUtils {
                 hi.close();
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            log.error(e.getMessage(),e);
         }
     }
 }

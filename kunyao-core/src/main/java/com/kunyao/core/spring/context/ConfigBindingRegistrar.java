@@ -22,8 +22,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.kunyao.util.spring.PropertySourcesUtils.getSubProperties;
-import static com.kunyao.util.spring.PropertySourcesUtils.normalizePrefix;
+import static com.kunyao.core.spring.util.PropertySourcesUtils.getSubProperties;
+import static com.kunyao.core.spring.util.PropertySourcesUtils.normalizePrefix;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.rootBeanDefinition;
 import static org.springframework.beans.factory.support.BeanDefinitionReaderUtils.registerWithGeneratedName;
 

@@ -20,6 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class JsonUtils {
+
+	private final static ObjectMapper objectMapper = new ObjectMapper();
 	
 	/**
 	 * 将byte[]转化成以id, formNode的map
@@ -29,8 +31,7 @@ public class JsonUtils {
 	 */
 	public static Map<String,JsonNode> change2FormNode(byte[] bytes) throws Exception{
 		Map<String,JsonNode> formMap = new LinkedHashMap<String, JsonNode>();
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode root = mapper.readTree(bytes);
+		JsonNode root = objectMapper.readTree(bytes);
 		Iterator<String> iterator = root.fieldNames();
 		while(iterator.hasNext()){
 		    String fieldName = iterator.next();
@@ -48,8 +49,7 @@ public class JsonUtils {
 	 */
 	public static Map<String,JsonNode> change2FormNode(String json) throws Exception{
 		Map<String,JsonNode> formMap = new LinkedHashMap<String, JsonNode>();
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode root = mapper.readTree(json);
+		JsonNode root = objectMapper.readTree(json);
 		Iterator<String> iterator = root.fieldNames();
 		while(iterator.hasNext()){
 		    String fieldName = iterator.next();

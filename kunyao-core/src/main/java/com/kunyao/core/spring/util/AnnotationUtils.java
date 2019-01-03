@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.util.spring;
+package com.kunyao.core.spring.util;
 
 import org.springframework.core.env.PropertyResolver;
 

@@ -1,12 +1,10 @@
 package com.kunyao.message.rabbitmq.autoconfigure;
 
 import com.kunyao.core.spring.annotation.EnableConfig;
-import com.kunyao.message.rabbitmq.support.ConfirmCallBackListener;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -61,7 +59,7 @@ public class RabbitAutoConfiguration {
         connectionFactory.setPublisherConfirms(true);
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter);
-        rabbitTemplate.setConfirmCallback(new ConfirmCallBackListener());
+//        rabbitTemplate.setConfirmCallback(new ConfirmCallBackListener());
         rabbitTemplate.setMandatory(true);
         return rabbitTemplate;
     }

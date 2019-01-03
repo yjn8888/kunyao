@@ -21,7 +21,7 @@ import org.springframework.validation.DataBinder;
 
 import java.util.Map;
 
-import static com.kunyao.util.spring.PropertySourcesUtils.getSubProperties;
+import static com.kunyao.core.spring.util.PropertySourcesUtils.getSubProperties;
 
 /**
  * Default {@link ConfigBinder} implementation based on Spring {@link DataBinder}

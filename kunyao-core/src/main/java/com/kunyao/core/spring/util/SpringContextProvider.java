@@ -1,10 +1,8 @@
-package com.kunyao.util;
+package com.kunyao.core.spring.util;
 
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * 
@@ -12,8 +10,7 @@ import org.springframework.stereotype.Service;
  * @author:
  * @since : 2018年10月17日
  */
-@Component
-public class SpringContextUtil implements ApplicationContextAware{
+public class SpringContextProvider implements ApplicationContextAware{
 	
 	private static ApplicationContext applicationContext;
 	
@@ -90,6 +87,6 @@ public class SpringContextUtil implements ApplicationContextAware{
 	}
 
 	public void setApplicationContext(ApplicationContext applicationContext) {
-		SpringContextUtil.applicationContext = applicationContext;
+		SpringContextProvider.applicationContext = applicationContext;
 	}
 }
