@@ -16,7 +16,7 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.UUID;
+import java.util.Map;
 
 @Slf4j
 public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.ConfirmCallback,RabbitTemplate.ReturnCallback {
@@ -96,7 +96,15 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
         rabbitTemplate.convertAndSend(binding.getExchange(),binding.getRoutingKey(),message,correlationDataExtension);
     }
 
+    @Override
+    public void sendMessageWithProperties(Object o, Map properties) {
+
+    }
+
     private T converter(Message message){
         return ((MessageEntity<T>)jackson2JsonMessageConverter.fromMessage(message)).getData();
     }
+
+
+
 }

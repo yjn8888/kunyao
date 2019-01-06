@@ -7,5 +7,5 @@ public interface Consumer<T> {
      * 接收消息
      * @return
      */
-    void receiveMessage(MessageEntity<T> messageEntity);
+    boolean receiveMessage(MessageEntity<T> messageEntity);
 }

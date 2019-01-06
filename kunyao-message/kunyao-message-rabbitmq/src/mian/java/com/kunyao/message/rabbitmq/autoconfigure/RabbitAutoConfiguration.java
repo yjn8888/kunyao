@@ -1,6 +1,8 @@
 package com.kunyao.message.rabbitmq.autoconfigure;
 
 import com.kunyao.core.spring.annotation.EnableConfig;
+import com.kunyao.message.rabbitmq.support.DefaultRabbitMQProducer;
+import com.kunyao.message.rabbitmq.support.RabbitMQProducer;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
@@ -9,8 +11,11 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
+import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +24,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 
 @Configuration
 @ConditionalOnClass({RabbitTemplate.class, Channel.class})
+@EnableConfigurationProperties({RabbitProperties.class})
 public class RabbitAutoConfiguration {
 
     @EnableConfig(multipleClass = RabbitConfigConfigration.Multiple.class)
@@ -59,7 +65,6 @@ public class RabbitAutoConfiguration {
         connectionFactory.setPublisherConfirms(true);
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jackson2JsonMessageConverter);
-//        rabbitTemplate.setConfirmCallback(new ConfirmCallBackListener());
         rabbitTemplate.setMandatory(true);
         return rabbitTemplate;
     }
@@ -70,13 +75,24 @@ public class RabbitAutoConfiguration {
     }
 
     @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(final CachingConnectionFactory connectionFactory,
-                                                                               @Qualifier("jackson2JsonMessageConverter") Jackson2JsonMessageConverter jackson2JsonMessageConverter) {
+    @ConditionalOnMissingBean(
+            name = {"rabbitListenerContainerFactory"}
+    )
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
+            SimpleRabbitListenerContainerFactoryConfigurer simpleRabbitListenerContainerFactoryConfigurer,
+            @Qualifier("jackson2JsonMessageConverter") Jackson2JsonMessageConverter jackson2JsonMessageConverter,
+            final CachingConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
         factory.setMessageConverter(jackson2JsonMessageConverter);
-        factory.setAcknowledgeMode(AcknowledgeMode.NONE);
-        factory.setAutoStartup(true);
+        simpleRabbitListenerContainerFactoryConfigurer.configure(factory, connectionFactory);
         return factory;
     }
+
+
+    @Bean
+    @ConditionalOnMissingBean(RabbitMQProducer.class)
+    public RabbitMQProducer defaultRabbitMQProducer(){
+        return new DefaultRabbitMQProducer();
+    }
+
 }

@@ -13,15 +13,16 @@ public class RabbitMQConsumerTest extends RabbitMQConsumer<TestMessage> {
     private boolean isStart;
 
     @Override
-    protected void process(TestMessage testMesage) {
-        if(!isStart){
-            try {
-                TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    protected boolean process(TestMessage testMesage) {
+//        if(!isStart){
+//            try {
+//                TimeUnit.SECONDS.sleep(5);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
         System.out.println("当前线程："+ Thread.currentThread().getId());
         System.out.println(testMesage);
+        return true;
     }
 }
