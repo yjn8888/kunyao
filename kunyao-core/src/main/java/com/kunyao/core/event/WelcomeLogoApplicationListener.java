@@ -62,9 +62,9 @@ public class WelcomeLogoApplicationListener implements ApplicationListener<Appli
                 .append(LINE_SEPARATOR)
                 .append(LINE_SEPARATOR)
                 .append(kunyao)
-                .append(" :: Kunyao Spring Boot (v").append(getVersion(getClass())).append(") : ")
+                .append(" :: Kunyao Spring Boot::(v").append(getVersion(getClass())).append(") : ")
                 //.append(DUBBO_SPRING_BOOT_GITHUB_URL)
-                .append(LINE_SEPARATOR)
+                //.append(LINE_SEPARATOR)
                 .append(KUNYAO_GITHUB_URL)
                 .append(LINE_SEPARATOR)
                 .append(LINE_SEPARATOR);
