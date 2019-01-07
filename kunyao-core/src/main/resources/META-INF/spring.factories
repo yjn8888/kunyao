@@ -1,2 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.kunyao.core.spring.boot.autoconfigure.RelaxedConfigBinderAutoConfigration
+
+
+
+org.springframework.context.ApplicationListener=\
+com.kunyao.core.event.WelcomeLogoApplicationListener

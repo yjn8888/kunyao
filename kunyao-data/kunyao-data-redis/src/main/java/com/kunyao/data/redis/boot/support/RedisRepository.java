@@ -1,22 +1,20 @@
-package com.kunyao.data.redis.boot.autoconfigure;
+package com.kunyao.data.redis.boot.support;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@Repository
-public class RedisClientTemplate {
-
-	private  Logger logger = LoggerFactory.getLogger(this.getClass());
+@Slf4j
+public class RedisRepository {
 
     @Autowired
     private RedisTemplate redisTemplate;

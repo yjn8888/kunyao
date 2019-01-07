@@ -12,5 +12,7 @@
   	<module>kunyao-data-redis</module>
   	<module>kunyao-data-orm</module>
       <module>kunyao-data-elasticsearch</module>
+      <module>kunyao-data-zookeeper</module>
+      <module>kuanyao-data-zookeeper</module>
   </modules>
 </project>

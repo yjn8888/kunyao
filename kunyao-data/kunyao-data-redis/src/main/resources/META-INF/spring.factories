@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.kunyao.data.redis.boot.config.JedisDataSourceAutoConfig,\
-com.kunyao.data.redis.boot.config.LettuceDataSourceAutoConfig
+com.kunyao.data.redis.boot.autoconfigure.RedisRepositoryAutoConfiguration

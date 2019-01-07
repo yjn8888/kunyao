@@ -7,10 +7,10 @@ import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
 import com.caucho.hessian.io.SerializerFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
 * @author
@@ -22,7 +22,7 @@ import java.io.*;
 public class HessianSerializerUtils {
 
     private static final SerializerFactory DEFAULT_SERIALIZER_FACTORY = new SerializerFactory();
-    
+
     public static Serializable deSerialize(byte bytes[]){
         ByteArrayInputStream is = null;
         Hessian2Input hi = null;
@@ -46,6 +46,18 @@ public class HessianSerializerUtils {
     }
 
     public static byte[] serialize(Serializable target) {
+        if(target==null){
+            return (byte[])target;
+        }
+        if(target instanceof String){
+            return ((String) target).getBytes(StandardCharsets.UTF_8);
+        }
+        if(target instanceof Byte[]){
+            return ArrayUtils.toPrimitive((Byte[])target);
+        }
+        if(target instanceof byte[]){
+            return (byte[])target;
+        }
         ByteArrayOutputStream os = null;
         Hessian2Output ho = null;
         byte arrayOfByte[] = null;
@@ -104,5 +116,6 @@ public class HessianSerializerUtils {
             log.error(e.getMessage(),e);
         }
     }
+
 }
   
