@@ -1,5 +1,6 @@
 package com.kunyao.data.redis.boot.autoconfigure;
 
+import com.kunyao.data.redis.boot.support.RedisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,30 +19,21 @@ public class RedisRepositoryAutoConfiguration {
 
 
     @Bean
-    @ConditionalOnMissingBean(RedisSerializer.class)
+    @ConditionalOnMissingBean(HessianSerializationRedisSerializer.class)
     public RedisSerializer defaultSerializer(){
         return new HessianSerializationRedisSerializer();
     }
 
     @Bean
     public RedisTemplate getRedisTemplate(@Qualifier("redisTemplate") RedisTemplate redisTemplate, @Qualifier("defaultSerializer") RedisSerializer defaultSerializer) {
-        redisTemplate.setDefaultSerializer(defaultSerializer);
-        redisTemplate.setKeySerializer(defaultSerializer);
         redisTemplate.setValueSerializer(defaultSerializer);
-        redisTemplate.setHashKeySerializer(defaultSerializer);
         redisTemplate.setHashValueSerializer(defaultSerializer);
         return redisTemplate;
     }
 
     @Bean
-    public StringRedisTemplate getStringRedisTemplate(@Qualifier("stringRedisTemplate") StringRedisTemplate stringredisTemplate,
-                                                @Qualifier("defaultSerializer") RedisSerializer defaultSerializer) {
-        stringredisTemplate.setDefaultSerializer(defaultSerializer);
-        stringredisTemplate.setKeySerializer(defaultSerializer);
-        stringredisTemplate.setValueSerializer(defaultSerializer);
-        stringredisTemplate.setHashKeySerializer(defaultSerializer);
-        stringredisTemplate.setHashValueSerializer(defaultSerializer);
-        return stringredisTemplate;
+    public RedisRepository getStringRedisTemplate(@Qualifier("redisTemplate") RedisTemplate redisTemplate, @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate) {
+        return new RedisRepository(redisTemplate,stringRedisTemplate);
     }
 
 

@@ -1,40 +1,68 @@
 package com.kunyao.core.entity.invoke;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
+
+
 /**
- * 
- * 此类描述的是：REST服务统一响应结果
- * @author: yuanjaining@hanhua.com
- * @since : 2015年6月24日
+ * 此类描述的是：泛型的invokeResult类:
  */
-@Deprecated
-public class InvokeResult implements Serializable {
-	/**
-	 * 
-	 */
+public class InvokeResult<T> implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+
 	
+    @ApiModelProperty(
+            value = "本次调用的Id，uuid格式，需要client端调用时提供，如果未提供，系统自动生成", 
+            example = "AA166178-2A7C-4E3E-96FA-29D19142F0AE", 
+            required = false)
+	private String invokeId;
 	/**
-	 * 1 failed 0 success
+	 * @author: zhangrongbinbj@hanhua.com
+	 * @category resultCode -1 system fail 2000 business fail 0000 success
+	 * @since: 2015年7月31日
 	 */
-	private String resultCode = "1";
+    @ApiModelProperty(
+            value = "调用结果代码", 
+            example = "0000", 
+            required = false)
+	private String resultCode = "-1";
 	
-	/**
-	 * 结果信息
-	 */
-	private String resultMessage;
-	
-    private String bizResultMessage;
-    
+    @ApiModelProperty(
+            value = "调用结果信息", 
+            example = "SUCCESS", 
+            required = false)
+	private String resultMessage = "系统错误，请联系管理员";
+
+    @ApiModelProperty(
+            value = "错误异常信息", 
+            example = "java.lang.NullPointException .....", 
+            required = false)
     private String exception;
     
-	/**
-	 * 结果数据
-	 */
-	private Object data;
+    @ApiModelProperty(
+            value = "返回给用户提示的返回信息", 
+            example = "尊敬的用户：您无权此操作", 
+            required = false)
+    private String bizResultMessage;
 	
-	private String invokeId;
+	public String getBizResultMessage() {
+        return bizResultMessage;
+    }
+
+
+    public void setBizResultMessage(String bizResultMessage) {
+        this.bizResultMessage = bizResultMessage;
+    }
+
+
+    @ApiModelProperty(
+            value = "结果数据", 
+            example = "", 
+            required = false)
+	private T data;
 	
     public String getException() {
         return exception;
@@ -46,15 +74,7 @@ public class InvokeResult implements Serializable {
     }
 
 
-    public String getBizResultMessage() {
-        return bizResultMessage;
-    }
-
-
-    public void setBizResultMessage(String bizResultMessage) {
-        this.bizResultMessage = bizResultMessage;
-    }
-	public String getInvokeId() {
+    public String getInvokeId() {
         return invokeId;
     }
 
@@ -64,18 +84,12 @@ public class InvokeResult implements Serializable {
     }
 
 
-    /**
-	 * 本次请求的ID
-	 */
-//	private String requestId;
-	
     public InvokeResult() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 
-    public InvokeResult(String resultCode, String resultMessage, Object data) {
+    public InvokeResult(String resultCode, String resultMessage, T data) {
         super();
         this.resultCode = resultCode;
         this.resultMessage = resultMessage;
@@ -83,7 +97,7 @@ public class InvokeResult implements Serializable {
         this.data = data;
     }
     
-    public InvokeResult(String resultCode, String resultMessage, String bizResultMessage, Object data) {
+    public InvokeResult(String resultCode, String resultMessage, String bizResultMessage, T data) {
         super();
         this.resultCode = resultCode;
         this.resultMessage = resultMessage;
@@ -91,15 +105,6 @@ public class InvokeResult implements Serializable {
         this.data = data;
     }
     
-//    public InvokeResult(String resultCode, String resultMessage, Object data,String requestId) {
-//        super();
-//        this.resultCode = resultCode;
-//        this.resultMessage = resultMessage;
-//        this.data = data;
-//        this.requestId = requestId;
-//    }
-
-
     public String getResultCode() {
         return resultCode;
     }
@@ -117,26 +122,17 @@ public class InvokeResult implements Serializable {
 
     public void setResultMessage(String resultMessage) {
         this.resultMessage = resultMessage;
+        this.bizResultMessage = resultMessage;
     }
 
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
-
-
-//    public String getRequestId() {
-//        return requestId;
-//    }
-//
-//
-//    public void setRequestId(String requestId) {
-//        this.requestId = requestId;
-//    }
 
 }

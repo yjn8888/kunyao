@@ -8,8 +8,6 @@ import java.util.List;
 /**
  * 
  * 此类描述的是：Page
- * @author: yuanjaining@hanhua.com
- * @since : 2015年6月24日
  */
 public class Page<T> implements Serializable{
 	/**
@@ -61,14 +59,6 @@ public class Page<T> implements Serializable{
             required = false)
 	private List<T> resultList;
 	
-	/**
-	 * 
-	 * TODO:(此方法的描述)
-	 * @category
-	 * @author: thinkpad
-	 * @since: 2015年6月24日
-	 * @return
-	 */
 	public int getPageSize() {
 		return pageSize;
 	}

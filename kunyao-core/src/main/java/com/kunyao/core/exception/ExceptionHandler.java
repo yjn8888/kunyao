@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.kunyao.core.constant.InvokeRelatedConstant;
 import com.kunyao.core.entity.factory.InvokeResultFactory;
 import com.kunyao.core.entity.invoke.InvokeResult;
-import com.kunyao.core.entity.invoke.InvokeResultWithGenericType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,7 +106,7 @@ public class ExceptionHandler {
         }
     }
     
-    public static void handle(Exception e, Logger logger, InvokeResultWithGenericType<?> result) {
+    public static void handle(Exception e, Logger logger, InvokeResult<?> result) {
         if (result == null) {
             result = InvokeResultFactory.getFailResult();
         }

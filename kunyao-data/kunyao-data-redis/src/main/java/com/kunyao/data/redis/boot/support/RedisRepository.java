@@ -5,10 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -16,11 +19,18 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RedisRepository {
 
-    @Autowired
     private RedisTemplate redisTemplate;
 
-    @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    public RedisRepository(RedisTemplate redisTemplate,StringRedisTemplate stringRedisTemplate){
+       this.stringRedisTemplate = stringRedisTemplate;
+       this.redisTemplate = redisTemplate;
+    }
+
+    public RedisRepository(){
+
+    }
 
     /**
      * 设置单个值
@@ -29,7 +39,29 @@ public class RedisRepository {
      * @param value
      */
     public void set(String key, String value) {
+        set(key,value,-1);
+    }
+
+    /**
+     * 设置单个值
+     *
+     * @param key
+     * @param value
+     */
+    public void set(String key, String value,long expire) {
         stringRedisTemplate.opsForValue().set(key,value);
+        expire(key,expire);
+    }
+
+    /**
+     * 设置单个值
+     *
+     * @param key
+     * @param value
+     */
+    public void set(Serializable key, Serializable value, long expire) {
+		redisTemplate.opsForValue().set(key,value);
+		expire(key,expire);
     }
 
     /**
@@ -39,7 +71,7 @@ public class RedisRepository {
      * @param value
      */
     public void set(Serializable key, Serializable value) {
-		redisTemplate.opsForValue().set(key,value);
+        set(key,value,-1);
     }
 
 
@@ -131,6 +163,9 @@ public class RedisRepository {
      * @return
      */
     public Boolean expire(Serializable key,long activeTime){
+        if(activeTime<=0){
+            return true;
+        }
     	return redisTemplate.opsForValue().getOperations().expire(key,activeTime,TimeUnit.MILLISECONDS);
     }
 
@@ -140,8 +175,66 @@ public class RedisRepository {
      * @return
      */
     public Boolean expire(String key,long activeTime){
+        if(activeTime<=0){
+            return true;
+        }
         return stringRedisTemplate.opsForValue().getOperations().expire(key,activeTime,TimeUnit.MILLISECONDS);
     }
+
+    /**
+     * 批量Map
+     * @param map
+     * @return
+     */
+    public void setMap(Serializable key,Map<Serializable,Serializable> map){
+        HashOperations<Serializable, Serializable, Serializable> opsForHash = redisTemplate.opsForHash();
+        Set<Serializable> keys = map.keySet();
+        for (Serializable field : keys) {
+            opsForHash.put(key,field,map.get(field));
+        }
+    }
+
+    /**
+     * 插入单个Map值
+     * @return
+     */
+    public void setMap(Serializable key,Serializable field,Serializable value){
+        HashOperations<Serializable, Serializable, Serializable> opsForHash = redisTemplate.opsForHash();
+        opsForHash.put(key,field,value);
+    }
+
+    /**
+     * 批量Map
+     * @param map
+     * @return
+     */
+    public void setMap(String key,Map<String,String> map){
+        HashOperations<String, String, String> opsForHash = stringRedisTemplate.opsForHash();
+        Set<String> keys = map.keySet();
+        for (String field : keys) {
+            opsForHash.put(key,field,map.get(field));
+        }
+    }
+
+    /**
+     * 插入单个Map值
+     * @return
+     */
+    public void setMap(String key,String field,String value){
+        HashOperations<String, String, String> opsForHash = stringRedisTemplate.opsForHash();
+        opsForHash.put(key,field,value);
+    }
+
+    public Map<String,String> getMap(String key){
+        HashOperations<String, String, String> opsForHash = stringRedisTemplate.opsForHash();
+        return opsForHash.entries(key);
+    }
+
+    public Map<Serializable,Serializable> getMap(Serializable key){
+        HashOperations<Serializable, Serializable, Serializable> opsForHash = redisTemplate.opsForHash();
+        return opsForHash.entries(key);
+    }
+
 
 
 }

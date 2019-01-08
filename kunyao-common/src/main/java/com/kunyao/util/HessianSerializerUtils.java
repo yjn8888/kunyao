@@ -13,8 +13,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 /**
-* @author
-* @version 1.0   
+* @version 1.0
 * 文件名称：HessianSerializerUtils.java  <br/>
 * 类说明：  hessian序列化工具，比jdk自带的序列化速度快
 */
