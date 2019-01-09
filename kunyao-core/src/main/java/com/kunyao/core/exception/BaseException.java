@@ -1,53 +1,8 @@
 package com.kunyao.core.exception;
 
 
-/**
- * Copyright 2012-2013 hanhua.com
- * 
- * ID: $Id: VapBaseException.java 2013-3-14 11:36  $
- * Revision: $Rev: 21 $
- * Created: 2013-3-14
- * Last modified: $Date: 2013-3-14 11:36 +0800 $
- * Last modified by: $Author:  $
- * 
- */
 
-
-/**
- * @category 系统级异常（开发人员误操作或系统本身产生的异常，如数据库连接失败，空指针错误）的基类，是一个不受控异常基类。
- *           可不用捕捉或传throws方式传递下去。
- *           <p/>
- *           * 示例如下：<br>
- * 
- *           <pre>
- * 1)抛出错误(Service)
- * public void getConnection() throws VapBaseException {
- *      ...
- *      throw new VapBaseException(&quot;e_login_database_notconnect&quot;);
- *      ...
- *      throw new VapBaseException(&quot;e_login_connect_failed&quot;,new Object[]{&quot;admin&quot;,&quot;1234&quot;});
- *      ...
- * }
- * 2)捕捉错误(Action)
- * &lt;p/&gt;
- * public login() {
- *      try {
- *           ...
- *      } catch(VapBaseException ex) {
- *          //如果只抛出一种错误，可不加if 条件判断
- *           if (ex.getExceptionKey().equals(&quot;e_login_database_notconnect&quot;)) {
- *               ...
- *               this.hintErrorMessage(ex.getMessage());
- *           }
- * &lt;p/&gt;
- *           if (ex.getExceptionKey().equals(&quot;e_login_connect_failed&quot;)) {
- *               ...
- *               this.hintErrorMessage(ex.getMessage());
- *           }
- *      }
- * }
- * </pre>
- * 
+/* *
  * @author 
  * @version 1.0
  */

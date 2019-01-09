@@ -13,9 +13,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>kunyao-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 	</dependencies>
 	<modules>
-		<module>kunyao-spring-cache</module>
+		<module>kunyao-springcache</module>
 		<module>kunyao-ehcache</module>
 	</modules>
 </project>

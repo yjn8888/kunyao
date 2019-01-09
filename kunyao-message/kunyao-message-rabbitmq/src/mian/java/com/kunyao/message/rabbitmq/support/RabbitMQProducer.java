@@ -2,8 +2,8 @@ package com.kunyao.message.rabbitmq.support;
 
 import com.kunyao.core.spring.util.SpringContextProvider;
 import com.kunyao.logging.trace.LogTraceSerialContext;
-import com.kunyao.meaage.api.producer.Producer;
-import com.kunyao.meaage.entity.MessageEntity;
+import com.kunyao.meaage.Producer;
+import com.kunyao.meaage.MessageEntity;
 import com.kunyao.message.rabbitmq.annotion.EQBinding;
 import com.kunyao.message.rabbitmq.autoconfigure.CorrelationDataExtension;
 import lombok.extern.slf4j.Slf4j;

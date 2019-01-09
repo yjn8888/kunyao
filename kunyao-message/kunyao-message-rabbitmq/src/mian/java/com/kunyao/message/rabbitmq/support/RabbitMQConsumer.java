@@ -1,8 +1,8 @@
 package com.kunyao.message.rabbitmq.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kunyao.meaage.api.consumer.Consumer;
-import com.kunyao.meaage.entity.MessageEntity;
+import com.kunyao.meaage.Consumer;
+import com.kunyao.meaage.MessageEntity;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AcknowledgeMode;
@@ -28,7 +28,7 @@ public abstract class RabbitMQConsumer<T> implements Consumer{
 
     @RabbitHandler
     public void receive(@Payload MessageEntity messageEntity, Channel channel,
-                           @Header(AmqpHeaders.DELIVERY_TAG) long tag) {
+                        @Header(AmqpHeaders.DELIVERY_TAG) long tag) {
         boolean isAsk = receiveMessage(messageEntity);
         AcknowledgeMode acknowledgeMode = rabbitProperties.getListener().getSimple().getAcknowledgeMode();
         boolean isManual = acknowledgeMode == null ? false : acknowledgeMode.isManual();

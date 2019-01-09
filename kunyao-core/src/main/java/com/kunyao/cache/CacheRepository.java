@@ -1,4 +1,4 @@
-package com.kunyao.cache.support;
+package com.kunyao.cache;
 
 public interface CacheRepository<T> {
 

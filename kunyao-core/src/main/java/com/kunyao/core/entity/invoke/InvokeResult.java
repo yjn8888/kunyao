@@ -1,10 +1,6 @@
 package com.kunyao.core.entity.invoke;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
-
-
 
 /**
  * 此类描述的是：泛型的invokeResult类:
@@ -13,39 +9,14 @@ public class InvokeResult<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	
-    @ApiModelProperty(
-            value = "本次调用的Id，uuid格式，需要client端调用时提供，如果未提供，系统自动生成", 
-            example = "AA166178-2A7C-4E3E-96FA-29D19142F0AE", 
-            required = false)
 	private String invokeId;
-	/**
-	 * @author: zhangrongbinbj@hanhua.com
-	 * @category resultCode -1 system fail 2000 business fail 0000 success
-	 * @since: 2015年7月31日
-	 */
-    @ApiModelProperty(
-            value = "调用结果代码", 
-            example = "0000", 
-            required = false)
+
 	private String resultCode = "-1";
-	
-    @ApiModelProperty(
-            value = "调用结果信息", 
-            example = "SUCCESS", 
-            required = false)
+
 	private String resultMessage = "系统错误，请联系管理员";
 
-    @ApiModelProperty(
-            value = "错误异常信息", 
-            example = "java.lang.NullPointException .....", 
-            required = false)
     private String exception;
-    
-    @ApiModelProperty(
-            value = "返回给用户提示的返回信息", 
-            example = "尊敬的用户：您无权此操作", 
-            required = false)
+
     private String bizResultMessage;
 	
 	public String getBizResultMessage() {
@@ -57,11 +28,6 @@ public class InvokeResult<T> implements Serializable {
         this.bizResultMessage = bizResultMessage;
     }
 
-
-    @ApiModelProperty(
-            value = "结果数据", 
-            example = "", 
-            required = false)
 	private T data;
 	
     public String getException() {
@@ -106,7 +72,7 @@ public class InvokeResult<T> implements Serializable {
     }
     
     public String getResultCode() {
-        return resultCode;
+        return this.resultCode;
     }
 
 
@@ -116,7 +82,7 @@ public class InvokeResult<T> implements Serializable {
 
 
     public String getResultMessage() {
-        return resultMessage;
+        return this.resultMessage;
     }
 
 
@@ -127,7 +93,7 @@ public class InvokeResult<T> implements Serializable {
 
 
     public T getData() {
-        return data;
+        return this.data;
     }
 
 

@@ -14,4 +14,11 @@
     <module>kunyao-data-elasticsearch</module>
       <module>kunyao-data-zookeeper</module>
   </modules>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>kunyao-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

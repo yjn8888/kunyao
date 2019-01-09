@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kunyao.core.event;
+package com.kunyao.core.spring.event;
 
 
 import lombok.extern.slf4j.Slf4j;

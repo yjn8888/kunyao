@@ -1,6 +1,4 @@
-package com.kunyao.meaage.api.consumer;
-
-import com.kunyao.meaage.entity.MessageEntity;
+package com.kunyao.meaage;
 
 public interface Consumer<T> {
     /**

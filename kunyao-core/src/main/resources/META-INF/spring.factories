@@ -4,4 +4,4 @@ com.kunyao.core.spring.boot.autoconfigure.RelaxedConfigBinderAutoConfigration
 
 
 org.springframework.context.ApplicationListener=\
-com.kunyao.core.event.WelcomeLogoApplicationListener
+com.kunyao.core.spring.event.WelcomeLogoApplicationListener

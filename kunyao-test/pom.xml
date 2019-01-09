@@ -6,8 +6,5 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>kunyao-test</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>kunyao-test-webservice</module>
-  </modules>
+  <packaging>jar</packaging>
 </project>

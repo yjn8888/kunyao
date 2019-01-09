@@ -1,6 +1,4 @@
-package com.kunyao.meaage.entity;
-
-import java.io.Serializable;
+package com.kunyao.meaage;
 
 public class MessageEntity<T> {
 
