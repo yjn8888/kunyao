@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * 
  * 此类描述的是：springContext工具类
- * @author:
  * @since : 2018年10月17日
  */
 public class SpringContextProvider implements ApplicationContextAware{

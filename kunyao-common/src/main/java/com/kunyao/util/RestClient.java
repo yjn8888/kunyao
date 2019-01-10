@@ -1,17 +1,8 @@
 package com.kunyao.util;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
@@ -25,12 +16,7 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.methods.*;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -41,21 +27,22 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.*;
+
+import static org.apache.http.impl.client.HttpClients.createDefault;
+
 /**
  * 目前只在单线程下使用，多线程情况下未进行测试可能会出现问题
- * @author yuanjianing@hanhua.com
- *
  */
 @SuppressWarnings("deprecation")
-public class RestClient {
+public final class RestClient {
 	
 	/**
 	 * 日志
@@ -413,7 +400,7 @@ public class RestClient {
 	private CloseableHttpClient login() throws Exception{
 		CloseableHttpClient httpClient = null;
 		try{
-		    httpClient = HttpClients.createDefault();
+		    httpClient = createDefault();
     		if(loginURI==null){
     		    loginURI = uri; 
     		}
@@ -446,7 +433,7 @@ public class RestClient {
 	 */
 	private String response(CloseableHttpClient httpClient) throws ClientProtocolException, IOException{
 		if(httpClient==null){
-			httpClient = HttpClients.createDefault();
+			httpClient = createDefault();
 		}
 		String content = null;
 		try{

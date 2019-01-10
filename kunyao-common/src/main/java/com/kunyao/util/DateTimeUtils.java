@@ -10,9 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class DateTimeUtil {
+public class DateTimeUtils {
 
-	private static Logger logger = LoggerFactory.getLogger(DateTimeUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(DateTimeUtils.class);
 	
 	public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_FORMAT = "yyyy-MM-dd";

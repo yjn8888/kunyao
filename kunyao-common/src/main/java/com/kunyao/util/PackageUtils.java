@@ -1,23 +1,11 @@
-/**
- * 文件名：PackageUtil.java
- *
- * 版本信息：
- * 创建日期：2013-3-30
- * @version 1.0
- * @author: liuwenlong@hanhua.com
- * Copyright (c) 2012-2013 hanhua.com,Inc. All Rights Reserved.
- *
- */
 
 package com.kunyao.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -26,12 +14,11 @@ import java.util.jar.JarFile;
 
 /**
  * 此类描述的是：遍历包下的所有类
- * @version: 2013-3-30 下午4:18:03
+ * @version:
  */
 
-public class PackageUtil {
-
-    private static final Logger logger = LoggerFactory.getLogger(PackageUtil.class);
+@Slf4j
+public final class PackageUtils {
 
     /**
      * 获取某包下（包括该包的所有子包）所有类
@@ -63,8 +50,6 @@ public class PackageUtil {
         }
         if(fileNames == null){
             fileNames = new ArrayList<String>();
-        }if (ServerUtil.isTomcat()) {
-            fileNames.addAll(getClassNameByJars(((URLClassLoader) loader).getURLs(), packagePath, childPackage));
         }
         return fileNames;
     }
@@ -88,24 +73,9 @@ public class PackageUtil {
             } else {
                 String childFilePath = childFile.getPath();
                 if (childFilePath.endsWith(".class")) {
-                    if (ServerUtil.isTomcat()) {
-                        if (childFilePath.indexOf("\\test-classes") > 0) {
-                            childFilePath = childFilePath.substring(childFilePath.indexOf("\\test-classes") + 14,
-                                    childFilePath.lastIndexOf("."));
-                        } else {
-                            childFilePath = childFilePath.substring(childFilePath.indexOf("\\classes") + 9,
-                                    childFilePath.lastIndexOf("."));
-                        }
-                        childFilePath = childFilePath.replace("\\", ".");
-                    } else if (ServerUtil.isWebSphere()) {
-                        childFilePath = childFilePath.substring(childFilePath.indexOf("classes") + 8,
-                                childFilePath.lastIndexOf("."));
-                        childFilePath = childFilePath.replace("/", ".");
-                    } else {
-                        childFilePath = childFilePath.substring(childFilePath.indexOf("classes") + 8, childFilePath.lastIndexOf("."));
-                        childFilePath = childFilePath.replace("\\", ".");
-                        childFilePath = childFilePath.replace("/", ".");
-                    }
+                    childFilePath = childFilePath.substring(childFilePath.indexOf("classes") + 8, childFilePath.lastIndexOf("."));
+                    childFilePath = childFilePath.replace("\\", ".");
+                    childFilePath = childFilePath.replace("/", ".");
                     myClassName.add(childFilePath);
                 }
             }
@@ -154,13 +124,13 @@ public class PackageUtil {
                 }
             }
         } catch (Exception e) {
-        	logger.error(e.getMessage(), e);
+        	log.error(e.getMessage(), e);
         }finally{
         	if(jarFile!=null){
         		try {
 					jarFile.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage(), e);
+					log.error(e.getMessage(), e);
 				}
         	}
         }
@@ -195,7 +165,6 @@ public class PackageUtil {
      *
      * 从所有jar中搜索该包，并获取该包下所有类
      * @category
-     * @author: huangfupan
      * @since: 2014-4-8
      * @param urls
      * @param packagePath

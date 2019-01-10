@@ -1,7 +1,10 @@
 package com.kunyao.meaage;
 
-public class MessageEntity<T> {
+import com.kunyao.core.entity.base.Entity;
 
+public class MessageEntity<T> implements Entity {
+
+    private static final long serialVersionUID = -2708504431483704392L;
     /**
      * 用于分布式追踪
      */
