@@ -1,13 +1,13 @@
 package com.kunyao.logging.trace;
 
-import com.kunyao.logging.LogTraceContext;
+import com.kunyao.distributed.DistributedTraceContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class LogTraceSerialContext extends ConcurrentHashMap<String,Object> implements LogTraceContext {
+public class LogTraceSerialContext extends ConcurrentHashMap<String,Object> implements DistributedTraceContext {
 
     private final static ThreadLocal<LogTraceSerialContext> threadLocal = new ThreadLocal<>();
 

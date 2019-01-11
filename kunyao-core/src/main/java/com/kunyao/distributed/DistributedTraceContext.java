@@ -1,6 +1,6 @@
-package com.kunyao.logging;
+package com.kunyao.distributed;
 
-public interface LogTraceContext {
+public interface DistributedTraceContext {
 
     String setTraceId(String s);
 
