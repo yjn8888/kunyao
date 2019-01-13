@@ -8,12 +8,12 @@ public interface CommonConstants {
 	/**
 	 * <p>utf-8字符类型</p>
 	 */
-	public String UTF8_CHARSET = "UTF-8";
+	public String UTF_8 = "UTF-8";
 	
 	/**
 	 * <p>iso-8859-1字符类型</p>
 	 */
-	public String ISO_CHARSET = "ISO-8859-1";
+	public String ISO_8859_1 = "ISO-8859-1";
 	
 	/**
 	 * <p>'与'字符类型</p>

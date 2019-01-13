@@ -1,10 +1,10 @@
 package com.kunyao.cache;
 
-public interface CacheRepository<T> {
+public interface CacheRepository<K,V> {
 
-    T getCacheData(Object key) throws Exception;
+    V getCacheData(K key) throws Exception;
 
-    void removeCacheData(Object key) throws Exception;
+    void removeCacheData(K key) throws Exception;
 
-    T putCacheData(Object key, T t) throws Exception;
+    V putCacheData(K key, V t) throws Exception;
 }
