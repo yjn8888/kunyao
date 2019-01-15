@@ -1,0 +1,24 @@
+package com.kunyao.distributed;
+
+import com.sun.istack.internal.NotNull;
+
+import javax.annotation.Nullable;
+
+public interface DistributedLock {
+
+    /**
+     *  获得锁
+     * @param lockName 锁名称
+     * @param acquireTimeout 获得锁的超时时间(获取锁的限定时间) 毫秒
+     * @param lockTimeout  所本身的超时时间，超时后自动释放 毫秒
+     * @return 锁标志
+     */
+    Object acquireLock(@NotNull String lockName, @Nullable Long acquireTimeout, @Nullable Long lockTimeout);
+
+    /** 释放锁
+     * @param lockName 锁名称
+     * @param lockIdentifier 锁标志
+     * @return 是否成功释放锁
+     */
+    boolean releaseLock(@NotNull String lockName, @NotNull Object lockIdentifier);
+}

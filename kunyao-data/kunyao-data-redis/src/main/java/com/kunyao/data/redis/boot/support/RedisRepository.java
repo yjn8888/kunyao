@@ -1,6 +1,7 @@
 package com.kunyao.data.redis.boot.support;
 
 
+import com.kunyao.distributed.DistributedLock;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,14 +11,16 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class RedisRepository {
+public class RedisRepository implements DistributedLock {
 
     private RedisTemplate redisTemplate;
 
@@ -236,5 +239,49 @@ public class RedisRepository {
     }
 
 
+    @Override
+    public String acquireLock(String lockKey, Long acquireTimeout, Long lockTimeout) {
+        if(acquireTimeout==null || acquireTimeout == 0){
+            acquireTimeout = 2000L;
+        }
+        if(lockTimeout==null || lockTimeout == 0){
+            lockTimeout = 5000L;
+        }
+        String lockIdentifier = UUID.randomUUID().toString();
+        long acquireEnd = System.currentTimeMillis()-acquireTimeout;
+        while(System.currentTimeMillis()<acquireEnd){
+            boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(lockKey,lockIdentifier,lockTimeout,TimeUnit.MILLISECONDS);
+            if(isLock){
+                return lockIdentifier;
+            }
+            if(stringRedisTemplate.getExpire(lockKey,TimeUnit.MILLISECONDS)==-1){
 
+                expire(lockKey,lockTimeout);
+            }
+
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                log.error(e.getMessage(),e);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean releaseLock(String lockKey, Object lockIdentifier) {
+        while(true){
+            stringRedisTemplate.opsForValue().getOperations().watch(lockKey);
+            if(lockIdentifier.equals(get(lockKey))){
+                stringRedisTemplate.opsForValue().getOperations().multi();
+                del(lockKey);
+                if(stringRedisTemplate.opsForValue().getOperations().exec().isEmpty()){
+                    continue;
+                }
+                stringRedisTemplate.opsForValue().getOperations().unwatch();
+                return true;
+            }
+
+        }
+    }
 }
