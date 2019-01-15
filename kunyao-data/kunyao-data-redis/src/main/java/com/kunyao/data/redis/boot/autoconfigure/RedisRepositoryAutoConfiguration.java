@@ -10,9 +10,12 @@ import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+
+import java.net.UnknownHostException;
 
 @Configuration
 public class RedisRepositoryAutoConfiguration {
@@ -32,8 +35,21 @@ public class RedisRepositoryAutoConfiguration {
     }
 
     @Bean
-    public RedisRepository getStringRedisTemplate(@Qualifier("redisTemplate") RedisTemplate redisTemplate, @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate) {
-        return new RedisRepository(redisTemplate,stringRedisTemplate);
+    @ConditionalOnMissingBean(
+            name = {"transactionStringRedisTemplate"}
+    )
+    public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+        StringRedisTemplate transactionStringRedisTemplate = new StringRedisTemplate();
+        transactionStringRedisTemplate.setConnectionFactory(redisConnectionFactory);
+        transactionStringRedisTemplate.setEnableTransactionSupport(true);
+        return transactionStringRedisTemplate;
+    }
+
+    @Bean
+    public RedisRepository getStringRedisTemplate(@Qualifier("redisTemplate") RedisTemplate redisTemplate,
+                                                  @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate,
+                                                  @Qualifier("transactionStringRedisTemplate") StringRedisTemplate transactionStringRedisTemplate) {
+        return new RedisRepository(redisTemplate,stringRedisTemplate,transactionStringRedisTemplate);
     }
 
 

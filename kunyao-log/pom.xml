@@ -9,15 +9,15 @@
 	<artifactId>kunyao-log</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>com.kunyao</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>kunyao-core</artifactId>
 			<version>${project.version}</version>
-			<exclusions>
-				<exclusion>
-          			<groupId>com.kunyao</groupId>
-          			<artifactId>kunyao-swagger</artifactId>
-        		</exclusion>
-			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>kunyao-test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

@@ -38,10 +38,10 @@
             <version>4.0.51</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>27.0.1-jre</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>kunyao-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
-
     </dependencies>
 </project>

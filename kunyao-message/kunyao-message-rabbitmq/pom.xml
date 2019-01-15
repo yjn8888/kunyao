@@ -8,24 +8,26 @@
 	</parent>
 	<artifactId>kunyao-message-rabbitmq</artifactId>
 	<dependencies>
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>kunyao-core</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>kunyao-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-        <dependency>
-			<groupId>${project.groupId}</groupId>
-            <artifactId>kunyao-core</artifactId>
-			<version>${project.version}</version>
-        </dependency>
-		<!-- Test Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>kunyao-test</artifactId>
+			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
     </dependencies>

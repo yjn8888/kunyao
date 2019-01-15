@@ -3,17 +3,11 @@ package com.kunyao.data.redis.boot.support;
 
 import com.kunyao.distributed.DistributedLock;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import javax.annotation.Nullable;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -26,9 +20,17 @@ public class RedisRepository implements DistributedLock {
 
     private StringRedisTemplate stringRedisTemplate;
 
+    private StringRedisTemplate transactionStringRedisTemplate;
+
     public RedisRepository(RedisTemplate redisTemplate,StringRedisTemplate stringRedisTemplate){
        this.stringRedisTemplate = stringRedisTemplate;
        this.redisTemplate = redisTemplate;
+    }
+
+    public RedisRepository(RedisTemplate redisTemplate, StringRedisTemplate stringRedisTemplate, StringRedisTemplate transactionStringRedisTemplate) {
+        this.redisTemplate = redisTemplate;
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.transactionStringRedisTemplate = transactionStringRedisTemplate;
     }
 
     public RedisRepository(){
@@ -105,7 +107,7 @@ public class RedisRepository implements DistributedLock {
      * @return
      */
     public boolean del(Serializable key) {
-        return redisTemplate.opsForValue().getOperations().delete(key);
+        return redisTemplate.delete(key);
     }
 
     /**
@@ -115,7 +117,7 @@ public class RedisRepository implements DistributedLock {
      * @return
      */
     public boolean del(String key) {
-        return stringRedisTemplate.opsForValue().getOperations().delete(key);
+        return stringRedisTemplate.delete(key);
     }
 
     /**
@@ -241,47 +243,52 @@ public class RedisRepository implements DistributedLock {
 
     @Override
     public String acquireLock(String lockKey, Long acquireTimeout, Long lockTimeout) {
-        if(acquireTimeout==null || acquireTimeout == 0){
-            acquireTimeout = 2000L;
-        }
-        if(lockTimeout==null || lockTimeout == 0){
-            lockTimeout = 5000L;
-        }
-        String lockIdentifier = UUID.randomUUID().toString();
-        long acquireEnd = System.currentTimeMillis()-acquireTimeout;
-        while(System.currentTimeMillis()<acquireEnd){
-            boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(lockKey,lockIdentifier,lockTimeout,TimeUnit.MILLISECONDS);
-            if(isLock){
-                return lockIdentifier;
+        try {
+            if (acquireTimeout == null || acquireTimeout == 0) {
+                acquireTimeout = 2000L;
             }
-            if(stringRedisTemplate.getExpire(lockKey,TimeUnit.MILLISECONDS)==-1){
-
-                expire(lockKey,lockTimeout);
+            if (lockTimeout == null || lockTimeout == 0) {
+                lockTimeout = 5000L;
             }
+            String lockIdentifier = UUID.randomUUID().toString();
+            long acquireEnd = System.currentTimeMillis() - acquireTimeout;
+            while (System.currentTimeMillis() < acquireEnd) {
+                boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(lockKey, lockIdentifier, lockTimeout, TimeUnit.MILLISECONDS);
+                if (isLock) {
+                    return lockIdentifier;
+                }
+                if (stringRedisTemplate.getExpire(lockKey, TimeUnit.MILLISECONDS) == -1) {
+                    expire(lockKey, lockTimeout);
+                }
 
-            try {
                 TimeUnit.MILLISECONDS.sleep(100);
-            } catch (InterruptedException e) {
-                log.error(e.getMessage(),e);
             }
+        }catch (Exception e){
+            log.error(e.getMessage(),e);
         }
         return null;
     }
 
     @Override
     public boolean releaseLock(String lockKey, Object lockIdentifier) {
-        while(true){
-            stringRedisTemplate.opsForValue().getOperations().watch(lockKey);
-            if(lockIdentifier.equals(get(lockKey))){
-                stringRedisTemplate.opsForValue().getOperations().multi();
-                del(lockKey);
-                if(stringRedisTemplate.opsForValue().getOperations().exec().isEmpty()){
-                    continue;
+        boolean isReleased = false;
+        try {
+            while (true) {
+                transactionStringRedisTemplate.watch(lockKey);
+                if (lockIdentifier.equals(transactionStringRedisTemplate.opsForValue().get(lockKey))) {
+                    transactionStringRedisTemplate.multi();
+                    transactionStringRedisTemplate.delete(lockKey);
+                    if (transactionStringRedisTemplate.exec().isEmpty()) {
+                        continue;
+                    }
+                    transactionStringRedisTemplate.unwatch();
+                    isReleased = true;
                 }
-                stringRedisTemplate.opsForValue().getOperations().unwatch();
-                return true;
-            }
 
+            }
+        }catch (Exception e){
+            log.error(e.getMessage(),e);
         }
+        return isReleased;
     }
 }
