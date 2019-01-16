@@ -3,7 +3,7 @@ package com.kunyao.dubbo.rest.boot.config;
 import com.kunyao.dubbo.rest.boot.contant.DubboxContant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import com.alibaba.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ApplicationConfig;
 import com.kunyao.dubbo.boot.config.AbstractDubboProperties;
 import com.kunyao.dubbo.boot.config.ProtocolProperties;
 

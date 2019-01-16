@@ -284,7 +284,7 @@ public class RedisRepository implements DistributedLock {
                     transactionStringRedisTemplate.unwatch();
                     isReleased = true;
                 }
-
+                break;
             }
         }catch (Exception e){
             log.error(e.getMessage(),e);
