@@ -21,11 +21,13 @@ import java.util.Map;
 @Slf4j
 public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.ConfirmCallback,RabbitTemplate.ReturnCallback {
 
+    @Autowired
     protected RabbitTemplate rabbitTemplate;
 
     @Autowired
     protected SpringContextProvider springContextProvider;
 
+    @Autowired
     protected Jackson2JsonMessageConverter jackson2JsonMessageConverter;
 
     @PostConstruct
