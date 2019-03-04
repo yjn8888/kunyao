@@ -59,7 +59,7 @@ public class RabbitAutoConfiguration {
     }
 
     @Bean
-    @Scope(SCOPE_PROTOTYPE)
+    @Scope(SCOPE_PROTOTYPE)//为每一个生产者创建一个RabbitTemplate，因为确认机制回调接口被设置在RabbitTemplate中，所以每一个业务对应一个RabbitTemplate
     public RabbitTemplate rabbitTemplate(final CachingConnectionFactory connectionFactory,
                                          @Qualifier("jackson2JsonMessageConverter") Jackson2JsonMessageConverter jackson2JsonMessageConverter) {
         connectionFactory.setPublisherConfirms(true);
