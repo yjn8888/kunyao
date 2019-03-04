@@ -8,7 +8,7 @@
   <artifactId>kunyao-message</artifactId>
   <packaging>pom</packaging>
   <modules>
-  	<module>kunyao-message-rabbitmq</module>
+      <module>kunyao-message-rabbitmq</module>
       <module>kunyao-message-activemq</module>
       <module>kunyao-message-kafka</module>
       <module>kunyao-message-rocketmq</module>
