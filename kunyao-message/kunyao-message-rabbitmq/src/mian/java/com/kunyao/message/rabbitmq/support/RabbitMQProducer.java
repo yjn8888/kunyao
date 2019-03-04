@@ -41,7 +41,7 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
         T t = converter(correlationData.getReturnedMessage());
         if(ack){
             log.debug("发送成功的消息：" + correlationData);
-            successfulSendoHandle(t);
+            successfulSendHandle(t);
         }else{
             log.error("发送失败的消息：" + correlationData);
             log.error("消息发送失败原因：" + cause);
@@ -64,7 +64,7 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
 
     protected abstract void failedSendHandle(T t);
 
-    protected void successfulSendoHandle(T t){
+    protected void successfulSendHandle(T t){
 
     }
 
