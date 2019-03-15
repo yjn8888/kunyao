@@ -80,9 +80,9 @@ public abstract class RabbitMQConsumer<T> implements Consumer{
         rejectMessage(channel, tag, false, true);
     }
 
-    protected void rejectMessage(Channel channel, long tag, boolean multiple, boolean request) {
+    protected void rejectMessage(Channel channel, long tag, boolean multiple, boolean requeue) {
         try {
-            channel.basicNack(tag, multiple, request);
+            channel.basicNack(tag, multiple, requeue);
         } catch (IOException e) {
             log.error("RabbitMQ，IO异常，异常原因为：{}", e.getMessage());
         }
