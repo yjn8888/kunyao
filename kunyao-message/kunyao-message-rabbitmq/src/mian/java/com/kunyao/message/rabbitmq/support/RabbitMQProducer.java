@@ -4,7 +4,7 @@ import com.kunyao.core.spring.util.SpringContextProvider;
 import com.kunyao.logging.trace.LogTraceSerialContext;
 import com.kunyao.meaage.Producer;
 import com.kunyao.meaage.MessageEntity;
-import com.kunyao.message.rabbitmq.annotion.EQBinding;
+import com.kunyao.message.rabbitmq.annotation.EQBinding;
 import com.kunyao.message.rabbitmq.autoconfigure.CorrelationDataExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

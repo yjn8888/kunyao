@@ -1,7 +1,7 @@
 package com.kunyao.message.rabbitmq;
 
 
-import com.kunyao.message.rabbitmq.annotion.EQBinding;
+import com.kunyao.message.rabbitmq.annotation.EQBinding;
 import com.kunyao.message.rabbitmq.support.RabbitMQProducer;
 import org.springframework.stereotype.Component;
 

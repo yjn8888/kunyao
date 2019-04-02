@@ -1,4 +1,4 @@
-package com.kunyao.message.rabbitmq.annotion;
+package com.kunyao.message.rabbitmq.annotation;
 
 import java.lang.annotation.*;
 

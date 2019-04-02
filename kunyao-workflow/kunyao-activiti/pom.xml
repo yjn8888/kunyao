@@ -7,6 +7,11 @@
   </parent>
   <artifactId>kunyao-activiti</artifactId>
   <dependencies>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-actuator</artifactId>
+          <version>${spring_boot_version}</version>
+      </dependency>
 	  	<dependency>
 	    	<groupId>org.activiti</groupId>
 	    	<artifactId>activiti-spring-boot-starter-basic</artifactId>
