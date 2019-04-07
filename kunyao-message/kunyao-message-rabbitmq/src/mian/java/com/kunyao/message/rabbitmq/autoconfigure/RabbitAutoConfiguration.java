@@ -27,11 +27,11 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @EnableConfigurationProperties({RabbitProperties.class})
 public class RabbitAutoConfiguration {
 
-    @EnableConfig(multipleClass = RabbitConfigConfigration.Multiple.class)
+    @EnableConfig(multipleClass = RabbitConfigConfiguration.Multiple.class)
     protected static class MultipleRabbitConfigConfiguration {
     }
 
-    @EnableConfig(singleClass = RabbitConfigConfigration.Single.class, multiple=false)
+    @EnableConfig(singleClass = RabbitConfigConfiguration.Single.class, multiple=false)
     protected static class SingleRabbitConfigConfiguration{
     }
 

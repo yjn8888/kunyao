@@ -23,11 +23,5 @@
 			<artifactId>kryo-serializers</artifactId>
 			<version>0.43</version>
 		</dependency>
-
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>kunyao-log</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 </project>

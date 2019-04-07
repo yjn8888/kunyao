@@ -20,7 +20,8 @@
         </dependency>
 	</dependencies>
 	<modules>
-		<module>kunyao-springcache</module>
+		<module>kunyao-spring-cache</module>
 		<module>kunyao-ehcache</module>
-	</modules>
+        <module>kunyao-redis-cache</module>
+    </modules>
 </project>

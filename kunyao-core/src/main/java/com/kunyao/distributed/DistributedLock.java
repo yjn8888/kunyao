@@ -10,7 +10,7 @@ public interface DistributedLock {
      *  获得锁
      * @param lockName 锁名称
      * @param acquireTimeout 获得锁的超时时间(获取锁的限定时间) 毫秒
-     * @param lockTimeout  所本身的超时时间，超时后自动释放 毫秒
+     * @param lockTimeout  锁本身的超时时间，超时后自动释放 毫秒
      * @return 锁标志
      */
     Object acquireLock(@NotNull String lockName, @Nullable Long acquireTimeout, @Nullable Long lockTimeout);

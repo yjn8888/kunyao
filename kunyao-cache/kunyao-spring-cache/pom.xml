@@ -5,6 +5,6 @@
     <artifactId>kunyao-cache</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>kunyao-springcache</artifactId>
+  <artifactId>kunyao-spring-cache</artifactId>
   <packaging>jar</packaging>
 </project>

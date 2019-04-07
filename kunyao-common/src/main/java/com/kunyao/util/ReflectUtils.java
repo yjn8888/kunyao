@@ -87,4 +87,37 @@ public final class ReflectUtils {
 		}
 		return parameterTypes;
 	}
+
+	/**
+	 * 获得method对象
+	 * @param targetClass
+	 * @param methodName
+	 * @param paramters
+	 * @return
+	 * @throws NoSuchMethodException
+	 */
+	public static Method getMethod(Class targetClass,String methodName,Object... paramters) throws NoSuchMethodException {
+		Class<?>[] paramterTypes = new Class<?>[paramters.length];
+		for (int i = 0; i < paramters.length; i++) {
+			paramterTypes[i] = paramters[i].getClass();
+		}
+		return targetClass.getMethod(methodName,paramterTypes);
+	}
+
+	/**
+	 * 获得method对象
+	 * @param target
+	 * @param methodName
+	 * @param paramters
+	 * @return
+	 * @throws NoSuchMethodException
+	 */
+	public static Method getMethod(Object target,String methodName,Object... paramters) throws NoSuchMethodException {
+		Class targetClass = target.getClass();
+		Class<?>[] paramterTypes = new Class<?>[paramters.length];
+		for (int i = 0; i < paramters.length; i++) {
+			paramterTypes[i] = paramters[i].getClass();
+		}
+		return targetClass.getMethod(methodName,paramterTypes);
+	}
 }

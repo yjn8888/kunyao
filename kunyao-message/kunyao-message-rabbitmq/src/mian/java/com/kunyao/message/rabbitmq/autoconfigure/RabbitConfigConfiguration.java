@@ -3,7 +3,7 @@ package com.kunyao.message.rabbitmq.autoconfigure;
 import com.kunyao.core.spring.annotation.EnableConfigBinding;
 import com.kunyao.core.spring.annotation.EnableConfigBindings;
 
-public interface RabbitConfigConfigration {
+public interface RabbitConfigConfiguration {
     /**
      *   Multiple Config Beans Binding
      */

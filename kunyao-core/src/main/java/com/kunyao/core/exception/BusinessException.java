@@ -11,7 +11,6 @@ public class BusinessException extends BaseException {
     /**
      * @author: 
      * @category moduleNameChs 中文模块名
-     * @since: 2015年7月21日
      */
     private String moduleNameChs;
     
@@ -19,7 +18,6 @@ public class BusinessException extends BaseException {
     /**
      * @author: 
      * @category moduleNameEng 英文模块名
-     * @since: 2015年7月21日
      */
     private String moduleNameEng;
     
@@ -27,28 +25,24 @@ public class BusinessException extends BaseException {
     /**
      * @author: 
      * @category methodNameChs 中文方法名
-     * @since: 2015年7月21日
      */
     private String methodNameChs;
     
     /**
      * @author: 
      * @category methodNameEng 英文方法名
-     * @since: 2015年7月21日
      */
     private String methodNameEng;
     
     /**
      * @author: 
      * @category businessErrorCode 业务错误代码
-     * @since: 2015年7月21日
      */
     private String businessErrorCode;
     
     /**
      * @author: 
      * @category businessErrorMessage 业务错误信息
-     * @since: 2015年7月21日
      */
     private String businessErrorMessage;
 
@@ -79,8 +73,6 @@ public class BusinessException extends BaseException {
     
     /**
      * @author:
-     * @since: 2015年7月21日
-     * 
      * @category:
      * @param moduleNameChs
      * @param moduleNameEng
@@ -105,8 +97,6 @@ public class BusinessException extends BaseException {
     
     /**
      * @author:
-     * @since: 2015年7月21日
-     * 
      * @category:
      * @param businessErrorCode
      * @param businessErrorMessage

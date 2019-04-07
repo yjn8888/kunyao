@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class RSAUtils {
+public final class RSAUtils {
 
     private static final String CHARSET = "UTF-8";
     private static final String RSA_ALGORITHM = "RSA";
