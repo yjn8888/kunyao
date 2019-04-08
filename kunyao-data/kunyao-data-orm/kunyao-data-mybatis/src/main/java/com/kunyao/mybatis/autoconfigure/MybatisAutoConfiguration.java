@@ -2,6 +2,9 @@ package com.kunyao.mybatis.autoconfigure;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.executor.loader.cglib.CglibProxyFactory;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +47,7 @@ public class MybatisAutoConfiguration {
 	private String typeAliasPackage = "com.kunyao";
 
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactory(@Qualifier("druidDataSource") DataSource dataSource) throws IOException {
+	public SqlSessionFactoryBean sqlSessionFactory(@Qualifier("druidDataSource") DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		/** 设置mybatis configuration 扫描路径 */
 //	    sqlSessionFactoryBean.setConfigLocation(new ClassPathResource(MYBATIS_CONFIG));
@@ -54,6 +57,11 @@ public class MybatisAutoConfiguration {
 		sqlSessionFactoryBean.setMapperLocations(pathMatchingResourcePatternResolver.getResources(MAPPER_PATH));
 		/** 设置datasource */
 		sqlSessionFactoryBean.setDataSource(dataSource);
+		/**懒加载设置*/
+		Configuration configuration = sqlSessionFactoryBean.getObject().getConfiguration();
+		configuration.setLazyLoadingEnabled(true);
+		configuration.setAggressiveLazyLoading(false);
+		configuration.setProxyFactory(new CglibProxyFactory());
 //		/** 设置typeAlias 实体包扫描路径 */
 //		sqlSessionFactoryBean.setTypeAliasesPackage(typeAliasPackage);
 		return sqlSessionFactoryBean;
