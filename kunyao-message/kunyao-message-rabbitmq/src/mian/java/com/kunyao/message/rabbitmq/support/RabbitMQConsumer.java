@@ -36,7 +36,7 @@ public abstract class RabbitMQConsumer<T> implements Consumer{
             if(isAsk){
                 askMessage(channel,tag);
             }else {
-                rejectMessage(channel,tag);
+                rejectAndBackMQ(channel,tag);
             }
         }
     }
