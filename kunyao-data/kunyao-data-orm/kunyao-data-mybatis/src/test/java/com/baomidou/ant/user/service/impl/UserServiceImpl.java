@@ -4,6 +4,7 @@ import com.baomidou.ant.user.entity.User;
 import com.baomidou.ant.user.mapper.UserMapper;
 import com.baomidou.ant.user.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.kunyao.mybatis.support.BaseRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+    private BaseRepository<UserMapper,User,Integer> baseRepository;
 
 }

@@ -1,5 +1,6 @@
 package com.kunyao.data;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
      * @param t
      * @return
      */
-    int insert(T t);
+    boolean save(T t);
 
 
     /**
@@ -50,7 +51,7 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
      * @param tList
      * @return
      */
-    int insertBatch(List<T> tList);
+    boolean saveBatch(List<T> tList,@Nullable Integer batchSize);
 
 
     /**
@@ -65,7 +66,7 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
      * @param t
      * @return
      */
-    int updateById(T t);
+    boolean updateById(T t);
 
     /**
      * 删除
@@ -83,7 +84,7 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
 
     /**
      * 批量删除
-     * @param id
+     * @param idList
      * @return
      */
     int deleteBatch(List<PK> idList);

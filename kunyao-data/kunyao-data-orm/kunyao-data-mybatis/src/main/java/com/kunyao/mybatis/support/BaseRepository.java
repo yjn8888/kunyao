@@ -3,30 +3,17 @@ package com.kunyao.mybatis.support;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kunyao.core.exception.SystemException;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kunyao.data.IRepository;
 import com.kunyao.data.QueryCondition;
-import com.kunyao.util.ReflectUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
-@Repository
-@Scope("prototype")
-public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK extends Serializable> implements IRepository<T , PK > {
-
-    @Autowired
-    private M baseMapper;
-
-    private Map<String,Method> cacheMethod = new HashMap<>();
+public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK extends Serializable> extends ServiceImpl<M , T> implements IRepository<T , PK > {
 
     @Override
     public T queryById(PK id) {
@@ -49,13 +36,11 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
     }
 
     @Override
-    public int insert(T t) {
-        return baseMapper.insert(t);
-    }
-
-    @Override
-    public int insertBatch(List<T> tList) {
-        return 0;
+    public boolean saveBatch(List<T> tList,@Nullable Integer batchSize) {
+        if(batchSize==null){
+            batchSize = 30;
+        }
+        return saveBatch(tList,batchSize.intValue());
     }
 
     @Override
@@ -63,10 +48,6 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
         return baseMapper.update(t,new UpdateWrapper<T>(t));
     }
 
-    @Override
-    public int updateById(T t) {
-        return baseMapper.updateById(t);
-    }
 
     @Override
     public int delete(T t) {
@@ -87,29 +68,4 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
         return baseMapper.selectList(new QueryWrapper<T>(t,columns));
     }
 
-    /**
-     * 通用接口调用
-     * @param methodName
-     * @param params
-     * @return
-     */
-    public <S> S execute(String methodName,Object... params) {
-        try{
-            Method method = cacheMethod.get(methodName);
-            if(method==null){
-                synchronized (cacheMethod){
-                    if(!cacheMethod.containsKey(methodName)){
-                        method = ReflectUtils.getMethod(baseMapper,methodName,params);
-                        cacheMethod.put(methodName,method);
-                    }else{
-                        method = cacheMethod.get(methodName);
-                    }
-                }
-            }
-            return (S)method.invoke(baseMapper,params);
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
-            throw new SystemException(e);
-        }
-    }
 }
