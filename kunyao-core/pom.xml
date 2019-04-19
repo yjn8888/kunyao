@@ -17,6 +17,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>kunyao-test</artifactId>
 			<version>${project.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -27,6 +28,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>jcache</groupId>
+			<artifactId>jcache</artifactId>
+			<version>1.0-dev-2</version>
 		</dependency>
 	</dependencies>
 </project>

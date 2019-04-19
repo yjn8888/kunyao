@@ -250,8 +250,8 @@ public class RedisRepository implements DistributedLock {
             if (lockTimeout == null || lockTimeout == 0) {
                 lockTimeout = 5000L;
             }
-            String lockIdentifier = UUID.randomUUID().toString();
-            long acquireEnd = System.currentTimeMillis() - acquireTimeout;
+            String lockIdentifier = UUID.randomUUID().toString();//判断当前锁的持有者的唯一凭证
+            long acquireEnd = System.currentTimeMillis() + acquireTimeout;
             while (System.currentTimeMillis() < acquireEnd) {
                 boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(lockKey, lockIdentifier, lockTimeout, TimeUnit.MILLISECONDS);
                 if (isLock) {
@@ -261,7 +261,7 @@ public class RedisRepository implements DistributedLock {
                     expire(lockKey, lockTimeout);
                 }
 
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(100);// 睡眠100毫秒减少无效循环竞争
             }
         }catch (Exception e){
             log.error(e.getMessage(),e);
@@ -272,23 +272,26 @@ public class RedisRepository implements DistributedLock {
     @Override
     public boolean releaseLock(String lockKey, Object lockIdentifier) {
         boolean isReleased = false;
-        try {
-            while (true) {
-                transactionStringRedisTemplate.watch(lockKey);
-                if (lockIdentifier.equals(transactionStringRedisTemplate.opsForValue().get(lockKey))) {
-                    transactionStringRedisTemplate.multi();
-                    transactionStringRedisTemplate.delete(lockKey);
-                    if (transactionStringRedisTemplate.exec().isEmpty()) {
-                        continue;
+        if(lockKey!=null && lockIdentifier!=null){
+            try {
+                while (true) {
+                    transactionStringRedisTemplate.watch(lockKey);//redis在这个key上监控，如果该key值被其他进程修改
+                    if (lockIdentifier.equals(transactionStringRedisTemplate.opsForValue().get(lockKey))) {//判断是否同一把锁
+                        transactionStringRedisTemplate.multi();//开启事务，其实就是批量发送命令
+                        transactionStringRedisTemplate.delete(lockKey);//删除这个key
+                        if (transactionStringRedisTemplate.exec().isEmpty()) {//发送命令,如果监控
+                            continue;
+                        }
+                        transactionStringRedisTemplate.unwatch();//释放redis对于这个key上的锁
+                        isReleased = true;
                     }
-                    transactionStringRedisTemplate.unwatch();
-                    isReleased = true;
+                    break;
                 }
-                break;
+            }catch (Exception e){
+                log.error(e.getMessage(),e);
             }
-        }catch (Exception e){
-            log.error(e.getMessage(),e);
         }
+
         return isReleased;
     }
 }
