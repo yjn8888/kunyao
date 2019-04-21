@@ -3,9 +3,9 @@ package com.kunyao.core.exception;
 /**
  * 此类描述的是：业务异常类
  * @author: 
- * @since : 2015年7月21日
+ * @since : 2019年4月21日
  */
-public class BusinessException extends BaseException {
+public class BizException extends BaseException {
     private static final long serialVersionUID = 2416035725705871216L;
     
     /**
@@ -34,40 +34,28 @@ public class BusinessException extends BaseException {
      */
     private String methodNameEng;
     
-    /**
-     * @author: 
-     * @category businessErrorCode 业务错误代码
-     */
-    private String businessErrorCode;
-    
-    /**
-     * @author: 
-     * @category businessErrorMessage 业务错误信息
-     */
-    private String businessErrorMessage;
-
     
     /**
      * @author:
-     * @since: 2015年7月21日
+     * @since: 2019年4月21日
      * 
      * @category:
      * @param moduleNameChs
      * @param moduleNameEng
      * @param methodNameChs
      * @param methodNameEng
-     * @param businessErrorCode
-     * @param businessErrorMessage
+     * @param errorCode
+     * @param errorMessage
      */
-    public BusinessException(String moduleNameChs, String moduleNameEng, String methodNameChs, String methodNameEng,
-            String businessErrorCode, String businessErrorMessage) {
-        super(businessErrorCode + " : " + businessErrorMessage);
+    public BizException(String moduleNameChs, String moduleNameEng, String methodNameChs, String methodNameEng,
+                        String errorCode, String errorMessage) {
+        super(errorCode + " : " + errorMessage);
         this.moduleNameChs = moduleNameChs;
         this.moduleNameEng = moduleNameEng;
         this.methodNameChs = methodNameChs;
         this.methodNameEng = methodNameEng;
-        this.businessErrorCode = businessErrorCode;
-        this.businessErrorMessage = businessErrorMessage;
+        this.setErrorCode(errorCode);
+        this.setErrorMessage(errorMessage);
     }
 
     
@@ -78,19 +66,19 @@ public class BusinessException extends BaseException {
      * @param moduleNameEng
      * @param methodNameChs
      * @param methodNameEng
-     * @param businessErrorCode
-     * @param businessErrorMessage
+     * @param errorCode
+     * @param errorMessage
      * @param cause
      */
-    public BusinessException(String moduleNameChs, String moduleNameEng, String methodNameChs, String methodNameEng,
-            String businessErrorCode, String businessErrorMessage, Throwable cause) {
-        super(businessErrorMessage, cause);
+    public BizException(String moduleNameChs, String moduleNameEng, String methodNameChs, String methodNameEng,
+                        String errorCode, String errorMessage, Throwable cause) {
+        super(errorMessage, cause);
         this.moduleNameChs = moduleNameChs;
         this.moduleNameEng = moduleNameEng;
         this.methodNameChs = methodNameChs;
         this.methodNameEng = methodNameEng;
-        this.businessErrorCode = businessErrorCode;
-        this.businessErrorMessage = businessErrorMessage;
+        this.setErrorCode(errorCode);
+        this.setErrorMessage(errorMessage);
     }
     
 
@@ -98,13 +86,13 @@ public class BusinessException extends BaseException {
     /**
      * @author:
      * @category:
-     * @param businessErrorCode
-     * @param businessErrorMessage
+     * @param errorCode
+     * @param errorMessage
      */
-    public BusinessException(String businessErrorCode, String businessErrorMessage) {
-        super(businessErrorCode + " : " + businessErrorMessage);
-        this.businessErrorCode = businessErrorCode;
-        this.businessErrorMessage = businessErrorMessage;
+    public BizException(String errorCode, String errorMessage) {
+        super(errorCode + " : " + errorMessage);
+        this.setErrorCode(errorCode);
+        this.setErrorMessage(errorMessage);
     }
     
     public String getModuleNameChs() {
@@ -147,21 +135,12 @@ public class BusinessException extends BaseException {
     }
 
 
-    
-    public String getBusinessErrorCode() {
-        return businessErrorCode;
-    }
-
-
-    public String getBusinessErrorMessage() {
-        return businessErrorMessage;
-    }
 
 
     @Override
     public String toString() {
-        return "BusinessException [moduleNameChs=" + moduleNameChs + ", moduleNameEng=" + moduleNameEng
-                + ", methodNameChs=" + methodNameChs + ", methodNameEng=" + methodNameEng + ", businessErrorCode="
-                + businessErrorCode + ", businessErrorMessage=" + businessErrorMessage + "]";
+        return "BizException [moduleNameChs=" + moduleNameChs + ", moduleNameEng=" + moduleNameEng
+                + ", methodNameChs=" + methodNameChs + ", methodNameEng=" + methodNameEng + ", errorCode="
+                + getErrorCode() + ", errorMessage=" + getErrorMessage() + "]";
     }
 }

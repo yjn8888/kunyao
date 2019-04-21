@@ -2,7 +2,6 @@ package com.kunyao.dubbo.boot.config;
 
 import com.kunyao.dubbo.boot.contant.DubboContant;
 import org.apache.dubbo.config.*;
-import org.apache.dubbo.config.spring.AnnotationBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

@@ -14,7 +14,7 @@ public class Page<T> implements Serializable{
 	/**
 	 * 
 	 */
-//	private static final long serialVersionUID = -3349291869076816256L;
+	private static final long serialVersionUID = -3349291869076816256L;
 	
 	/**
 	 * 每页最多记录数

@@ -1,11 +1,13 @@
 package com.kunyao.data;
 
+import com.kunyao.core.entity.invoke.Page;
+
 import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 基础数据API接口
+ * 基础持久层API接口
  * 定义基础的CRUD接口
  * @param <T>
  */
@@ -22,7 +24,7 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
     /**
      *条件查询
      */
-    List<T> queryByCondition(QueryCondition queryCondition);
+    List<T> queryByCondition(IQueryCondition IQueryCondition);
 
     /**
      * 查询
@@ -88,4 +90,9 @@ public interface IRepository<T extends Serializable, PK extends Serializable>{
      * @return
      */
     int deleteBatch(List<PK> idList);
+
+    /**
+     *条件查询
+     */
+    Page<T> queryPageByCondition(IQueryCondition IQueryCondition);
 }

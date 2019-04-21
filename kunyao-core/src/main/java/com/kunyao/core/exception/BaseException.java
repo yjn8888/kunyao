@@ -1,12 +1,14 @@
 package com.kunyao.core.exception;
 
 
+import lombok.Data;
 
 /* *
  * @author 
  * @version 1.0
  */
-public class BaseException extends RuntimeException {
+@Data
+public abstract class BaseException extends RuntimeException {
 
 	
 	/**
@@ -14,9 +16,17 @@ public class BaseException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 4709882408886284047L;
 
+	public static final String DEFAULT_SYS_ERROR_MESSAGE = "System Error! Please try again OR Contact your administrator to solve .";
+
+	public static final String DEFAULT_BIZ_ERROR_CODE = "BIZ-00001";
+
+	public static final String DEFAULT_SYS_ERROR_CODE = "SYS-00001";
+
 	private String errorCode;
 	
 	private String errorMessage;
+
+	protected boolean alarm;
 
 	public BaseException(){
 		super();
@@ -45,20 +55,4 @@ public class BaseException extends RuntimeException {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
-
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 }

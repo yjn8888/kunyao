@@ -2,7 +2,7 @@ package com.kunyao.core.constant;
 
 public interface logo {
 
-    public static final String kunyao = "\n" +
+    String kunyao = "\n" +
             "\t  _   __                                    \n" +
             "  .  | | / /                                   __ _ _ \n" +
             " /\\\\ | |/ /  _   _  _ __   _   _   __ _   ___  \\ \\ \\ \\\n" +

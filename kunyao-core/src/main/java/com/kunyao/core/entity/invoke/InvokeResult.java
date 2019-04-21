@@ -1,19 +1,24 @@
 package com.kunyao.core.entity.invoke;
 
+import com.kunyao.core.entity.base.Entity;
+
 import java.io.Serializable;
+
+import static com.kunyao.core.exception.BaseException.DEFAULT_SYS_ERROR_CODE;
+import static com.kunyao.core.exception.BaseException.DEFAULT_SYS_ERROR_MESSAGE;
 
 /**
  * 此类描述的是：泛型的invokeResult类:
  */
-public class InvokeResult<T> implements Serializable {
+public class InvokeResult<T> implements Entity {
 
 	private static final long serialVersionUID = 1L;
 
 	private String invokeId;
 
-	private String resultCode = "-1";
+	private String resultCode = DEFAULT_SYS_ERROR_CODE;
 
-	private String resultMessage = "系统错误，请联系管理员";
+	private String resultMessage = DEFAULT_SYS_ERROR_MESSAGE;
 
     private String exception;
 
@@ -101,4 +106,8 @@ public class InvokeResult<T> implements Serializable {
         this.data = data;
     }
 
+    @Override
+    public String getTraceId() {
+        return invokeId;
+    }
 }

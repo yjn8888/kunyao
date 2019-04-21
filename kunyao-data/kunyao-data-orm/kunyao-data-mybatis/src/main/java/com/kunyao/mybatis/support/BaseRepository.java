@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.kunyao.core.entity.invoke.Page;
 import com.kunyao.data.IRepository;
-import com.kunyao.data.QueryCondition;
+import com.kunyao.data.IQueryCondition;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Nullable;
@@ -21,7 +22,7 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
     }
 
     @Override
-    public List<T> queryByCondition(QueryCondition queryCondition) {
+    public List<T> queryByCondition(IQueryCondition IQueryCondition) {
         return null;
     }
 
@@ -62,6 +63,11 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
     @Override
     public int deleteBatch(List<PK> idList) {
         return baseMapper.deleteBatchIds(idList);
+    }
+
+    @Override
+    public Page<T> queryPageByCondition(IQueryCondition IQueryCondition) {
+        return null;
     }
 
     public List<T> query(T t,String... columns) {

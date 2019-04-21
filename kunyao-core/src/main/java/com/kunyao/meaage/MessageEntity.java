@@ -44,4 +44,9 @@ public class MessageEntity<T> implements Entity {
                 ", data=" + data +
                 '}';
     }
+
+    @Override
+    public String getTraceId() {
+        return mesageId;
+    }
 }

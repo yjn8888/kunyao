@@ -1,5 +1,6 @@
 package com.kunyao.message.rabbitmq.support;
 
+import com.kunyao.core.exception.SysException;
 import com.kunyao.core.spring.util.SpringContextProvider;
 import com.kunyao.logging.trace.LogTraceSerialContext;
 import com.kunyao.meaage.Producer;
@@ -84,7 +85,7 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
                 binding = (Binding) springContextProvider.getBean(Binding.class);
             }catch (RuntimeException re){
                 log.error(re.getMessage(),re);
-                throw new RuntimeException("不存在binding或未指定binding！");
+                throw new SysException("不存在binding或未指定binding！",re);
             }
         }
         String messageId = LogTraceSerialContext.handleInvokeId(null);
