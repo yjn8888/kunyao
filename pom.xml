@@ -22,7 +22,7 @@
 		<module>kunyao-message</module>
 		<module>kunyao-schedule</module>
 		<module>kunyao-security</module>
-		<module>kunyao-restful</module>
+		<module>kunyao-rest</module>
 		<module>kunyao-cache</module>
 		<module>kunyao-test</module>
 		<module>kunyao-swagger</module>
