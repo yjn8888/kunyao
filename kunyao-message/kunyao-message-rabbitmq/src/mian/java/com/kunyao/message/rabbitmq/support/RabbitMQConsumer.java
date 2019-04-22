@@ -1,8 +1,8 @@
 package com.kunyao.message.rabbitmq.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kunyao.meaage.Consumer;
-import com.kunyao.meaage.MessageEntity;
+import com.kunyao.message.Consumer;
+import com.kunyao.message.MessageEntity;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AcknowledgeMode;

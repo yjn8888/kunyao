@@ -1,7 +1,7 @@
-package com.kunyao.meaage.monolithic;
+package com.kunyao.message.monolithic;
 
-import com.kunyao.meaage.Consumer;
-import com.kunyao.meaage.MessageEntity;
+import com.kunyao.message.Consumer;
+import com.kunyao.message.MessageEntity;
 
 import java.util.concurrent.BlockingQueue;
 

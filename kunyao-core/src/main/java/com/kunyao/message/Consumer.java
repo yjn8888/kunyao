@@ -1,4 +1,4 @@
-package com.kunyao.meaage;
+package com.kunyao.message;
 
 public interface Consumer<T> {
     /**
