@@ -294,4 +294,33 @@ public class RedisRepository implements DistributedLock {
 
         return isReleased;
     }
+
+    /**
+     * 默认从坐标push
+     * @param key
+     * @param o
+     */
+    public void push(String key,Object o){
+        redisTemplate.opsForList().leftPush(key,o);
+    }
+
+    /**
+     * 默认从右pop
+     * @param key
+     * @return
+     */
+    public Object pop(String key){
+        return redisTemplate.opsForList().rightPop(key);
+    }
+
+    /**
+     * 默认从右pop
+     * 阻塞等待取数据
+     * @param key
+     * @param timeout 超时时间毫秒
+     * @return
+     */
+    public Object blockPop(String key,long timeout){
+        return redisTemplate.opsForList().rightPop(key,timeout,TimeUnit.MILLISECONDS);
+    }
 }

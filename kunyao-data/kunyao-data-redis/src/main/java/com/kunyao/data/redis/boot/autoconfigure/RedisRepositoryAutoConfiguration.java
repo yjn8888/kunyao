@@ -1,21 +1,15 @@
 package com.kunyao.data.redis.boot.autoconfigure;
 
 import com.kunyao.data.redis.boot.support.RedisRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.RedisSerializer;
-
-import java.net.UnknownHostException;
 
 @Configuration
 public class RedisRepositoryAutoConfiguration {
@@ -38,7 +32,7 @@ public class RedisRepositoryAutoConfiguration {
     @ConditionalOnMissingBean(
             name = {"transactionStringRedisTemplate"}
     )
-    public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+    public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate transactionStringRedisTemplate = new StringRedisTemplate();
         transactionStringRedisTemplate.setConnectionFactory(redisConnectionFactory);
         transactionStringRedisTemplate.setEnableTransactionSupport(true);
@@ -50,6 +44,13 @@ public class RedisRepositoryAutoConfiguration {
                                                   @Qualifier("stringRedisTemplate") StringRedisTemplate stringRedisTemplate,
                                                   @Qualifier("transactionStringRedisTemplate") StringRedisTemplate transactionStringRedisTemplate) {
         return new RedisRepository(redisTemplate,stringRedisTemplate,transactionStringRedisTemplate);
+    }
+
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        return container;
     }
 
 

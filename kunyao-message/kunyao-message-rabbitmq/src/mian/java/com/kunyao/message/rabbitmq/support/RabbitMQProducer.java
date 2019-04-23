@@ -5,11 +5,10 @@ import com.kunyao.core.spring.util.SpringContextProvider;
 import com.kunyao.logging.trace.LogTraceSerialContext;
 import com.kunyao.meaage.Producer;
 import com.kunyao.meaage.MessageEntity;
-import com.kunyao.message.rabbitmq.annotation.EQBinding;
+import com.kunyao.message.rabbitmq.annotation.Binding;
 import com.kunyao.message.rabbitmq.autoconfigure.CorrelationDataExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -71,18 +70,18 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
 
 
     public void sendMessage(Object t){
-        EQBinding eQBinding = this.getClass().getAnnotation(EQBinding.class);
+        Binding eQBinding = this.getClass().getAnnotation(Binding.class);
         String beanName = eQBinding.value();
-        Binding binding = null;
+        org.springframework.amqp.core.Binding binding = null;
         if(StringUtils.isNotBlank(beanName)){
             if(springContextProvider.containsBean(beanName)) {
-                binding = (Binding) springContextProvider.getBean(beanName);
+                binding = (org.springframework.amqp.core.Binding) springContextProvider.getBean(beanName);
             }else{
                 throw new RuntimeException("不存在指定名称: "+beanName + "的binding！！！");
             }
         }else{
             try {
-                binding = (Binding) springContextProvider.getBean(Binding.class);
+                binding = (org.springframework.amqp.core.Binding) springContextProvider.getBean(org.springframework.amqp.core.Binding.class);
             }catch (RuntimeException re){
                 log.error(re.getMessage(),re);
                 throw new SysException("不存在binding或未指定binding！",re);

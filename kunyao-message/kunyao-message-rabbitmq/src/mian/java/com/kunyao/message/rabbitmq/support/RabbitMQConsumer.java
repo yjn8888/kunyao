@@ -1,7 +1,6 @@
 package com.kunyao.message.rabbitmq.support;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kunyao.meaage.Consumer;
+import com.kunyao.meaage.GenericsConsumer;
 import com.kunyao.meaage.MessageEntity;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -17,17 +16,13 @@ import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 
 @Slf4j
-public abstract class RabbitMQConsumer<T> implements Consumer{
-
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    private Class<T> clazz;
+public abstract class RabbitMQConsumer<T> extends GenericsConsumer<T> {
 
     @Autowired
     protected RabbitProperties rabbitProperties;
 
     @RabbitHandler
-    public void receive(@Payload MessageEntity messageEntity, Channel channel,
+    public void handleMessage(@Payload MessageEntity<T> messageEntity, Channel channel,
                         @Header(AmqpHeaders.DELIVERY_TAG) long tag) {
         boolean isAsk = receiveMessage(messageEntity);
         AcknowledgeMode acknowledgeMode = rabbitProperties.getListener().getSimple().getAcknowledgeMode();
@@ -39,25 +34,6 @@ public abstract class RabbitMQConsumer<T> implements Consumer{
                 rejectAndBackMQ(channel,tag);
             }
         }
-    }
-
-    @Override
-    public boolean receiveMessage(MessageEntity messageEntity) {
-        T t = (T)objectMapper.convertValue(messageEntity.getData(),getRealType());
-        return process(t);
-    }
-
-    protected abstract boolean process(T t);
-
-    // 使用反射技术得到T的真实类型
-    protected Class getRealType(){
-        // 获取当前new的对象的泛型的父类类型
-        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-        // 获取第一个类型参数的真实类型
-        if(this.clazz==null){
-            this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
-        }
-        return clazz;
     }
 
     protected void askMessage(Channel channel, long tag) {

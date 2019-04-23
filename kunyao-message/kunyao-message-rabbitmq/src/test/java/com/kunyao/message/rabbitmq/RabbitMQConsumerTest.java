@@ -12,7 +12,6 @@ public class RabbitMQConsumerTest extends RabbitMQConsumer<TestMessage> {
 
     private boolean isStart;
 
-    @Override
     protected boolean process(TestMessage testMesage) {
 //        if(!isStart){
 //            try {
@@ -25,4 +24,9 @@ public class RabbitMQConsumerTest extends RabbitMQConsumer<TestMessage> {
         System.out.println(testMesage);
         return true;
     }
+
+//    @Override
+//    protected boolean process(Object o) {
+//        return false;
+//    }
 }
