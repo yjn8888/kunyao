@@ -1,7 +1,8 @@
 package com.kunyao.message.rabbitmq.support;
 
-import com.kunyao.meaage.GenericsConsumer;
-import com.kunyao.meaage.MessageEntity;
+
+import com.kunyao.message.GenericsConsumer;
+import com.kunyao.message.MessageEntity;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AcknowledgeMode;
@@ -13,7 +14,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 
 import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
 
 @Slf4j
 public abstract class RabbitMQConsumer<T> extends GenericsConsumer<T> {

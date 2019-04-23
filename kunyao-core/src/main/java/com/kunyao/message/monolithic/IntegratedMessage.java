@@ -1,4 +1,4 @@
-package com.kunyao.meaage.monolithic;
+package com.kunyao.message.monolithic;
 
 import lombok.Data;
 import lombok.ToString;

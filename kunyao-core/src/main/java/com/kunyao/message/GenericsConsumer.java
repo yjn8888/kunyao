@@ -1,4 +1,4 @@
-package com.kunyao.meaage;
+package com.kunyao.message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -279,7 +279,7 @@ public class RedisRepository implements DistributedLock {
                     if (lockIdentifier.equals(transactionStringRedisTemplate.opsForValue().get(lockKey))) {//判断是否同一把锁
                         transactionStringRedisTemplate.multi();//开启事务，其实就是批量发送命令
                         transactionStringRedisTemplate.delete(lockKey);//删除这个key
-                        if (transactionStringRedisTemplate.exec().isEmpty()) {//发送命令,如果监控
+                        if (transactionStringRedisTemplate.exec().isEmpty()) {//发送命令,如果监控到key值被修改则返回空重试
                             continue;
                         }
                         transactionStringRedisTemplate.unwatch();//释放redis对于这个key上的监控

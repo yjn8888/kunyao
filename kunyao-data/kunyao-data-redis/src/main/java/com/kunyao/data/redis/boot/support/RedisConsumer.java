@@ -1,8 +1,8 @@
 package com.kunyao.data.redis.boot.support;
 
 import com.kunyao.data.redis.boot.annotation.RedisListener;
-import com.kunyao.meaage.GenericsConsumer;
-import com.kunyao.meaage.MessageEntity;
+import com.kunyao.message.GenericsConsumer;
+import com.kunyao.message.MessageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
@@ -11,7 +11,6 @@ import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
