@@ -60,6 +60,9 @@ public class MybatisAutoConfiguration {
 		/**懒加载设置*/
 		Configuration configuration = sqlSessionFactoryBean.getObject().getConfiguration();
 		configuration.setLazyLoadingEnabled(true);
+		/**
+		 * 如果设置成true,任意的对象方法（toString）调用都会触发sql查询
+		 */
 		configuration.setAggressiveLazyLoading(false);
 		configuration.setProxyFactory(new CglibProxyFactory());
 //		/** 设置typeAlias 实体包扫描路径 */

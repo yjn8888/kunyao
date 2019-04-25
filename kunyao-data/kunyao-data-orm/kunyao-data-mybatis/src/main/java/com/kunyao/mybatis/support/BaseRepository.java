@@ -39,7 +39,7 @@ public class BaseRepository<M extends BaseMapper<T>, T extends Serializable,PK e
     @Override
     public boolean saveBatch(List<T> tList,@Nullable Integer batchSize) {
         if(batchSize==null){
-            batchSize = 30;
+            batchSize = 50;
         }
         return saveBatch(tList,batchSize.intValue());
     }
