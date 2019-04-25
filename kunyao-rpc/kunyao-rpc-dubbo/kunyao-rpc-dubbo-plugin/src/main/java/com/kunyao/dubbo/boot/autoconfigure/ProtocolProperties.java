@@ -1,24 +1,18 @@
-package com.kunyao.dubbo.boot.config;
+package com.kunyao.dubbo.boot.autoconfigure;
 
 import com.kunyao.dubbo.boot.contant.DubboContant;
 import org.apache.dubbo.config.ProtocolConfig;
 
 public class ProtocolProperties {
 	
-	public ProtocolProperties(){
-		
-	}
-	
 	private ProtocolConfig dubbo;
-	
+
 	private ProtocolConfig rest;
-	
-	private ProtocolConfig rmi;
-	
-	private ProtocolConfig hessian;
-	
-	private ProtocolConfig http;
-	
+
+	public ProtocolProperties(){
+
+	}
+
 	
 	public ProtocolConfig initDubboProtocol(){
 		this.dubbo = new ProtocolConfig(DubboContant.DEFAULT_PROTOCOL,DubboContant.DEFAULT_REMOTING_PORT);
@@ -64,30 +58,6 @@ public class ProtocolProperties {
 
 	public void setDubbo(ProtocolConfig dubbo) {
 		this.dubbo = dubbo;
-	}
-
-	public ProtocolConfig getRmi() {
-		return rmi;
-	}
-
-	public void setRmi(ProtocolConfig rmi) {
-		this.rmi = rmi;
-	}
-
-	public ProtocolConfig getHessian() {
-		return hessian;
-	}
-
-	public void setHessian(ProtocolConfig hessian) {
-		this.hessian = hessian;
-	}
-
-	public ProtocolConfig getHttp() {
-		return http;
-	}
-
-	public void setHttp(ProtocolConfig http) {
-		this.http = http;
 	}
 
 }

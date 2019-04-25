@@ -1,4 +1,4 @@
-package com.kunyao.dubbo.boot.config;
+package com.kunyao.dubbo.boot.autoconfigure;
 
 import com.kunyao.dubbo.boot.contant.DubboContant;
 import org.apache.dubbo.config.*;
@@ -11,22 +11,19 @@ public abstract class AbstractDubboProperties {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
     @NestedConfigurationProperty
-    private ApplicationConfig application;
+	protected ApplicationConfig application;
 
     @NestedConfigurationProperty
     private RegistryConfig registry;
 
     @NestedConfigurationProperty
-	private ProtocolProperties protocol;
+	protected ProtocolProperties protocol = new ProtocolProperties();
     
     /**
 	 * 提供方的缺省值，当ProtocolConfig和ServiceConfig某属性没有配置时，采用此缺省值，可选。
 	 */
 	protected ProviderConfig provider;
-	/**
-	 * 模块配置，用于配置当前模块信息，可选。
-	 */
-	protected ModuleConfig module;
+
 	/**
 	 * 监控中心配置，用于配置连接监控中心相关信息，可选。
 	 */
@@ -50,13 +47,7 @@ public abstract class AbstractDubboProperties {
     	provider = new ProviderConfig();
     }
     
-    /**
-     * 初始化缺省服务模块配置
-     */
-    protected void initDefaultModule(){
-    	module = new ModuleConfig();
-    }
-    
+
     /**
      * 初始化缺省服务监控中心配置
      */
@@ -76,7 +67,6 @@ public abstract class AbstractDubboProperties {
      * 初始化dubbo缺省协议配置
      */
     protected void initDefaultProtocol(){
-    	this.protocol = new ProtocolProperties();
     	this.protocol.initDubboProtocol().setDefault(true);
     }
 

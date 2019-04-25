@@ -40,7 +40,7 @@ public class MybatisAutoConfiguration {
 	}
 
 	/**     * mybatis 配置路径     */
-//    private static String MYBATIS_CONFIG = "mybatis-config.xml";
+//    private static String MYBATIS_CONFIG = "mybatis-autoconfigure.xml";
 	/**     * mybatis mapper resource 路径     */
 	private static String MAPPER_PATH = "classpath*:mybatis/**/*.xml";
 

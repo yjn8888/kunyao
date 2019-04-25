@@ -20,4 +20,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     private BaseRepository<UserMapper,User,Integer> baseRepository;
 
+    public void tets(){
+        baseMapper.tsts();
+
+    }
 }
+

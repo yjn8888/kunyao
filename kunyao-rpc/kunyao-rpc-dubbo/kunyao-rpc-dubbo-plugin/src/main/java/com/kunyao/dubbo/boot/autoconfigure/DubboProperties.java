@@ -1,9 +1,8 @@
-package com.kunyao.dubbo.boot.config;
+package com.kunyao.dubbo.boot.autoconfigure;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "dubbo")
 public class DubboProperties extends AbstractDubboProperties {
 	public DubboProperties() {
 		initDefaultApplication();
@@ -11,6 +10,5 @@ public class DubboProperties extends AbstractDubboProperties {
     	initDefaultMonitor();
     	initDefaultProtocol();
     	initDefaultProvider();
-    	initDefaultModule();
 	}
 }

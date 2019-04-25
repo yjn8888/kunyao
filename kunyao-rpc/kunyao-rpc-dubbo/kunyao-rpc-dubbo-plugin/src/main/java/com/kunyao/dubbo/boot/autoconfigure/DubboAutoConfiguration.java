@@ -1,4 +1,4 @@
-package com.kunyao.dubbo.boot.config;
+package com.kunyao.dubbo.boot.autoconfigure;
 
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ProtocolConfig;
@@ -9,32 +9,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-
-
-@EnableConfigurationProperties(DubboProperties.class)
+@Configuration
 public class DubboAutoConfiguration {
 	
-	private static Logger logger = LoggerFactory.getLogger(DubboAutoConfiguration.class);
-
-    @Autowired
-    private DubboProperties dubboProperties;
+    @Bean
+    public DubboProperties dubboProperties(){
+        return new DubboProperties();
+    }
     
     @Bean
     @ConditionalOnMissingBean
-    public ApplicationConfig requestApplicationConfig() {
+    public ApplicationConfig requestApplicationConfig(DubboProperties dubboProperties) {
         return dubboProperties.getApplication();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public RegistryConfig requestRegistryConfig() {
+    public RegistryConfig requestRegistryConfig(DubboProperties dubboProperties) {
         return dubboProperties.getRegistry();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public ProtocolConfig dubbo() {
+    public ProtocolConfig dubbo(DubboProperties dubboProperties) {
         return dubboProperties.getProtocol().getDubbo();
     }
 
