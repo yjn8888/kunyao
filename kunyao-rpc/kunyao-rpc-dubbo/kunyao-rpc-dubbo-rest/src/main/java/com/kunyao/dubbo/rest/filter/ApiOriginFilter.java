@@ -18,7 +18,7 @@ public class ApiOriginFilter implements ContainerResponseFilter{
 			ContainerResponseContext resCtx) throws IOException {
 		MultivaluedMap<String, Object> headers = resCtx.getHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
-		headers.add("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+		headers.add("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE, HEAD");
 		headers.add("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Content-Length");
 	}
 

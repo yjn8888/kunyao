@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 
  * 此类描述的是：rest服务接口基类，提供直接操作response,request的服务
- * @author: yuanjaining@hanhua.com
+ * @author: kunyao@hanhua.com
  * @since : 2015年6月24日
  */
 @Service(protocol={"rest"})

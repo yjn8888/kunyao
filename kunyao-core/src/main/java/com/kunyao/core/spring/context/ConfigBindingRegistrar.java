@@ -63,7 +63,7 @@ public class ConfigBindingRegistrar implements ImportBeanDefinitionRegistrar, En
 
         if (CollectionUtils.isEmpty(properties)) {
             if (log.isDebugEnabled()) {
-                log.debug("There is no property for binding to config class [" + configClass.getName()
+                log.debug("There is no property for binding to autoconfigure class [" + configClass.getName()
                         + "] within prefix [" + prefix + "]");
             }
             return;
@@ -92,7 +92,7 @@ public class ConfigBindingRegistrar implements ImportBeanDefinitionRegistrar, En
         registry.registerBeanDefinition(beanName, beanDefinition);
 
         if (log.isInfoEnabled()) {
-            log.info("The config bean definition [name : " + beanName + ", class : " + configClass.getName() +
+            log.info("The autoconfigure bean definition [name : " + beanName + ", class : " + configClass.getName() +
                     "] has been registered.");
         }
 
@@ -119,7 +119,7 @@ public class ConfigBindingRegistrar implements ImportBeanDefinitionRegistrar, En
 
         if (log.isInfoEnabled()) {
             log.info("The BeanPostProcessor bean definition [" + processorClass.getName()
-                    + "] for config bean [name : " + beanName + "] has been registered.");
+                    + "] for autoconfigure bean [name : " + beanName + "] has been registered.");
         }
 
     }

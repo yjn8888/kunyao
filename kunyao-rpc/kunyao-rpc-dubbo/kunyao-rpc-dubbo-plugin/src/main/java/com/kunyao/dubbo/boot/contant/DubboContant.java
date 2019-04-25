@@ -9,11 +9,6 @@ public abstract class DubboContant extends Constants {
 	public final static String KRYO_REMOTING_SERIALIZATION = "kryo";
 	
 	/**
-	 * fst序列化方式
-	 */
-	public final static String FST_REMOTING_SERIALIZATION = "fst";
-	
-	/**
 	 * dubbo协议默认远程调用的端口
 	 */
 	public final static Integer DEFAULT_REMOTING_PORT = -1;
@@ -46,7 +41,7 @@ public abstract class DubboContant extends Constants {
 	/**
 	 * 缺省的应用名前缀
 	 */
-	public final static String DEFAULT_APPLICATION_PREFIX = "EPIK-DUBBO-APP-";
+	public final static String DEFAULT_APPLICATION_PREFIX = "KUNYAO-DUBBO-APP-";
 
 	/**
 	 * rest协议缺省名称
@@ -81,7 +76,7 @@ public abstract class DubboContant extends Constants {
 	/**
 	 * dubbo restapp缺省应用名称
 	 */
-	public final static String DEFAULT_DUBBOX_APPLICATION_PREFIX = "EPIK-DUBBOX-APP-";
+	public final static String DEFAULT_DUBBOX_APPLICATION_PREFIX = "KUNYAO-DUBBOX-APP-";
 	
 	/**
 	 * dubbo rest
