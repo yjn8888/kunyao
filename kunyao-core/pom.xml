@@ -24,15 +24,5 @@
 			<artifactId>spring-boot-starter</artifactId>
 			<version>${spring_boot_version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>jcache</groupId>
-			<artifactId>jcache</artifactId>
-			<version>1.0-dev-2</version>
-		</dependency>
 	</dependencies>
 </project>

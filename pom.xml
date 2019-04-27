@@ -41,6 +41,12 @@
 		<spring_boot_version>2.1.4.RELEASE</spring_boot_version>
 		<lombok_version>1.18.4</lombok_version>
 		<versions_maven_plugin_version>2.7</versions_maven_plugin_version>
+		<commons_lang3_version>3.8.1</commons_lang3_version>
+        <common_io_version>2.6</common_io_version>
+        <fasterxml_jackson_version>2.9.8</fasterxml_jackson_version>
+        <commons_colections4_version>4.2</commons_colections4_version>
+		<curator_version>4.2.0</curator_version>
+		<dubbo_version>2.7.1</dubbo_version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -76,4 +82,42 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>kunyao Release</name>
+			<url>http://192.168.31.254:8080/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>kunyao Snapshots</name>
+			<url>http://192.168.31.254:8080/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://192.168.31.254:8080/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://192.168.31.254:8080/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

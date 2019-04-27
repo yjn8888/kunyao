@@ -10,17 +10,13 @@ import lombok.Data;
 @Data
 public abstract class BaseException extends RuntimeException {
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4709882408886284047L;
 
 	public static final String DEFAULT_SYS_ERROR_MESSAGE = "System Error! Please try again OR Contact your administrator to solve .";
 
-	public static final String DEFAULT_BIZ_ERROR_CODE = "BIZ-00001";
+	public static final String DEFAULT_BIZ_ERROR_CODE = "BIZ-ERROR-00001";
 
-	public static final String DEFAULT_SYS_ERROR_CODE = "SYS-00001";
+	public static final String DEFAULT_SYS_ERROR_CODE = "SYS_ERROR-00001";
 
 	private String errorCode;
 	

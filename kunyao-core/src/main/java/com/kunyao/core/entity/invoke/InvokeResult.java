@@ -2,10 +2,6 @@ package com.kunyao.core.entity.invoke;
 
 import com.kunyao.core.entity.base.Entity;
 
-import java.io.Serializable;
-
-import static com.kunyao.core.exception.BaseException.DEFAULT_SYS_ERROR_CODE;
-import static com.kunyao.core.exception.BaseException.DEFAULT_SYS_ERROR_MESSAGE;
 
 /**
  * 此类描述的是：泛型的invokeResult类:
@@ -16,9 +12,9 @@ public class InvokeResult<T> implements Entity {
 
 	private String invokeId;
 
-	private String resultCode = DEFAULT_SYS_ERROR_CODE;
+	private String resultCode = "00000";
 
-	private String resultMessage = DEFAULT_SYS_ERROR_MESSAGE;
+	private String resultMessage = "SUCCESS";
 
     private String exception;
 

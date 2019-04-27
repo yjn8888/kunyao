@@ -1,4 +1,2 @@
-#org.springframework.context.ApplicationContextInitializer=\
-#com.epik.dubbo.boot.DubboConfigurationApplicationContextInitializer
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.kunyao.db.h2.boot.config.H2AutoConfiguration

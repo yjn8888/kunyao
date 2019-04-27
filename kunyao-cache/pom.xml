@@ -12,6 +12,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
+			<version>${spring_boot_version}</version>
 		</dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

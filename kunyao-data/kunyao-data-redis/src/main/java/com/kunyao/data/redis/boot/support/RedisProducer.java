@@ -1,23 +1,22 @@
 package com.kunyao.data.redis.boot.support;
 
-import com.kunyao.meaage.Producer;
+import com.kunyao.message.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.Map;
 
-public class RedisProducer<T> implements Producer {
+public class RedisProducer<T> implements Producer<T> {
 
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Override
-    public void sendMessage(Object o) {
-
+    public void sendMessage(T t) {
+//        redisTemplate.convertAndSend();
     }
 
-    @Override
-    public void sendMessageWithProperties(Object o, Map properties) {
+    public void sendMessageWithProperties(T t,  Map<String, Object> properties) {
 
     }
 }
+

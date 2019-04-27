@@ -8,7 +8,7 @@ public class MessageEntity<T> implements Entity {
     /**
      * 用于分布式追踪
      */
-    private String mesageId;
+    private String messageId;
 
     private T data;
 
@@ -16,17 +16,17 @@ public class MessageEntity<T> implements Entity {
 
     }
 
-    public MessageEntity(String mesageId, T data) {
-        this.mesageId = mesageId;
+    public MessageEntity(String messageId, T data) {
+        this.messageId = messageId;
         this.data = data;
     }
 
-    public String getMesageId() {
-        return mesageId;
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setMesageId(String mesageId) {
-        this.mesageId = mesageId;
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 
     public T getData() {
@@ -40,13 +40,13 @@ public class MessageEntity<T> implements Entity {
     @Override
     public String toString() {
         return "MessageEntity{" +
-                "mesageId='" + mesageId + '\'' +
+                "messageId='" + messageId + '\'' +
                 ", data=" + data +
                 '}';
     }
 
     @Override
     public String getTraceId() {
-        return mesageId;
+        return messageId;
     }
 }

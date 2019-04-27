@@ -36,7 +36,7 @@ public abstract class DubboContant extends Constants {
 	/**
 	 * 缺省的服务注册中心
 	 */
-	public final static String DEFAULT_REGISTRY_ADDRESS = "zookeeper://YJN-PC:2182";
+	public final static String DEFAULT_REGISTRY_ADDRESS = "zookeeper://localhost:2181";
 	
 	/**
 	 * 缺省的应用名前缀
@@ -56,7 +56,7 @@ public abstract class DubboContant extends Constants {
 	/**
 	 * rest协议端口
 	 */
-	public final static Integer DEFAULT_REST_PROTOCOL_PORT = 8888;
+	public final static Integer DEFAULT_REST_PROTOCOL_PORT = 80;
 	
 	/**
 	 * rest协议下tomcat服务器提供端所能同时接收的最大HTTP连接数，防止REST server被过多连接撑爆，以作为一种最基本的自我保护机制
@@ -69,17 +69,7 @@ public abstract class DubboContant extends Constants {
 	public final static Integer DEFAULT_REST_PROTOCOL_THREADS = 500;
 	
 	/**
-	 * rest协议默认contextpath
-	 */
-	public final static String DEFAULT_REST_PROTOCOL_CONTEXTPATH = "services";
-	
-	/**
-	 * dubbo restapp缺省应用名称
-	 */
-	public final static String DEFAULT_DUBBOX_APPLICATION_PREFIX = "KUNYAO-DUBBOX-APP-";
-	
-	/**
 	 * dubbo rest
 	 */
-	public final static String DEFAULT_REST_PROTOCOL_EXTENSION = "com.alibaba.dubbo.rpc.protocol.rest.support.LoggingFilter";
+	public final static String DEFAULT_REST_PROTOCOL_EXTENSION = "org.apache.dubbo.rpc.protocol.rest.support.LoggingFilter,com.kunyao.dubbo.rest.filter";
 }
