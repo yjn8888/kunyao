@@ -17,8 +17,8 @@ import org.apache.dubbo.config.annotation.Service;
  * @since : 2019年4月24日
  */
 @Slf4j
-@Service(protocol={"rest"})
-public abstract class BaseRestService {
+@Service(protocol={"rest"},retries = 0,timeout = 30000)
+public abstract class RestService {
 
 	/**
 	 *

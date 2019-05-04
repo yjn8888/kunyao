@@ -10,6 +10,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static com.kunyao.util.SystemUtils.getIP;
+import static com.kunyao.util.SystemUtils.getJvmName;
+
 @Configuration
 @EnableConfigurationProperties({DubboProperties.class})
 public class DubboAutoConfiguration {
@@ -20,7 +23,7 @@ public class DubboAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public ApplicationConfig application() {
-        return new ApplicationConfig(DubboContant.DEFAULT_APPLICATION_PREFIX + System.currentTimeMillis());
+        return new ApplicationConfig(DubboContant.DEFAULT_APPLICATION_PREFIX + getIP() + "-" + getJvmName());
     }
 
     @Bean
@@ -35,7 +38,7 @@ public class DubboAutoConfiguration {
     public ProviderConfig provider() {
         ProviderConfig provider = new ProviderConfig();
         provider.setFilter("com.kunyao.dubbo.filter.trace.ProviderRpcTraceFilter");
-        provider.setTimeout(30000);
+        provider.setTimeout(dubboProperties.getGlobalTimeout());
         provider.setRetries(0);
         return provider;
     }
@@ -46,6 +49,7 @@ public class DubboAutoConfiguration {
     public ConsumerConfig consumer() {
         ConsumerConfig consumer = new ConsumerConfig();
         consumer.setFilter("com.kunyao.dubo.filter.trace.ConsumerRpcTraceFilter");
+        consumer.setCheck(false);
         return consumer;
     }
 

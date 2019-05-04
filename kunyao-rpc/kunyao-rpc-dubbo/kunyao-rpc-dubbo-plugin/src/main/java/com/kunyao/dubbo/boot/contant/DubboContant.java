@@ -41,7 +41,7 @@ public abstract class DubboContant extends Constants {
 	/**
 	 * 缺省的应用名前缀
 	 */
-	public final static String DEFAULT_APPLICATION_PREFIX = "KUNYAO-DUBBO-APP-";
+	public final static String DEFAULT_APPLICATION_PREFIX = "DUBBO-";
 
 	/**
 	 * rest协议缺省名称

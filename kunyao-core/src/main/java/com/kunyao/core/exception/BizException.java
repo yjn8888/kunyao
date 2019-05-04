@@ -7,6 +7,8 @@ package com.kunyao.core.exception;
  */
 public class BizException extends BaseException {
     private static final long serialVersionUID = 2416035725705871216L;
+
+    public static final String DEFAULT_BIZ_ERROR_CODE = "BIZ-ERROR-00001";
     
     /**
      * @author: 
@@ -59,30 +61,7 @@ public class BizException extends BaseException {
     }
 
     
-    /**
-     * @author:
-     * @category:
-     * @param moduleNameChs
-     * @param moduleNameEng
-     * @param methodNameChs
-     * @param methodNameEng
-     * @param errorCode
-     * @param errorMessage
-     * @param cause
-     */
-    public BizException(String moduleNameChs, String moduleNameEng, String methodNameChs, String methodNameEng,
-                        String errorCode, String errorMessage, Throwable cause) {
-        super(errorMessage, cause);
-        this.moduleNameChs = moduleNameChs;
-        this.moduleNameEng = moduleNameEng;
-        this.methodNameChs = methodNameChs;
-        this.methodNameEng = methodNameEng;
-        this.setErrorCode(errorCode);
-        this.setErrorMessage(errorMessage);
-    }
-    
 
-    
     /**
      * @author:
      * @category:

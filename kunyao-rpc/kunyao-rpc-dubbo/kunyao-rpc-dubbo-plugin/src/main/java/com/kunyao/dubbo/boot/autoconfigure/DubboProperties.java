@@ -12,11 +12,21 @@ public class DubboProperties {
 
 	private RegistryConfig registry = new RegistryConfig(DEFAULT_REGISTRY_ADDRESS);
 
+	private int globalTimeout = 30000;
+
 	public RegistryConfig getRegistry() {
 		return registry;
 	}
 
 	public void setRegistry(RegistryConfig registry) {
 		this.registry = registry;
+	}
+
+	public int getGlobalTimeout() {
+		return globalTimeout;
+	}
+
+	public void setGlobalTimeout(int globalTimeout) {
+		this.globalTimeout = globalTimeout;
 	}
 }
