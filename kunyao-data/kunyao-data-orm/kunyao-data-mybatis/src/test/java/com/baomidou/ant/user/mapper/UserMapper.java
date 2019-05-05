@@ -2,6 +2,7 @@ package com.baomidou.ant.user.mapper;
 
 import com.baomidou.ant.user.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>

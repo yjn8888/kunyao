@@ -27,7 +27,7 @@ public abstract class RedisConsumer<T> extends GenericsConsumer<T>{
         if(this.getClass().isAnnotationPresent(RedisListener.class)){
             redisListener = this.getClass().getAnnotation(RedisListener.class);
         }else{
-            throw getSysException("The redis consumer don't declared topic ！！！");
+            throw getSysException(new RuntimeException("The redis consumer don't declared topic ！！！"));
         }
         Set<Topic> topicList = new HashSet<>();
         for(String channelTopic : redisListener.channelTopic()){

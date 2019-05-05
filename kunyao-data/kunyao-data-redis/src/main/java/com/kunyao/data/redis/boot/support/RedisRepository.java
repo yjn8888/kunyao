@@ -3,15 +3,22 @@ package com.kunyao.data.redis.boot.support;
 
 import com.kunyao.distributed.DistributedLock;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.scripting.support.ResourceScriptSource;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
+import static com.kunyao.core.exception.SysException.getSysException;
 
 @Slf4j
 public class RedisRepository implements DistributedLock {
@@ -21,6 +28,18 @@ public class RedisRepository implements DistributedLock {
     private StringRedisTemplate stringRedisTemplate;
 
     private StringRedisTemplate transactionStringRedisTemplate;
+
+    protected static DefaultRedisScript<Integer> rateLimitRedisScript;
+
+    static {
+        try {
+            rateLimitRedisScript = new DefaultRedisScript(new ResourceScriptSource(new ClassPathResource("lua/RateLimit.lua")).getScriptAsString(),Integer.class);
+        } catch (IOException e) {
+            log.error(e.getMessage(),e);
+            throw getSysException(e);
+        }
+    }
+
 
     public RedisRepository(RedisTemplate redisTemplate,StringRedisTemplate stringRedisTemplate){
        this.stringRedisTemplate = stringRedisTemplate;
@@ -323,4 +342,6 @@ public class RedisRepository implements DistributedLock {
     public Object blockPop(String key,long timeout){
         return redisTemplate.opsForList().rightPop(key,timeout,TimeUnit.MILLISECONDS);
     }
+
+//    public ob
 }

@@ -82,42 +82,42 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<name>kunyao Release</name>
-			<url>http://192.168.31.254:8080/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>kunyao Snapshots</name>
-			<url>http://192.168.31.254:8080/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
-	<repositories>
-		<repository>
-			<id>nexus</id>
-			<name>nexus</name>
-			<url>http://192.168.31.254:8080/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>nexus</name>
-			<url>http://192.168.31.254:8080/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+<!--	<distributionManagement>-->
+<!--		<repository>-->
+<!--			<id>nexus-releases</id>-->
+<!--			<name>kunyao Release</name>-->
+<!--			<url>http://192.168.31.254:8080/content/repositories/releases/</url>-->
+<!--		</repository>-->
+<!--		<snapshotRepository>-->
+<!--			<id>nexus-snapshots</id>-->
+<!--			<name>kunyao Snapshots</name>-->
+<!--			<url>http://192.168.31.254:8080/content/repositories/snapshots/</url>-->
+<!--		</snapshotRepository>-->
+<!--	</distributionManagement>-->
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>nexus</id>-->
+<!--			<name>nexus</name>-->
+<!--			<url>http://192.168.31.254:8080/content/groups/public/</url>-->
+<!--			<releases>-->
+<!--				<enabled>true</enabled>-->
+<!--			</releases>-->
+<!--			<snapshots>-->
+<!--				<enabled>true</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+<!--	<pluginRepositories>-->
+<!--		<pluginRepository>-->
+<!--			<id>nexus</id>-->
+<!--			<name>nexus</name>-->
+<!--			<url>http://192.168.31.254:8080/content/groups/public/</url>-->
+<!--			<releases>-->
+<!--				<enabled>true</enabled>-->
+<!--			</releases>-->
+<!--			<snapshots>-->
+<!--				<enabled>true</enabled>-->
+<!--			</snapshots>-->
+<!--		</pluginRepository>-->
+<!--	</pluginRepositories>-->
 </project>
