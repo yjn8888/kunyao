@@ -54,6 +54,7 @@ public class QueryCondition implements IQueryCondition {
      * @param propertyName
      * @return
      */
+    @Override
     public QueryCondition addAscOrder(String propertyName) {
         this.orderList.add(Order.asc(propertyName));
         return this;
@@ -64,158 +65,189 @@ public class QueryCondition implements IQueryCondition {
      * @param propertyName
      * @return
      */
+    @Override
     public QueryCondition addDescOrder(String propertyName) {
         this.orderList.add(Order.desc(propertyName));
         return this;
     }
 
+    @Override
     public QueryCondition andIsNull(String propertyName) {
         this.ruleList.add(new Rule(ISNULL, propertyName).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andIsNotNull(String propertyName) {
         this.ruleList.add(new Rule(ISNOTNULL, propertyName).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andIsEmpty(String propertyName) {
         this.ruleList.add(new Rule(ISEMPTY, propertyName).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andIsNotEmpty(String propertyName) {
         this.ruleList.add(new Rule(ISNOTEMPTY, propertyName).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andLike(String propertyName, Object value) {
         this.ruleList.add(new Rule(LIKE, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(EQ, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andBetween(String propertyName, Object... values) {
         this.ruleList.add(new Rule(BETWEEN, propertyName, values).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andIn(String propertyName, List<Object> values) {
         this.ruleList.add(new Rule(IN, propertyName, new Object[] { values }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andIn(String propertyName, Object... values) {
         this.ruleList.add(new Rule(IN, propertyName, values).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andNotIn(String propertyName, List<Object> values) {
         this.ruleList.add(new Rule(NOTIN, propertyName, new Object[] { values }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition orNotIn(String propertyName, Object... values) {
         this.ruleList.add(new Rule(NOTIN, propertyName, values).setAndOr(OR));
         return this;
     }
 
 
+    @Override
     public QueryCondition andNotEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(NOTEQ, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andGreaterThan(String propertyName, Object value) {
         this.ruleList.add(new Rule(GT, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andGreaterEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(GE, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andLessThan(String propertyName, Object value) {
         this.ruleList.add(new Rule(LT, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
+    @Override
     public QueryCondition andLessEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(LE, propertyName, new Object[] { value }).setAndOr(AND));
         return this;
     }
 
 
+    @Override
     public QueryCondition orIsNull(String propertyName) {
         this.ruleList.add(new Rule(ISNULL, propertyName).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orIsNotNull(String propertyName) {
         this.ruleList.add(new Rule(ISNOTNULL, propertyName).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orIsEmpty(String propertyName) {
         this.ruleList.add(new Rule(ISEMPTY, propertyName).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orIsNotEmpty(String propertyName) {
         this.ruleList.add(new Rule(ISNOTEMPTY, propertyName).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orLike(String propertyName, Object value) {
         this.ruleList.add(new Rule(LIKE, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(EQ, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orBetween(String propertyName, Object... values) {
         this.ruleList.add(new Rule(BETWEEN, propertyName, values).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orIn(String propertyName, List<Object> values) {
         this.ruleList.add(new Rule(IN, propertyName, new Object[] { values }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orIn(String propertyName, Object... values) {
         this.ruleList.add(new Rule(IN, propertyName, values).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orNotEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(NOTEQ, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orGreaterThan(String propertyName, Object value) {
         this.ruleList.add(new Rule(GT, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orGreaterEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(GE, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orLessThan(String propertyName, Object value) {
         this.ruleList.add(new Rule(LT, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
     }
 
+    @Override
     public QueryCondition orLessEqual(String propertyName, Object value) {
         this.ruleList.add(new Rule(LE, propertyName, new Object[] { value }).setAndOr(OR));
         return this;
@@ -286,6 +318,7 @@ public class QueryCondition implements IQueryCondition {
         private boolean ascending; //升序还是降序
         private String propertyName; //哪个字段升序，哪个字段降序
 
+        @Override
         public String toString() {
             return propertyName + ' ' + (ascending ? "asc" : "desc");
         }

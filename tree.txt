@@ -87,10 +87,10 @@
 [WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-cache:pom:1.0.0-SNAPSHOT
 [WARNING] 'parent.relativePath' of POM com.kunyao:kunyao:1.0.0-SNAPSHOT (F:\source-code\kunyao\pom.xml) points at com.hanhua:prometheusTest instead of org.springframework.boot:spring-boot-starter-parent, please verify your project structure @ com.kunyao:kunyao:1.0.0-SNAPSHOT, F:\source-code\kunyao\pom.xml, line 4, column 10
 [WARNING] 
-[WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-test-webservice:jar:1.0.0-SNAPSHOT
+[WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-com.kunyao.test-webservice:jar:1.0.0-SNAPSHOT
 [WARNING] 'parent.relativePath' of POM com.kunyao:kunyao:1.0.0-SNAPSHOT (F:\source-code\kunyao\pom.xml) points at com.hanhua:prometheusTest instead of org.springframework.boot:spring-boot-starter-parent, please verify your project structure @ com.kunyao:kunyao:1.0.0-SNAPSHOT, F:\source-code\kunyao\pom.xml, line 4, column 10
 [WARNING] 
-[WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-test:pom:1.0.0-SNAPSHOT
+[WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-com.kunyao.test:pom:1.0.0-SNAPSHOT
 [WARNING] 'parent.relativePath' of POM com.kunyao:kunyao:1.0.0-SNAPSHOT (F:\source-code\kunyao\pom.xml) points at com.hanhua:prometheusTest instead of org.springframework.boot:spring-boot-starter-parent, please verify your project structure @ com.kunyao:kunyao:1.0.0-SNAPSHOT, F:\source-code\kunyao\pom.xml, line 4, column 10
 [WARNING] 
 [WARNING] Some problems were encountered while building the effective model for com.kunyao:kunyao-swagger:jar:1.0.0-SNAPSHOT
@@ -161,8 +161,8 @@
 [INFO] kunyao-cache
 [INFO] kunyao-spring-cache
 [INFO] kunyao-ehcache
-[INFO] kunyao-test
-[INFO] kunyao-test-webservice
+[INFO] kunyao-com.kunyao.test
+[INFO] kunyao-com.kunyao.test-webservice
 [INFO] kunyao-swagger
 [INFO] kunyao-search
 [INFO] kunyao-monitor
@@ -1101,28 +1101,28 @@
 [INFO] +- com.kunyao:kunyao-core:jar:1.0.0-SNAPSHOT:compile
 [INFO] |  +- io.swagger:swagger-annotations:jar:1.5.3:compile
 [INFO] |  \- joda-time:joda-time:jar:2.10.1:compile
-[INFO] +- org.springframework.boot:spring-boot-starter-test:jar:2.1.1.RELEASE:test
-[INFO] |  +- org.springframework.boot:spring-boot-test:jar:2.1.1.RELEASE:test
-[INFO] |  +- org.springframework.boot:spring-boot-test-autoconfigure:jar:2.1.1.RELEASE:test
-[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.4.0:test
-[INFO] |  |  +- net.minidev:json-smart:jar:2.3:test
-[INFO] |  |  |  \- net.minidev:accessors-smart:jar:1.2:test
-[INFO] |  |  |     \- org.ow2.asm:asm:jar:5.0.4:test
+[INFO] +- org.springframework.boot:spring-boot-starter-com.kunyao.test:jar:2.1.1.RELEASE:com.kunyao.test
+[INFO] |  +- org.springframework.boot:spring-boot-com.kunyao.test:jar:2.1.1.RELEASE:com.kunyao.test
+[INFO] |  +- org.springframework.boot:spring-boot-com.kunyao.test-autoconfigure:jar:2.1.1.RELEASE:com.kunyao.test
+[INFO] |  +- com.jayway.jsonpath:json-path:jar:2.4.0:com.kunyao.test
+[INFO] |  |  +- net.minidev:json-smart:jar:2.3:com.kunyao.test
+[INFO] |  |  |  \- net.minidev:accessors-smart:jar:1.2:com.kunyao.test
+[INFO] |  |  |     \- org.ow2.asm:asm:jar:5.0.4:com.kunyao.test
 [INFO] |  |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
-[INFO] |  +- junit:junit:jar:4.12:test
-[INFO] |  +- org.assertj:assertj-core:jar:3.11.1:test
-[INFO] |  +- org.mockito:mockito-core:jar:2.23.4:test
-[INFO] |  |  +- net.bytebuddy:byte-buddy:jar:1.9.5:test
-[INFO] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.5:test
-[INFO] |  |  \- org.objenesis:objenesis:jar:2.6:test
-[INFO] |  +- org.hamcrest:hamcrest-core:jar:1.3:test
-[INFO] |  +- org.hamcrest:hamcrest-library:jar:1.3:test
-[INFO] |  +- org.skyscreamer:jsonassert:jar:1.5.0:test
-[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:test
+[INFO] |  +- junit:junit:jar:4.12:com.kunyao.test
+[INFO] |  +- org.assertj:assertj-core:jar:3.11.1:com.kunyao.test
+[INFO] |  +- org.mockito:mockito-core:jar:2.23.4:com.kunyao.test
+[INFO] |  |  +- net.bytebuddy:byte-buddy:jar:1.9.5:com.kunyao.test
+[INFO] |  |  +- net.bytebuddy:byte-buddy-agent:jar:1.9.5:com.kunyao.test
+[INFO] |  |  \- org.objenesis:objenesis:jar:2.6:com.kunyao.test
+[INFO] |  +- org.hamcrest:hamcrest-core:jar:1.3:com.kunyao.test
+[INFO] |  +- org.hamcrest:hamcrest-library:jar:1.3:com.kunyao.test
+[INFO] |  +- org.skyscreamer:jsonassert:jar:1.5.0:com.kunyao.test
+[INFO] |  |  \- com.vaadin.external.google:android-json:jar:0.0.20131108.vaadin1:com.kunyao.test
 [INFO] |  +- org.springframework:spring-core:jar:5.1.3.RELEASE:compile
 [INFO] |  |  \- org.springframework:spring-jcl:jar:5.1.3.RELEASE:compile
-[INFO] |  +- org.springframework:spring-test:jar:5.1.3.RELEASE:test
-[INFO] |  \- org.xmlunit:xmlunit-core:jar:2.6.2:test
+[INFO] |  +- org.springframework:spring-com.kunyao.test:jar:5.1.3.RELEASE:com.kunyao.test
+[INFO] |  \- org.xmlunit:xmlunit-core:jar:2.6.2:com.kunyao.test
 [INFO] +- com.kunyao:kunyao-log:jar:1.0.0-SNAPSHOT:compile
 [INFO] |  \- org.codehaus.jackson:jackson-core-asl:jar:1.9.13:compile
 [INFO] \- org.projectlombok:lombok:jar:1.18.4:provided
@@ -1356,19 +1356,19 @@
 [INFO] \- org.projectlombok:lombok:jar:1.18.4:provided
 [INFO]                                                                         
 [INFO] ------------------------------------------------------------------------
-[INFO] Building kunyao-test 1.0.0-SNAPSHOT
+[INFO] Building kunyao-com.kunyao.test 1.0.0-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] 
-[INFO] --- maven-dependency-plugin:3.1.1:tree (default-cli) @ kunyao-test ---
-[INFO] com.kunyao:kunyao-test:pom:1.0.0-SNAPSHOT
+[INFO] --- maven-dependency-plugin:3.1.1:tree (default-cli) @ kunyao-com.kunyao.test ---
+[INFO] com.kunyao:kunyao-com.kunyao.test:pom:1.0.0-SNAPSHOT
 [INFO] \- org.projectlombok:lombok:jar:1.18.4:provided
 [INFO]                                                                         
 [INFO] ------------------------------------------------------------------------
-[INFO] Building kunyao-test-webservice 1.0.0-SNAPSHOT
+[INFO] Building kunyao-com.kunyao.test-webservice 1.0.0-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] 
-[INFO] --- maven-dependency-plugin:3.1.1:tree (default-cli) @ kunyao-test-webservice ---
-[INFO] com.kunyao:kunyao-test-webservice:jar:1.0.0-SNAPSHOT
+[INFO] --- maven-dependency-plugin:3.1.1:tree (default-cli) @ kunyao-com.kunyao.test-webservice ---
+[INFO] com.kunyao:kunyao-com.kunyao.test-webservice:jar:1.0.0-SNAPSHOT
 [INFO] \- org.projectlombok:lombok:jar:1.18.4:provided
 [INFO]                                                                         
 [INFO] ------------------------------------------------------------------------
@@ -1563,8 +1563,8 @@
 [INFO] kunyao-cache ....................................... SUCCESS [  0.027 s]
 [INFO] kunyao-spring-cache ................................ SUCCESS [  0.020 s]
 [INFO] kunyao-ehcache ..................................... SUCCESS [  0.024 s]
-[INFO] kunyao-test ........................................ SUCCESS [  0.011 s]
-[INFO] kunyao-test-webservice ............................. SUCCESS [  0.009 s]
+[INFO] kunyao-com.kunyao.test ........................................ SUCCESS [  0.011 s]
+[INFO] kunyao-com.kunyao.test-webservice ............................. SUCCESS [  0.009 s]
 [INFO] kunyao-swagger ..................................... SUCCESS [  0.159 s]
 [INFO] kunyao-search ...................................... SUCCESS [  0.006 s]
 [INFO] kunyao-monitor ..................................... SUCCESS [  0.008 s]

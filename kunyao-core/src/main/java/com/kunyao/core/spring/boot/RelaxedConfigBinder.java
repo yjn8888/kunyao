@@ -35,6 +35,7 @@ import static org.springframework.boot.context.properties.source.ConfigurationPr
  */
 public class RelaxedConfigBinder extends AbstractConfigBinder {
 
+    @Override
     public <C> void bind(String prefix, C config) {
 
         // Converts ConfigurationPropertySources

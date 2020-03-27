@@ -37,11 +37,11 @@
             <artifactId>hessian</artifactId>
             <version>4.0.51</version>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kunyao-test</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>${project.groupId}</groupId>-->
+            <!--<artifactId>kunyao-test-junit</artifactId>-->
+            <!--<version>${project.version}</version>-->
+            <!--<scope>com.kunyao.test</scope>-->
+        <!--</dependency>-->
     </dependencies>
 </project>

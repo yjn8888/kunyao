@@ -1,6 +1,5 @@
 package com.kunyao.distributed;
 
-import java.util.concurrent.TimeUnit;
 
 public interface RateLimt {
 

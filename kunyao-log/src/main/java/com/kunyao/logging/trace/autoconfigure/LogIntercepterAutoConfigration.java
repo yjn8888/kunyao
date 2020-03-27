@@ -17,6 +17,7 @@ public class LogIntercepterAutoConfigration  extends WebMvcConfigurationSupport 
     @Autowired
     private TraceProperties traceProperties;
 
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if(traceProperties.isGlobal() && traceProperties.isDistributed()){
             registry.addInterceptor(new SpringMVCLogTraceInterceptor()).addPathPatterns("/*");

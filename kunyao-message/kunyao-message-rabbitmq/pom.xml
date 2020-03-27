@@ -27,9 +27,9 @@
 		<!-- Test Dependencies -->
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>kunyao-test</artifactId>
+			<artifactId>kunyao-test-junit</artifactId>
 			<version>${project.version}</version>
-			<scope>test</scope>
+			<scope>com.kunyao.test</scope>
 		</dependency>
     </dependencies>
 </project>

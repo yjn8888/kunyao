@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public abstract class GenericApplicationTest implements ApplicaionTest{
+public abstract class GenericApplicationTest implements ApplicaionTest {
 
     @Before
     @Override

@@ -1,9 +1,14 @@
 package com.kunyao.distributed;
 
-import com.sun.istack.internal.NotNull;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * @Author The little blacksmith
+ * @Description 分布式锁定义
+ * @Date 2020/3/27
+ */
 public interface DistributedLock {
 
     /**

@@ -3,7 +3,6 @@ package com.kunyao.data.redis.boot.support;
 
 import com.kunyao.distributed.DistributedLock;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -269,7 +268,8 @@ public class RedisRepository implements DistributedLock {
             if (lockTimeout == null || lockTimeout == 0) {
                 lockTimeout = 5000L;
             }
-            String lockIdentifier = UUID.randomUUID().toString();//判断当前锁的持有者的唯一凭证
+            //判断当前锁的持有者的唯一凭证
+            String lockIdentifier = UUID.randomUUID().toString();
             long acquireEnd = System.currentTimeMillis() + acquireTimeout;
             while (System.currentTimeMillis() < acquireEnd) {
                 boolean isLock = stringRedisTemplate.opsForValue().setIfAbsent(lockKey, lockIdentifier, lockTimeout, TimeUnit.MILLISECONDS);
@@ -279,8 +279,8 @@ public class RedisRepository implements DistributedLock {
                 if (stringRedisTemplate.getExpire(lockKey, TimeUnit.MILLISECONDS) == -1) {
                     expire(lockKey, lockTimeout);
                 }
-
-                TimeUnit.MILLISECONDS.sleep(100);// 睡眠100毫秒减少无效循环竞争
+                // 睡眠100毫秒减少无效循环竞争
+                TimeUnit.MILLISECONDS.sleep(100);
             }
         }catch (Exception e){
             log.error(e.getMessage(),e);

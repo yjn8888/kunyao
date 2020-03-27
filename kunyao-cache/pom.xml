@@ -8,6 +8,11 @@
 	</parent>
 	<artifactId>kunyao-cache</artifactId>
 	<packaging>pom</packaging>
+	<modules>
+		<module>kunyao-spring-cache</module>
+		<module>kunyao-ehcache</module>
+		<module>kunyao-redis-cache</module>
+	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -20,9 +25,4 @@
             <version>${project.version}</version>
         </dependency>
 	</dependencies>
-	<modules>
-		<module>kunyao-spring-cache</module>
-		<module>kunyao-ehcache</module>
-        <module>kunyao-redis-cache</module>
-    </modules>
 </project>

@@ -8,9 +8,7 @@ import java.io.Serializable;
  *
  */
 public class RequestToMethodItem implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4530797000953540711L;
 	private String controllerName;
 	private String methodName;

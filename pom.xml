@@ -25,14 +25,14 @@
 		<module>kunyao-rest</module>
 		<module>kunyao-cache</module>
 		<module>kunyao-test</module>
-		<module>kunyao-swagger</module>
 		<module>kunyao-log</module>
 		<module>kunyao-search</module>
 		<module>kunyao-monitor</module>
 		<module>kunyao-workflow</module>
 		<module>kunyao-db</module>
         <module>kunyao-samples</module>
-    </modules>
+		<module>kunyao-apidocs</module>
+	</modules>
 	<properties>
 		<!-- for maven compiler plugin -->
 		<java_source_version>1.8</java_source_version>
@@ -82,6 +82,29 @@
 			</plugin>
 		</plugins>
 	</build>
+	<!--  测试私服  -->
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>youxin</id>
+			<url>http://artifactory.youxin.com/artifactory/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 <!--	<distributionManagement>-->
 <!--		<repository>-->
 <!--			<id>nexus-releases</id>-->

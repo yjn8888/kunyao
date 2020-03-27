@@ -13,16 +13,22 @@
 			<artifactId>kunyao-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>kunyao-test</artifactId>
-			<version>${project.version}</version>
-			<scope>test</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>${project.groupId}</groupId>-->
+			<!--<artifactId>kunyao-test-junit</artifactId>-->
+			<!--<version>${project.version}</version>-->
+			<!--<scope>test</scope>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 			<version>${spring_boot_version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>18.0.0</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
