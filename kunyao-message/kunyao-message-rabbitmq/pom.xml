@@ -29,7 +29,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>kunyao-test-junit</artifactId>
 			<version>${project.version}</version>
-			<scope>com.kunyao.test</scope>
+			<scope>test</scope>
 		</dependency>
     </dependencies>
 </project>

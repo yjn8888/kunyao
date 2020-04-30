@@ -1,5 +1,6 @@
-package com.kunyao.springmvc.controller.system;
+package com.kunyao.springrest.controller.system;
 
+import com.kunyao.springrest.controller.BaseController;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +25,21 @@ import java.util.Set;
 
 @RequestMapping("/system")
 @RestController
-public class RequestToMethodController {
+public class RequestToMethodController extends BaseController {
 	
 	@Autowired
 	private RequestMappingHandlerMapping requestMappingHandlerMapping;
 	
+	/**
+	 * @Author The little blacksmith
+	 * @Description 获取所有接口URI
+	 * @Date 2020/4/17
+	 * @Param [request]
+	 * @return java.util.List<com.kunyao.springrest.controller.system.RequestToMethodItem>
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/api/mappings", method = RequestMethod.GET)
-	public List<RequestToMethodItem> index(HttpServletRequest request) {
+	public List<RequestToMethodItem> getApiMappings(HttpServletRequest request) {
 		ServletContext servletContext = request.getSession()
 				.getServletContext();
 		if (servletContext == null) {

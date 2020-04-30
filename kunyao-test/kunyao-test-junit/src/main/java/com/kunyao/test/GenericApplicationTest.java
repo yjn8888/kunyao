@@ -1,5 +1,6 @@
 package com.kunyao.test;
 
+import com.kunyao.StartupApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Before;
@@ -9,9 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @Slf4j
-@SpringBootTest
 @RunWith(SpringRunner.class)
-public abstract class GenericApplicationTest implements ApplicaionTest {
+public class GenericApplicationTest implements ApplicaionTest {
 
     @Before
     @Override

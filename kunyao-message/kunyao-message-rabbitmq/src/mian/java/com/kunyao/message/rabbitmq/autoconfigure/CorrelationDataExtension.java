@@ -7,6 +7,7 @@ public class CorrelationDataExtension extends CorrelationData {
 
     private volatile Message returnedMessage;
 
+    @Override
     public void setReturnedMessage(Message returnedMessage) {
         this.returnedMessage = returnedMessage;
     }

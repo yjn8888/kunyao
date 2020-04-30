@@ -16,12 +16,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring_boot_version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.kunyao</groupId>-->
-            <!--<artifactId>kunyao-core</artifactId>-->
-            <!--<version>1.0.0-SNAPSHOT</version>-->
-            <!--<scope>compile</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.2.0.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>

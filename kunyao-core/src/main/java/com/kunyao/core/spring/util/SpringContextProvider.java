@@ -34,7 +34,6 @@ public class SpringContextProvider implements ApplicationContextAware{
 	
 	/**
 	 * 根据 class得到bean
-	 * @param name
 	 * @param beanType
 	 * @return
 	 */
@@ -85,6 +84,7 @@ public class SpringContextProvider implements ApplicationContextAware{
 		return applicationContext;
 	}
 
+	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		SpringContextProvider.applicationContext = applicationContext;
 	}

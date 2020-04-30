@@ -1,6 +1,7 @@
 package com.kunyao.core.entity.invoke;
 
 import com.kunyao.core.entity.base.Entity;
+import com.kunyao.core.exception.BaseException;
 
 
 /**
@@ -105,5 +106,11 @@ public class InvokeResult<T> implements Entity {
     @Override
     public String getTraceId() {
         return invokeId;
+    }
+
+    public static InvokeResult<?> buildInvokeResult(BaseException e){
+        InvokeResult invokeResult = new InvokeResult<>(e.getErrorCode(),e.getErrorMessage(),null);
+        invokeResult.setException(e.getMessage());
+        return invokeResult;
     }
 }

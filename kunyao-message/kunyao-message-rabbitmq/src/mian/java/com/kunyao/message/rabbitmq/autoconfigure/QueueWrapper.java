@@ -22,34 +22,42 @@ public class QueueWrapper extends Queue {
         this.name = name;
     }
 
+    @Override
     public boolean isDurable() {
         return this.initQueue().isDurable();
     }
 
+    @Override
     public boolean isExclusive() {
         return this.initQueue().isExclusive();
     }
 
+    @Override
     public boolean isAutoDelete() {
         return this.initQueue().isAutoDelete();
     }
 
+    @Override
     public Map<String, Object> getArguments() {
         return this.initQueue().getArguments();
     }
 
+    @Override
     public void setActualName(String actualName) {
         this.initQueue().setActualName(actualName);
     }
 
+    @Override
     public String getActualName() {
         return this.initQueue().getActualName();
     }
 
+    @Override
     public String toString() {
         return this.initQueue().toString();
     }
 
+    @Override
     public String getName() {
         return this.initQueue().getName();
     }

@@ -60,7 +60,7 @@ public abstract class RabbitMQConsumer<T> extends GenericsConsumer<T> {
         try {
             channel.basicNack(tag, multiple, requeue);
         } catch (IOException e) {
-            log.error("RabbitMQ，IO异常，异常原因为：{}", e.getMessage());
+            log.error("RabbitMQ，IO异常，异常原因为：{}", e.getMessage(),e);
         }
     }
 }

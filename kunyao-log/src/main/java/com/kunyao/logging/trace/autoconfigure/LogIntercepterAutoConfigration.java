@@ -1,6 +1,6 @@
 package com.kunyao.logging.trace.autoconfigure;
 
-import com.kunyao.logging.trace.intercepter.SpringMVCLogTraceInterceptor;
+import com.kunyao.logging.trace.intercepter.SpringWebLogTraceInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -20,7 +20,7 @@ public class LogIntercepterAutoConfigration  extends WebMvcConfigurationSupport 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         if(traceProperties.isGlobal() && traceProperties.isDistributed()){
-            registry.addInterceptor(new SpringMVCLogTraceInterceptor()).addPathPatterns("/*");
+            registry.addInterceptor(new SpringWebLogTraceInterceptor()).addPathPatterns("/*");
             super.addInterceptors(registry);
         }
     }

@@ -15,10 +15,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Import({ViewResolverConfig.class})
 public class SpringMvcConfig extends WebMvcConfigurationSupport{
 	
+	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry){
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
 	
+	@Override
 	public void addViewControllers(ViewControllerRegistry registry){
 		registry.addViewController("/index").setViewName("/WEB-INF/views/html/index.html");
 		registry.setOrder(Ordered.HIGHEST_PRECEDENCE );

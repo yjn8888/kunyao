@@ -1,6 +1,5 @@
 package com.kunyao.logging.trace.intercepter;
 
-import com.kunyao.logging.trace.LogConstant;
 import com.kunyao.logging.trace.LogTraceSerialContext;
 import com.kunyao.logging.trace.annotation.TraceIgnore;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
+import static com.kunyao.logging.trace.LogConstant.TRACE_ID;
+
 @Slf4j
-public class SpringMVCLogTraceInterceptor implements HandlerInterceptor {
+public class SpringWebLogTraceInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
@@ -24,6 +25,7 @@ public class SpringMVCLogTraceInterceptor implements HandlerInterceptor {
                 if(isStartTrace(handlerMethod)){
                     String invokeId = getInvokeId(httpServletRequest);
                     LogTraceSerialContext.handleInvokeId(invokeId);
+                    httpServletResponse.addHeader(TRACE_ID, invokeId);
                 }
             }
         }catch(Exception e){
@@ -49,9 +51,9 @@ public class SpringMVCLogTraceInterceptor implements HandlerInterceptor {
      * @return
      */
     private String getInvokeId(HttpServletRequest httpServletRequest){
-        String invokeId = httpServletRequest.getHeader(LogConstant.TRACE_ID);
+        String invokeId = httpServletRequest.getHeader(TRACE_ID);
         if(StringUtils.isBlank(invokeId)){
-            invokeId = httpServletRequest.getParameter(LogConstant.TRACE_ID);
+            invokeId = httpServletRequest.getParameter(TRACE_ID);
         }
         if(StringUtils.isBlank(invokeId)){
             invokeId = UUID.randomUUID().toString();

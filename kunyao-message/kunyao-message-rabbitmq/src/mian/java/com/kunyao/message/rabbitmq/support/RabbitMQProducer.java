@@ -3,9 +3,10 @@ package com.kunyao.message.rabbitmq.support;
 import com.kunyao.core.exception.SysException;
 import com.kunyao.core.spring.util.SpringContextProvider;
 import com.kunyao.logging.trace.LogTraceSerialContext;
-import com.kunyao.message.rabbitmq.annotation.Binding;
-import com.kunyao.message.Producer;
+import com.kunyao.logging.trace.annotation.LogTrace;
 import com.kunyao.message.MessageEntity;
+import com.kunyao.message.Producer;
+import com.kunyao.message.rabbitmq.annotation.Binding;
 import com.kunyao.message.rabbitmq.autoconfigure.CorrelationDataExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,7 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 
 @Slf4j
-public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.ConfirmCallback,RabbitTemplate.ReturnCallback {
+public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
 
     @Autowired
     protected RabbitTemplate rabbitTemplate;
@@ -31,7 +32,7 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
     protected Jackson2JsonMessageConverter jackson2JsonMessageConverter;
 
     @PostConstruct
-    private void init(){
+    private void init() {
         this.rabbitTemplate.setConfirmCallback(this);
         this.rabbitTemplate.setReturnCallback(this);
     }
@@ -39,10 +40,10 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         T t = converter(correlationData.getReturnedMessage());
-        if(ack){
+        if (ack) {
             log.debug("发送成功的消息：" + correlationData);
             successfulSendHandle(t);
-        }else{
+        } else {
             log.error("发送失败的消息：" + correlationData);
             log.error("消息发送失败原因：" + cause);
             failedSendHandle(t);
@@ -55,45 +56,46 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
                                 String replyText,
                                 String exchange,
                                 String routingKey) {
-        log.error("未正常路由到队列：{message: " + message + ", replyCode: "+ replyCode
-                    + ", replyText: "+replyText+", exchange: "+exchange
-                    + ", routingKey: "+routingKey+"}");
+        log.error("未正常路由到队列：[message={},replyCode={},replyText={},exchange={},routingKey={}]", message, replyCode
+                , replyText, exchange, routingKey);
         T t = converter(message);
         failedSendHandle(t);
     }
 
     protected abstract void failedSendHandle(T t);
 
-    protected void successfulSendHandle(T t){
+    protected void successfulSendHandle(T t) {
 
     }
 
 
-    public void sendMessage(Object t){
+    @Override
+    @LogTrace
+    public void sendMessage(Object t) {
         Binding eQBinding = this.getClass().getAnnotation(Binding.class);
         String beanName = eQBinding.value();
         org.springframework.amqp.core.Binding binding = null;
-        if(StringUtils.isNotBlank(beanName)){
-            if(springContextProvider.containsBean(beanName)) {
-                binding = (org.springframework.amqp.core.Binding) springContextProvider.getBean(beanName);
-            }else{
-                throw new RuntimeException("不存在指定名称: "+beanName + "的binding！！！");
+        if (StringUtils.isNotBlank(beanName)) {
+            if (SpringContextProvider.containsBean(beanName)) {
+                binding = (org.springframework.amqp.core.Binding) SpringContextProvider.getBean(beanName);
+            } else {
+                throw new RuntimeException("不存在指定名称: " + beanName + "的binding！！！");
             }
-        }else{
+        } else {
             try {
-                binding = (org.springframework.amqp.core.Binding) springContextProvider.getBean(org.springframework.amqp.core.Binding.class);
-            }catch (RuntimeException re){
-                log.error(re.getMessage(),re);
-                throw new SysException("不存在binding或未指定binding！",re);
+                binding = (org.springframework.amqp.core.Binding) SpringContextProvider.getBean(org.springframework.amqp.core.Binding.class);
+            } catch (RuntimeException re) {
+                log.error(re.getMessage(), re);
+                throw new SysException("", "不存在binding或未指定binding！", re);
             }
         }
         String messageId = LogTraceSerialContext.handleInvokeId(null);
-        MessageEntity messageEntity = new MessageEntity(messageId,t);
-        Message message = jackson2JsonMessageConverter.toMessage(messageEntity,null);
+        MessageEntity messageEntity = new MessageEntity(messageId, t);
+        Message message = jackson2JsonMessageConverter.toMessage(messageEntity, null);
         CorrelationDataExtension correlationDataExtension = new CorrelationDataExtension();
         correlationDataExtension.setReturnedMessage(message);
         correlationDataExtension.setId(messageId);
-        rabbitTemplate.convertAndSend(binding.getExchange(),binding.getRoutingKey(),message,correlationDataExtension);
+        rabbitTemplate.convertAndSend(binding.getExchange(), binding.getRoutingKey(), message, correlationDataExtension);
     }
 
     @Override
@@ -101,10 +103,9 @@ public abstract class RabbitMQProducer<T> implements Producer, RabbitTemplate.Co
 
     }
 
-    private T converter(Message message){
-        return ((MessageEntity<T>)jackson2JsonMessageConverter.fromMessage(message)).getData();
+    private T converter(Message message) {
+        return ((MessageEntity<T>) jackson2JsonMessageConverter.fromMessage(message)).getData();
     }
-
 
 
 }

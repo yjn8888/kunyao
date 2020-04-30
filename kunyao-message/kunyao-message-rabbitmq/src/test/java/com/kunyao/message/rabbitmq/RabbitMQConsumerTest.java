@@ -4,14 +4,13 @@ import com.kunyao.message.rabbitmq.support.RabbitMQConsumer;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
-
 @Component
 @RabbitListener(queues = "${spring.rabbitmq.queues.queue1.name}")
 public class RabbitMQConsumerTest extends RabbitMQConsumer<TestMessage> {
 
     private boolean isStart;
 
+    @Override
     protected boolean process(TestMessage testMesage) {
 //        if(!isStart){
 //            try {

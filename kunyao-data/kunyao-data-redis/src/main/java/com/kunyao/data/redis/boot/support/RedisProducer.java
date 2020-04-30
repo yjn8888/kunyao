@@ -11,11 +11,13 @@ public class RedisProducer<T> implements Producer<T> {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Override
     public void sendMessage(T t) {
 //        redisTemplate.convertAndSend();
     }
 
-    public void sendMessageWithProperties(T t,  Map<String, Object> properties) {
+    @Override
+    public void sendMessageWithProperties(T t, Map<String, Object> properties) {
 
     }
 }

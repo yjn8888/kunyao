@@ -18,7 +18,13 @@ public abstract class GenericsConsumer<T> implements Consumer<T> {
 
     protected abstract boolean process(T t);
 
-    // 使用反射技术得到T的真实类型
+    /**
+     * @Author The little blacksmith
+     * @Description 使用反射技术得到T的真实类型
+     * @Date 2020/4/16
+     * @Param []
+     * @return java.lang.Class
+     */
     protected Class getRealType(){
         // 获取当前new的对象的泛型的父类类型
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
